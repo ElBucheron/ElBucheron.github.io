@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="icon" href="img/logo.png">
+        <title>Security Notes</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Fascinate Inline' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
+        <link rel='stylesheet' href='css/style.css'>
+
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.jfeed.pack.js"></script>
+    </head>
+
+	<body>
+        
+        <div class="logo">
+            <a href="index.html">Bucheron <img src="img/logo.png" width="70"> Security</a>
+        </div>
+
+		<div class="notes">
+
+			<script type="text/javascript">
+
+                jQuery.getFeed({
+                    //google new rss link
+                    url: 'https://www.ssi.gouv.fr/feed/actualite/',
+                    success: function(feed) {
+                        console.log(feed.title);
+                        // do more stuff here
+                    }
+                });
+
+            </script>
+			
+		</div>
+
+		<div class="footer">&copy; 2019, Ugo Reyne</div>
+
+	</body>
+</html>
