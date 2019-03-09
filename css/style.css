@@ -1,0 +1,105 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+h1 {
+  font-family: 'Montserrat Subrayada';
+}
+
+h2 {
+  margin-top: 40px;
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+  background-color: black;
+  color: white;
+}
+
+p {
+  margin-left: 10px;
+}
+
+em {
+  text-align: right;
+}
+
+.logo {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.logo a {
+  font-family: 'Fascinate Inline';
+  font-size: 2em;
+}
+
+.logo a:hover {
+  background-color: #efefef;
+  color: black;
+}
+
+.menu {
+  text-align: center;
+}
+
+.menu a {
+  color: white;
+  background-color: black;
+}
+
+.menu a:hover {
+  color: black;
+  background-color: white;
+}
+
+.notes {
+  margin: 0 auto;
+  padding-top: 60px;
+  max-width: 640px;
+  width: 94%;
+}
+
+.notes h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/**
+ * Footer Styles
+ */
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}

