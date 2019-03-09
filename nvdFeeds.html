@@ -23,30 +23,34 @@
             <div class="menu">
                 <a href="index.html">| Tools |</a>
                 <a href="textFiles.html">| Notes |</a>
-                <a href="nvdFeeds.html">| NVD Feed |</a><br>
+                <a href="actualite.html">| News |</a><br>
             </div>
 
-			<script>
+        </div>
 
-                var url= 'https://www.ssi.gouv.fr/feed/actualite/';
-                $.ajax({
-                  type: 'GET',
-                  url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
-                  dataType: 'jsonp',
-                  success: function(data) {
-                    var title = document.createElement("h1");
-                    var tTitle = document.createTextNode(data.feed.title);
-                    title.appendChild(tTitle);
-                    document.getElementById("notes").appendChild(title);
+            <script>
 
-                    console.log(data.feed.description);    
-                    console.log(data);
-                  }
-                });
+                $(document).ready(function(){
+
+                    var url= 'https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss-analyzed.xml';
+                    $.ajax({
+                      type: 'GET',
+                      url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
+                      dataType: 'jsonp',
+                      success: function(data) {
+                        var title = document.createElement("h1");
+                        var tTitle = document.createTextNode(data.feed.title);
+                        title.appendChild(tTitle);
+                        document.getElementById("notes").appendChild(title);
+
+                        console.log(data.feed.description);    
+                        console.log(data);
+                      }
+                    });
+
+                })
 
             </script>
-			
-		</div>
 
 		<div class="footer">&copy; 2019, Ugo Reyne</div>
 
