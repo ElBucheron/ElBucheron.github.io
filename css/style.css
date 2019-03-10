@@ -60,20 +60,8 @@ em {
 }
 
 .logo a:hover {
-  background-color: #efefef;
+  background-color: transparent;
   color: black;
-}
-
-.notes {
-  margin: 0 auto;
-  padding-top: 60px;
-  max-width: 640px;
-  width: 94%;
-}
-
-.notes h1 {
-  text-align: center;
-  margin-top: 0;
 }
 
 .menu {
@@ -90,10 +78,22 @@ em {
   background-color: white;
 }
 
-.active {
+.menu .active {
   background-color: transparent;
   color: black;
   cursor: not-allowed;
+}
+
+.notes {
+  margin: 0 auto;
+  padding-top: 60px;
+  max-width: 640px;
+  width: 94%;
+}
+
+.notes h1 {
+  text-align: center;
+  margin-top: 0;
 }
 
 .footer {
