@@ -61,9 +61,10 @@
                     var img = document.createElement("img");
                     var tDesc = document.createTextNode(items[i].description);
                     img.setAttribute('src', items[i].thumbnail);
-                    img.setAttribute('height', '50');
+                    img.setAttribute('width', '20%');
+                    img.setAttribute('style', "display: block; margin-left: auto; margin-right: auto;");
                     desc.appendChild(tDesc);
-                    // divNotes.appendChild(img);
+                    divNotes.appendChild(img);
                     divNotes.appendChild(desc);
                 }
 
