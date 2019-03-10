@@ -60,16 +60,19 @@
                     var desc = document.createElement("p");
                     var img = document.createElement("img");
                     var tDesc = document.createTextNode(items[i].description);
+                    var date = document.createElement("em");
+                    date.appendChild(document.createTextNode(items[i].pubDate));
                     img.setAttribute('src', items[i].thumbnail);
                     img.setAttribute('width', '20%');
                     img.setAttribute('style', "display: block; margin-left: auto; margin-right: auto;");
                     desc.appendChild(tDesc);
                     divNotes.appendChild(img);
                     divNotes.appendChild(desc);
+                    divNotes.appendChild(date);
                 }
 
                 // console.log(data.feed.description);    
-                // console.log(data);
+                console.log(data);
               }
             });
 
