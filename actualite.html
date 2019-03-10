@@ -18,35 +18,61 @@
             <a href="index.html">Bucheron <img src="img/logo.png" width="70"> Security</a>
         </div>
 
-		<div class="notes">
+		<div class="notes" id="notes">
 
-            <div class="menu">
+            <div class="menu" id="menu">
                 <a href="index.html">| Tools |</a>
                 <a href="textFiles.html">| Notes |</a>
                 <a href="nvdFeeds.html">| NVD Feed |</a><br>
             </div>
 
-			<script>
+        </div>
 
-                var url= 'https://www.ssi.gouv.fr/feed/actualite/';
-                $.ajax({
-                  type: 'GET',
-                  url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
-                  dataType: 'jsonp',
-                  success: function(data) {
-                    var title = document.createElement("h1");
-                    var tTitle = document.createTextNode(data.feed.title);
+		<script>
+
+            var url= 'https://www.ssi.gouv.fr/feed/actualite/';
+            $.ajax({
+              type: 'GET',
+              url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
+              dataType: 'jsonp',
+              success: function(data) {
+                var divNotes = document.getElementById("notes");
+
+                // Add the title of the feed
+                var title = document.createElement("h1");
+                var tTitle = document.createTextNode(data.feed.title);
+                title.appendChild(tTitle);
+                var divMenu = document.getElementById("menu");
+                divNotes.insertBefore(title, divMenu);
+
+                // Add the feed items
+                var items = data.items;
+                for (var i = 0; i < items.length; i++) {
+                    var title = document.createElement("a");
+                    title.setAttribute('href', items[i].link);
+                    var h2 = document.createElement("h2");
+                    var tTitle = document.createTextNode(items[i].title);
                     title.appendChild(tTitle);
-                    document.getElementById("notes").appendChild(title);
+                    h2.appendChild(title);
+                    divNotes.appendChild(h2);
+                    divNotes.appendChild(document.createElement("br"));
 
-                    console.log(data.feed.description);    
-                    console.log(data);
-                  }
-                });
+                    var desc = document.createElement("p");
+                    var img = document.createElement("img");
+                    var tDesc = document.createTextNode(items[i].description);
+                    img.setAttribute('src', items[i].thumbnail);
+                    img.setAttribute('height', '50');
+                    desc.appendChild(tDesc);
+                    // divNotes.appendChild(img);
+                    divNotes.appendChild(desc);
+                }
 
-            </script>
-			
-		</div>
+                // console.log(data.feed.description);    
+                // console.log(data);
+              }
+            });
+
+        </script>
 
 		<div class="footer">&copy; 2019, Ugo Reyne</div>
 
