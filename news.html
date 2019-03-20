@@ -23,16 +23,16 @@
             <div class="menu" id="menu">
                 <a href="index.html">| Tools |</a>
                 <a href="textFiles.html">| Notes |</a>
-                <a href="nvdFeeds.html">| NVD Feed |</a>
-                <a class="active">| Cyber News |</a>
-                <a href="attacksNews.html">| Attacks News |</a><br>
+                <a href="nvd.html">| NVD |</a>
+                <a class="active">| News |</a>
+                <a href="attacks.html">| Attacks |</a><br>
             </div>
 
         </div>
 
 		<script>
 
-            var url= 'https://www.ssi.gouv.fr/feed/actualite/';
+            var url= 'https://www.nist.gov/news-events/news/rss.xml';
             $.ajax({
               type: 'GET',
               url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
@@ -59,17 +59,17 @@
                     divNotes.appendChild(h2);
                     divNotes.appendChild(document.createElement("br"));
 
-                    var desc = document.createElement("p");
+                    // var desc = document.createElement("p");
                     var img = document.createElement("img");
-                    var tDesc = document.createTextNode(items[i].description);
+                    // var tDesc = document.createTextNode(items[i].description);
                     var date = document.createElement("em");
                     date.appendChild(document.createTextNode(items[i].pubDate));
                     img.setAttribute('src', items[i].thumbnail);
                     img.setAttribute('width', '20%');
                     img.setAttribute('style', "display: block; margin-left: auto; margin-right: auto;");
-                    desc.appendChild(tDesc);
+                    // desc.appendChild(tDesc);
                     divNotes.appendChild(img);
-                    divNotes.appendChild(desc);
+                    // divNotes.appendChild(desc);
                     divNotes.appendChild(date);
                 }
 

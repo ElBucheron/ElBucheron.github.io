@@ -20,12 +20,14 @@
 
 		<div class="notes" id="notes">
 
+            <h1>Attacks news</h1>
+
             <div class="menu" id="menu">
                 <a href="index.html">| Tools |</a>
                 <a href="textFiles.html">| Notes |</a>
-                <a class="active">| NVD Feed |</a>
-                <a href="actualite.html">| Cyber News |</a>
-                <a href="attacksNews.html">| Attacks News |</a><br>
+                <a href="nvd.html">| NVD |</a>
+                <a href="news.html">| News |</a>
+                <a class="active">| Attacks |</a><br>
             </div>
 
         </div>
@@ -34,20 +36,13 @@
 
             $(document).ready(function(){
 
-                var url= 'https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss-analyzed.xml';
+                var url= 'https://www.cshub.com/rss/categories/attacks';
                 $.ajax({
                   type: 'GET',
                   url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
                   dataType: 'jsonp',
                   success: function(data) {
                     var divNotes = document.getElementById("notes");
-
-                    // Add the title of the feed
-                    var title = document.createElement("h1");
-                    var tTitle = document.createTextNode(data.feed.title);
-                    title.appendChild(tTitle);
-                    var divMenu = document.getElementById("menu");
-                    divNotes.insertBefore(title, divMenu);
 
                     // Add the feed items
                     var items = data.items;
