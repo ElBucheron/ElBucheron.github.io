@@ -8,6 +8,8 @@
 		<link href='https://fonts.googleapis.com/css?family=Fascinate Inline' rel='stylesheet'>
 		<link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
 		<link rel='stylesheet' href='css/style.css'>
+
+		<script type="text/javascript" src="js/script.js"></script>
 	</head>
 
 	<body>
@@ -29,58 +31,74 @@
 			</div>
 
 
-			<h2>Web Domains</h2>
-			<a href="http://www.cachedpages.com">| Cached Pages</a><br>
-			<a href="https://archive.org/web">| Wayback Machine</a><br>
-			<a href="https://www.netcraft.com">| Netcraft</a><br>
-			<a href="https://www.whois.net">| Whois</a><br>
-			<a href="https://mxtoolbox.com/reverselookup.aspx">| Reverse-IP lookup</a><br>
-			<a href="https://www.shodan.io">| Shodan</a><br>
+			<h2 onclick="showCat('cat1')">Web Domains</h2>
+			<div class="content hidden" id="cat1">
+				<a href="http://www.cachedpages.com">| Cached Pages</a><br>
+				<a href="https://archive.org/web">| Wayback Machine</a><br>
+				<a href="https://www.netcraft.com">| Netcraft</a><br>
+				<a href="https://www.whois.net">| Whois</a><br>
+				<a href="https://mxtoolbox.com/reverselookup.aspx">| Reverse-IP lookup</a><br>
+				<a href="https://www.shodan.io">| Shodan</a><br>
+			</div>
 
-			<h2>OSINT</h2>
-			<a href="https://osintframework.com">| OSINT Framework</a><br>
-			<a href="https://pipl.com/">| Pipl</a><br>
-			<a href="https://verify-email.org/">| Verify-Email</a><br>
-			<a href="https://www.tineye.com">| Tineye</a><br>
-			<a href="https://www.revealname.com/">| RevealName</a><br>
-			<a href="https://zoom.earth">| ZoomEarth</a><br>
+			<h2 onclick="showCat('cat2')">OSINT</h2>
+			<div class="content hidden" id="cat2">
+				<a href="https://osintframework.com">| OSINT Framework</a><br>
+				<a href="https://pipl.com/">| Pipl</a><br>
+				<a href="https://verify-email.org/">| Verify-Email</a><br>
+				<a href="https://www.tineye.com">| Tineye</a><br>
+				<a href="https://www.revealname.com/">| RevealName</a><br>
+				<a href="https://zoom.earth">| ZoomEarth</a><br>
+			</div>
 
-			<h2>Exploits</h2>
-			<a href="https://www.exploit-db.com">| Exploit Database</a><br>
+			<h2 onclick="showCat('cat3')">Exploits</h2>
+			<div class="content hidden" id="cat3">
+				<a href="https://www.exploit-db.com">| Exploit Database</a><br>
+			</div>
 
-			<h2>Kali Tools</h2>
-			<a href="https://tools.kali.org/information-gathering/theharvester">| The Harvester</a><br>
-			<a href="https://tools.kali.org/information-gathering/recon-ng">| Recon-ng</a><br>
+			<h2 onclick="showCat('cat4')">Kali Tools</h2>
+			<div class="content hidden" id="cat4">
+				<a href="https://tools.kali.org/information-gathering/theharvester">| The Harvester</a><br>
+				<a href="https://tools.kali.org/information-gathering/recon-ng">| Recon-ng</a><br>
+			</div>
 
-			<h2>Cryptography</h2>
-			<a href="https://gchq.github.io/CyberChef/">| CyberChef</a><br>
-			<a href="https://www.dcode.fr">| Decode</a><br>
-			<a href="https://quipqiup.com/">| Quipqiup</a><br>
-			<a href="https://rosettacode.org/wiki/Rosetta_Code">| RosettaCode</a><br>
-			<a href="http://factordb.com/">| FactorDB</a><br>
-			<a href="https://codebeautify.org">| Code Beautify</a><br>
-			<a href="https://330k.github.io/misc_tools/unicode_steganography.html">| Unicode Steganography</a><br>
-			<a href="https://hpd.gasmi.net">| Packet Decoder</a><br>
+			<h2 onclick="showCat('cat5')">Cryptography</h2>
+			<div class="content hidden" id="cat5">
+				<a href="https://gchq.github.io/CyberChef/">| CyberChef</a><br>
+				<a href="https://www.dcode.fr">| Decode</a><br>
+				<a href="https://quipqiup.com/">| Quipqiup</a><br>
+				<a href="https://rosettacode.org/wiki/Rosetta_Code">| RosettaCode</a><br>
+				<a href="http://factordb.com/">| FactorDB</a><br>
+				<a href="https://codebeautify.org">| Code Beautify</a><br>
+				<a href="https://330k.github.io/misc_tools/unicode_steganography.html">| Unicode Steganography</a><br>
+				<a href="https://hpd.gasmi.net">| Packet Decoder</a><br>
+			</div>
 
-			<h2>Trainings</h2>
-			<a href="https://practicalpentestlabs.com/">| PenTestLabs</a><br>
-			<a href="https://www.pentesteracademy.com/topics">| PentesterAcademy</a><br>
-			<a href="https://www.vulnhub.com/">| VulnHub</a><br>
-			<a href="https://www.hacksplaining.com/">| HackSploit</a><br>
+			<h2 onclick="showCat('cat6')">Trainings</h2>
+			<div class="content hidden" id="cat6">
+				<a href="https://practicalpentestlabs.com/">| PenTestLabs</a><br>
+				<a href="https://www.pentesteracademy.com/topics">| PentesterAcademy</a><br>
+				<a href="https://www.vulnhub.com/">| VulnHub</a><br>
+				<a href="https://www.hacksplaining.com/">| HackSploit</a><br>
+			</div>
 
-			<h2>Bug Bounty</h2>
-			<a href="https://www.hackerone.com/">| HackerOne</a><br>
-			<a href="https://yeswehack.com">| YesWeHack</a>
+			<h2 onclick="showCat('cat7')">Bug Bounty</h2>
+			<div class="content hidden" id="cat7">
+				<a href="https://www.hackerone.com/">| HackerOne</a><br>
+				<a href="https://yeswehack.com">| YesWeHack</a>
+			</div>
 
-			<h2>Challenges / CTF</h2>
-			<a href="websec.fr">| WebSec</a><br>
-			<a href="https://public.attackdefense.com/members">| AttackDefense</a><br>
-			<a href="https://www.root-me.org/?lang=en">| RootMe</a><br>
-			<a href="https://www.hackthebox.eu/login">| HackTheBox</a><br>
-			<a href="https://picoctf.com/">| PicoCTF</a><br>
-			<a href="https://w3challs.com/">| W3Challs</a><br>
-			<a href="https://www.newbiecontest.org/">| NewbieContest</a><br>
-			<a href="https://apsdehal.in/awesome-ctf">| Awesome-CTF</a><br>
+			<h2 onclick="showCat('cat8')">Challenges / CTF</h2>
+			<div class="content hidden" id="cat8">
+				<a href="websec.fr">| WebSec</a><br>
+				<a href="https://public.attackdefense.com/members">| AttackDefense</a><br>
+				<a href="https://www.root-me.org/?lang=en">| RootMe</a><br>
+				<a href="https://www.hackthebox.eu/login">| HackTheBox</a><br>
+				<a href="https://picoctf.com/">| PicoCTF</a><br>
+				<a href="https://w3challs.com/">| W3Challs</a><br>
+				<a href="https://www.newbiecontest.org/">| NewbieContest</a><br>
+				<a href="https://apsdehal.in/awesome-ctf">| Awesome-CTF</a><br>
+			</div>
 
 		</div>
 
