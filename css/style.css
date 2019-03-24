@@ -23,7 +23,6 @@ h1 {
 }
 
 h2 {
-  margin-top: 40px;
   margin-bottom: 5px;
   font-size: 1em;
   cursor: pointer;
@@ -49,6 +48,7 @@ em {
 
 .content {
   display: none;
+  margin-bottom: 20px;
 }
 
 .logo {
@@ -72,6 +72,7 @@ em {
 
 .menu {
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .menu a {

@@ -8,6 +8,8 @@
 		<link href='https://fonts.googleapis.com/css?family=Fascinate Inline' rel='stylesheet'>
 		<link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
 		<link rel='stylesheet' href='css/style.css'>
+
+		<script type="text/javascript" src="js/script.js"></script>
 	</head>
 
 	<body>
@@ -28,34 +30,44 @@
 			</div>
 
 
-			<h2>Cisco</h2>
-			<a href="Docs/Cisco/ConfigureACL.txt">| ConfigureACL.txt</a><br>
-			<a href="Docs/Cisco/ConfigureSyslog.txt">| ConfigureSyslog.txt</a><br>
-			<a href="Docs/Cisco/ConfigureAAA.txt">| ConfigureAAA.txt</a><br>
-			<a href="Docs/Cisco/ConfigureIOS_IPS.txt">| ConfigureIOS_IPS.txt</a><br>
-			<a href="Docs/Cisco/Layer2Security.txt">| Layer2Security.txt</a><br>
-			<a href="Docs/Cisco/Layer2VlanSecurity.txt">| Layer2VlanSecurity.txt</a><br>
+			<h2 onclick="showCat('cat1')">Cisco</h2>
+			<div class="content hidden" id="cat1">
+				<a href="Docs/Cisco/ConfigureACL.txt">| ConfigureACL.txt</a><br>
+				<a href="Docs/Cisco/ConfigureSyslog.txt">| ConfigureSyslog.txt</a><br>
+				<a href="Docs/Cisco/ConfigureAAA.txt">| ConfigureAAA.txt</a><br>
+				<a href="Docs/Cisco/ConfigureIOS_IPS.txt">| ConfigureIOS_IPS.txt</a><br>
+				<a href="Docs/Cisco/Layer2Security.txt">| Layer2Security.txt</a><br>
+				<a href="Docs/Cisco/Layer2VlanSecurity.txt">| Layer2VlanSecurity.txt</a><br>
+			</div>
 
-			<h2>Tools</h2>
-			<a href="Docs/Tools/Vim.txt">| Vim.txt</a><br>
-			<a href="Docs/Tools/Shodan.txt">| Shodan.txt</a><br>
-			<a href="Docs/Tools/Tmux.txt">| Tmux.txt</a><br>
-			<a href="Docs/Tools/Photorec.txt">| Photorec.txt</a><br>
+			<h2 onclick="showCat('cat2')">Tools</h2>
+			<div class="content hidden" id="cat2">
+				<a href="Docs/Tools/Vim.txt">| Vim.txt</a><br>
+				<a href="Docs/Tools/Shodan.txt">| Shodan.txt</a><br>
+				<a href="Docs/Tools/Tmux.txt">| Tmux.txt</a><br>
+				<a href="Docs/Tools/Photorec.txt">| Photorec.txt</a><br>
+			</div>
 
-			<h2>Pen Test</h2>
-			<a href="Docs/Linux-Commands.txt">| LinuxCommands.txt</a><br>
-			<a href="Docs/Scanning.txt">| Scanning.txt</a><br>
-			<a href="Docs/ExploitFramework.txt">| ExploitFramework.txt</a><br>
-			<a href="Docs/PasswordCracks.txt">| Passwords.txt</a><br>
-			<a href="Docs/Wireless.txt">| Wireless.txt</a><br>
+			<h2 onclick="showCat('cat3')">Pen Test</h2>
+			<div class="content hidden" id="cat3">
+				<a href="Docs/Linux-Commands.txt">| LinuxCommands.txt</a><br>
+				<a href="Docs/Scanning.txt">| Scanning.txt</a><br>
+				<a href="Docs/ExploitFramework.txt">| ExploitFramework.txt</a><br>
+				<a href="Docs/PasswordCracks.txt">| Passwords.txt</a><br>
+				<a href="Docs/Wireless.txt">| Wireless.txt</a><br>
+			</div>
 
-			<h2>Networking</h2>
-			<a href="Docs/SQL-Injection.txt">| SQL-Injection.txt</a><br>
-			<a href="Docs/WebServers.txt">| WebServers.txt</a><br>
-			<a href="Docs/CommonPorts.txt">| CommonPorts.txt</a><br>
+			<h2 onclick="showCat('cat4')">Networking</h2>
+			<div class="content hidden" id="cat4">
+				<a href="Docs/SQL-Injection.txt">| SQL-Injection.txt</a><br>
+				<a href="Docs/WebServers.txt">| WebServers.txt</a><br>
+				<a href="Docs/CommonPorts.txt">| CommonPorts.txt</a><br>
+			</div>
 
-			<h2>Others</h2>
-			<a href="Docs/CompressedFiles.txt">| CompressedFiles.txt</a><br>
+			<h2 onclick="showCat('cat5')">Others</h2>
+			<div class="content hidden" id="cat5">
+				<a href="Docs/CompressedFiles.txt">| CompressedFiles.txt</a><br>
+			</div>
 
 		</div>
 
