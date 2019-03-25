@@ -59,17 +59,17 @@
                     divNotes.appendChild(h2);
                     divNotes.appendChild(document.createElement("br"));
 
-                    // var desc = document.createElement("p");
+                    var desc = document.createElement("p");
                     var img = document.createElement("img");
-                    // var tDesc = document.createTextNode(items[i].description);
+                    var tDesc = document.createTextNode(items[i].content);
                     var date = document.createElement("em");
                     date.appendChild(document.createTextNode(items[i].pubDate));
                     img.setAttribute('src', items[i].thumbnail);
                     img.setAttribute('width', '20%');
                     img.setAttribute('style', "display: block; margin-left: auto; margin-right: auto;");
-                    // desc.appendChild(tDesc);
+                    desc.appendChild(tDesc);
                     divNotes.appendChild(img);
-                    // divNotes.appendChild(desc);
+                    divNotes.appendChild(desc);
                     divNotes.appendChild(date);
                 }
 
