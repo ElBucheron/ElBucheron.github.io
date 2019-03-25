@@ -141,6 +141,13 @@ em {
   background-color: #efefef;
 }
 
+#modal-content h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #efefef;
+}
+
 .close {
   color: #aaaaaa;
   float: right;
