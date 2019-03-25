@@ -128,7 +128,17 @@ em {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
+  border-radius: 5px;
   width: 80%;
+}
+
+#modal-content code {
+  margin-left: 20px;
+  margin-bottom: 5px;
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+  background-color: #efefef;
 }
 
 .close {

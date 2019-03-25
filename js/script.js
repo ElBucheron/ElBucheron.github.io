@@ -11,35 +11,41 @@ function showCat(id) {
 	}
 }
 
-function readTextFile(filepath) {
-	var str = "";
-	
-	$.get(filepath, function(data) {    
-	    var lines = data.split("\n");
-
-	    $.each(lines, function(n, elem) {
-	       $('#modal-content').append('<div>' + elem + '</div>');
-	    });
-	});
-
-	return str;
-}
-
-function openModal(title, path) {
+function openModal(filepath) {
 	var modal = document.getElementById("modal");
 	modal.style.display = "block";
 
-	var modalContent = document.getElementById("modal-content");
-	var titleDiv = document.createElement("h1");
-	titleDiv.style.textAlign = "center";
-	titleDiv.appendChild(document.createTextNode(title));
-    modalContent.appendChild(titleDiv);
+    var modalContent = document.getElementById("modal-content");
+	
+	$.get(filepath, function(data) {    
+		var lines = data.split("\n");
 
-    var text = readTextFile(path);
-
-    var p = document.createElement("p");
-    p.appendChild(document.createTextNode(text))
-    modalContent.appendChild(p);
+		$.each(lines, function(n, elem) {
+			if (elem.length != 1) {
+				if (elem.match(/##/g)) {
+					var h2 = document.createElement("h2");
+				    h2.appendChild(document.createTextNode(elem));
+				    modalContent.appendChild(h2);
+				}
+				else if (elem.match(/#/g)) {
+					var h1 = document.createElement("h1");
+				    h1.appendChild(document.createTextNode(elem));
+				    h1.style.textAlign = "center";
+				    modalContent.appendChild(h1);
+				}
+				else if (elem.match(/=/g)) {
+					var code = document.createElement("code");
+				    code.appendChild(document.createTextNode(elem));
+				    modalContent.appendChild(code);
+				}
+				else {
+					var p = document.createElement("p");
+				    p.appendChild(document.createTextNode(elem));
+				    modalContent.appendChild(p);
+				}
+			}
+		});
+	});
 }
 
 function closeModal() {
