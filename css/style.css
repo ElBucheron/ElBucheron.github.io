@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding-bottom: 6rem;
   min-height: 100%;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   background-color: white;
 }
 
@@ -28,8 +28,9 @@ h1 {
 }
 
 h2 {
+  font-family: 'Ubuntu', sans-serif;
   margin-bottom: 5px;
-  font-size: 1em;
+  font-size: 1.2em;
   cursor: pointer;
 }
 
@@ -113,7 +114,8 @@ em {
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   left: 0;
   top: 0;
   width: 100%;
@@ -129,19 +131,29 @@ em {
   padding: 20px;
   border: 1px solid #888;
   border-radius: 5px;
-  width: 80%;
+  width: 90%;
+}
+
+#modal-content p {
+  font-family: 'Oxygen', sans-serif;
 }
 
 #modal-content code {
+  font-family: 'Oxygen', sans-serif;
   margin-left: 20px;
   margin-bottom: 5px;
   padding: 10px;
   display: block;
-  border-radius: 5px;
+  border: 1px solid lightgray;
   background-color: #efefef;
 }
 
+#modal-content h1 {
+  font-family: 'Oxygen', sans-serif;
+}
+
 #modal-content h2 {
+  font-family: 'Oxygen', sans-serif;
   margin-top: 40px;
   margin-bottom: 20px;
   padding-bottom: 5px;
