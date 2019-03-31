@@ -22,20 +22,20 @@ function openModal(filepath) {
 
 		$.each(lines, function(n, elem) {
 			if (elem.length != 1) {
-				if (elem.match(/##/g)) {
+				if (elem.match(/^##/g)) {
 					var h2 = document.createElement("h2");
-				    h2.appendChild(document.createTextNode(elem));
+				    h2.appendChild(document.createTextNode(elem.slice(3, elem.length)));
 				    modalContent.appendChild(h2);
 				}
-				else if (elem.match(/#/g)) {
+				else if (elem.match(/^#/g)) {
 					var h1 = document.createElement("h1");
-				    h1.appendChild(document.createTextNode(elem));
+				    h1.appendChild(document.createTextNode(elem.slice(2, elem.length)));
 				    h1.style.textAlign = "center";
 				    modalContent.appendChild(h1);
 				}
-				else if (elem.match(/=/g)) {
+				else if (elem.match(/^=/g)) {
 					var code = document.createElement("code");
-				    code.appendChild(document.createTextNode(elem));
+				    code.appendChild(document.createTextNode(elem.slice(2, elem.length)));
 				    modalContent.appendChild(code);
 				}
 				else {

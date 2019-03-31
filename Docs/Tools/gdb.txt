@@ -6,10 +6,10 @@
 = > disas main
 
 ## Add a break point:
-= > b * 0x00485
+= > b * 0x000485
 
 ## Run th program with breakpoints:
 = > run
 
 ## Jump to a certain address:
-= > jump 0x000576
+= > j * 0x000576
