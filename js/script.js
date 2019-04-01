@@ -38,21 +38,6 @@ function expandAll() {
 		btn.textContent = "| Expand All |";
 		btn.className = "retracted";
 	}
-
-	$.each(elem.children, function(n, e){
-		if (e.id.match(/cat/g)) {
-			if (e.className == "content hidden") {
-				e.style.display = "block";
-				e.className = "content shown";
-				e.previousElementSibling.firstChild.style.transform = 'rotate(90deg)';
-			} else {
-				e.style.display = "none";
-				e.className = "content hidden";
-				e.previousElementSibling.firstChild.style.transform = 'rotate(0deg)';
-			}
-		}
-	});
-	btn.textContent = "Expand All";
 }
 
 function openModal(filepath) {
