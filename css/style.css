@@ -13,13 +13,31 @@ html {
   box-sizing: inherit;
 }
 
+.scene {
+  position: absolute;
+  background: black;
+  z-index: -1;
+}
+
+.magic {
+  z-index: -1;
+  position: absolute;
+  top: calc(50% - 10rem);
+  left: calc(50% - 10rem);
+  width: 10rem;
+  height: 10rem;
+  /*background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/hover-reveal.jpg') 50% 50% no-repeat fixed;*/
+  background-size: cover;
+  border-radius: 50%;
+}
+
 body {
   position: relative;
   margin: 0;
   padding-bottom: 6rem;
   min-height: 100%;
   font-family: 'Ubuntu', sans-serif;
-  background-color: white;
+  background-color: black;
 }
 
 em {
@@ -46,6 +64,7 @@ a {
 a:hover {
   background-color: black;
   color: white;
+  transition: 0.25s;
 }
 
 p {
@@ -110,9 +129,11 @@ em {
 .notes {
   margin: 0 auto;
   margin-top: 60px;
-  padding: 10px;
+  padding: 40px;
   max-width: 640px;
   width: 94%;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .notes h1 {
