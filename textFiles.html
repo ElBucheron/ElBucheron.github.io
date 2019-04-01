@@ -19,10 +19,10 @@
 	<body>
 
 		<div class="logo">
-			<a href="index.html">Bucheron <img src="img/logo.png" width="70"> Security</a>
+			<div class="glitch" data-text="Bucheron">Bucheron</div>
 		</div>
 
-		<div class="notes">
+		<div class="notes" id="notes">
 			<h1>Notes</h1>
 
 			<div class="menu">
@@ -33,8 +33,11 @@
 				<a href="attacks.html">| Attacks |</a><br>
 			</div>
 
+			<div class="menu expand">
+				<a id="actionAll" class="retracted" onclick="expandAll()">| Expand All |</a>
+			</div>
 
-			<h2 onclick="showCat('cat1')">Cisco</h2>
+			<h2 onclick="showCat('cat1')"><img src="img/arrow.png"> Cisco</h2>
 			<div class="content hidden" id="cat1">
 				<a onclick="openModal('../Docs/Cisco/ConfigureACL.txt')">| ConfigureACL.txt</a><br>
 				<a onclick="openModal('../Docs/Cisco/ConfigureSyslog.txt')">| ConfigureSyslog.txt</a><br>
@@ -44,7 +47,7 @@
 				<a onclick="openModal('../Docs/Cisco/Layer2VlanSecurity.txt')">| Layer2VlanSecurity.txt</a><br>
 			</div>
 
-			<h2 onclick="showCat('cat2')">Tools</h2>
+			<h2 onclick="showCat('cat2')"><img src="img/arrow.png"> Tools</h2>
 			<div class="content hidden" id="cat2">
 				<a onclick="openModal('../Docs/Tools/Vim.txt')">| Vim.txt</a><br>
 				<a onclick="openModal('../Docs/Tools/Shodan.txt')">| Shodan.txt</a><br>
@@ -53,7 +56,7 @@
 				<a onclick="openModal('../Docs/Tools/gdb.txt')">| gdb.txt</a><br>
 			</div>
 
-			<h2 onclick="showCat('cat3')">Pen Test</h2>
+			<h2 onclick="showCat('cat3')"><img src="img/arrow.png"> Pen Test</h2>
 			<div class="content hidden" id="cat3">
 				<a onclick="openModal('../Docs/PenTest/Scanning.txt')">| Scanning.txt</a><br>
 				<a onclick="openModal('../Docs/PenTest/ExploitFramework.txt')">| ExploitFramework.txt</a><br>
@@ -61,14 +64,14 @@
 				<a onclick="openModal('../Docs/PenTest/Wireless.txt')">| Wireless.txt</a><br>
 			</div>
 
-			<h2 onclick="showCat('cat4')">Networking</h2>
+			<h2 onclick="showCat('cat4')"><img src="img/arrow.png"> Networking</h2>
 			<div class="content hidden" id="cat4">
 				<a onclick="openModal('../Docs/Networking/SQL-Injection.txt')">| SQL-Injection.txt</a><br>
 				<a onclick="openModal('../Docs/Networking/WebServers.txt')">| WebServers.txt</a><br>
 				<a onclick="openModal('../Docs/Networking/CommonPorts.txt')">| CommonPorts.txt</a><br>
 			</div>
 
-			<h2 onclick="showCat('cat5')">Linux Commands</h2>
+			<h2 onclick="showCat('cat5')"><img src="img/arrow.png"> Linux Commands</h2>
 			<div class="content hidden" id="cat5">
 				<a onclick="openModal('../Docs/LinuxCommands/Linux-Commands.txt')">| LinuxCommands.txt</a><br>
 				<a onclick="openModal('../Docs/LinuxCommands/Crypto.txt')">| Crypto.txt</a><br>
@@ -76,7 +79,7 @@
 				<a onclick="openModal('../Docs/LinuxCommands/ShareFilesOverNetwork.txt')">| ShareFilesOverNetwork.txt</a><br>
 			</div>
 
-			<h2 onclick="showCat('cat6')">Others</h2>
+			<h2 onclick="showCat('cat6')"><img src="img/arrow.png"> Others</h2>
 			<div class="content hidden" id="cat6">
 				<a onclick="openModal('../Docs/Others/CompressedFiles.txt')">| CompressedFiles.txt</a><br>
 				<a onclick="openModal('../Docs/Others/DefaultPasswords.txt')">| DefaultPasswords.txt</a><br>
