@@ -153,9 +153,10 @@ em {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
+  padding-bottom: 40px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 90%;
+  width: 70%;
 }
 
 #modal-content p {
