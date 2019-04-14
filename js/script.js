@@ -1,7 +1,7 @@
 function showCat(id) {
 
 	var elem = document.getElementById(id);
-	
+
 	if (elem.className == "content hidden") {
 		elem.style.display = "block";
 		elem.className = "content shown";
@@ -45,8 +45,8 @@ function openModal(filepath) {
 	modal.style.display = "block";
 
     var modalContent = document.getElementById("modal-content");
-	
-	$.get(filepath, function(data) {    
+
+	$.get(filepath, function(data) {
 		var lines = data.split("\n");
 
 		$.each(lines, function(n, elem) {
@@ -92,11 +92,3 @@ window.onclick = function(event) {
 		closeModal();
 	}
 }
-
-$(document).ready(function() {
-  var $magic = $(".magic"),
-      magicWHalf = $magic.width() / 2;
-  $(document).on("mousemove", function(e) {
-    $magic.css({"left": e.pageX - magicWHalf, "top": e.pageY - magicWHalf});
-  });
-});

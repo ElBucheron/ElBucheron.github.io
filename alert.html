@@ -13,9 +13,9 @@
     </head>
 
 	<body>
-        
+
         <div class="magic"></div>
-        
+
         <div class="logo">
             <div class="glitch" data-text="Bucheron">Bucheron</div>
         </div>
@@ -26,15 +26,15 @@
                 <a href="index.html">| Tools |</a>
                 <a href="textFiles.html">| Notes |</a>
                 <a href="nvd.html">| NVD |</a>
-                <a class="active">| News |</a>
-                <a href="attacks.html">| Attacks |</a><br>
+                <a class="active">| Alert |</a>
+								<a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
             </div>
 
         </div>
 
 		<script>
 
-            var url= 'https://www.nist.gov/news-events/news/rss.xml';
+            var url= 'https://www.cert.ssi.gouv.fr/feed';
             $.ajax({
               type: 'GET',
               url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
@@ -61,21 +61,15 @@
                     divNotes.appendChild(h2);
                     divNotes.appendChild(document.createElement("br"));
 
-                    var desc = document.createElement("p");
-                    var img = document.createElement("img");
-                    var tDesc = document.createTextNode(items[i].content);
+                    var desc = document.createElement("div");
                     var date = document.createElement("em");
                     date.appendChild(document.createTextNode(items[i].pubDate));
-                    img.setAttribute('src', items[i].thumbnail);
-                    img.setAttribute('width', '20%');
-                    img.setAttribute('style', "display: block; margin-left: auto; margin-right: auto;");
-                    desc.appendChild(tDesc);
-                    divNotes.appendChild(img);
+                    desc.innerHTML = items[i].content;
                     divNotes.appendChild(desc);
                     divNotes.appendChild(date);
                 }
 
-                // console.log(data.feed.description);    
+                // console.log(data.feed.description);
                 // console.log(data);
               }
             });
