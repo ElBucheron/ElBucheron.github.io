@@ -108,7 +108,7 @@ em {
   margin-top: 60px;
   padding: 40px;
   max-width: 640px;
-  width: 70%;
+  width: 90%;
   background-color: white;
   border-radius: 10px;
 }
@@ -140,7 +140,7 @@ em {
   padding-bottom: 40px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 70%;
+  width: 90%;
 }
 
 #modal-content p {
