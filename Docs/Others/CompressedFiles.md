@@ -2,8 +2,10 @@
 
 ## Repair corrupted zip files:
 
-= $ zip -F file.zip
-= $ zip -FF file.zip
+```
+$ zip -F file.zip
+$ zip -FF file.zip
+```
 
 ## Compress .tar.gz:
 
