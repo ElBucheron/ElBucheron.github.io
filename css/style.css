@@ -147,7 +147,7 @@ em {
   font-family: 'Oxygen', sans-serif;
 }
 
-#modal-content code {
+#modal-content pre {
   font-family: 'Oxygen', sans-serif;
   margin-left: 20px;
   margin-bottom: 5px;
