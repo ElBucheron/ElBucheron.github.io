@@ -140,12 +140,11 @@ em {
 
 #modal-content blockquote {
   margin: 0;
-  margin-left: 10px;
 }
 
 #modal-content pre {
   font-family: 'Oxygen', sans-serif;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-bottom: 5px;
   padding: 10px;
   display: block;

@@ -49,7 +49,7 @@ function parseMd(md){
   });
 
   //strip p from pre
-  md = md.replace(/(\<pre.+\>)\s*\n\<p\>(.+)\<\/p\>/gm, '$1$2');
+  // md = md.replace(/(\<pre.+\>)\s*\n\<p\>(.+)\<\/p\>/gm, '$1$2');
 
   return md;
 }

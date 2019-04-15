@@ -1,5 +1,7 @@
 # PhotoRec
 
-Retreive file from an image:
+## Retreive file from an image:
 
-= # sudo photorec /dev/imageFile
+```
+$ sudo photorec /dev/imageFile
+```

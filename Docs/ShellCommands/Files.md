@@ -2,4 +2,6 @@
 
 ## Open an image:
 
-= # eom imageFile.png
+```
+$ eom imageFile.png
+```

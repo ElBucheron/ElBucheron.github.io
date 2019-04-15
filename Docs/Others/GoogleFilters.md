@@ -5,7 +5,7 @@
 Limit the search query to a specific domain or web site. 	
 
 ```
-> site:example.com
+site:example.com
 ```
 
 ## filetype:
@@ -13,7 +13,7 @@ Limit the search query to a specific domain or web site.
 Limit the search to text found in a specific file type 	
 
 ```
->mysqldump filetype:sql
+mysqldump filetype:sql
 ```
 
 ## link:
@@ -21,7 +21,7 @@ Limit the search to text found in a specific file type
 Search for pages that link to the requested URL 	
 
 ```
-> link:www.example.com
+link:www.example.com
 ```
 
 ## cache:
@@ -29,7 +29,7 @@ Search for pages that link to the requested URL
 Search and display a version of a web page as it was shown when Google crawled it. 	
 
 ```
-> cache:example.com
+cache:example.com
 ```
 
 ## intitle:
@@ -37,7 +37,7 @@ Search and display a version of a web page as it was shown when Google crawled i
 Search for a string text within the title of a page. 	
 
 ```
-> intitle:”index of”
+intitle:”index of”
 ```
 
 ## inurl:
@@ -45,7 +45,7 @@ Search for a string text within the title of a page.
 Search for a string within a URL 	
 
 ```
-> inurl:passwords.txt
+inurl:passwords.txt
 ```
 
 ## AND or +
@@ -53,8 +53,8 @@ Search for a string within a URL
 Used to include keywords. All the keywords need to be found. 	
 
 ```
-> web AND application AND security
-> web +application +security
+web AND application AND security
+web +application +security
 ```
 
 ## NOT or –
@@ -62,8 +62,8 @@ Used to include keywords. All the keywords need to be found.
 Used to exclude keywords. All the keywords need to be found. 	
 
 ```
-> web application NOT security
-> web application –security
+web application NOT security
+web application –security
 ```
 
 ## OR or |
@@ -71,8 +71,8 @@ Used to exclude keywords. All the keywords need to be found.
 Used to include keywords where either one keyword or another is matched. All the keywords need to be found. 	
 
 ```
-> web application OR security
-> web application |security
+web application OR security
+web application |security
 ```
 
 ## Tilde (~)
@@ -80,7 +80,7 @@ Used to include keywords where either one keyword or another is matched. All the
 Used to include synonyms and similar words. 	
 
 ```
-> web application ~security
+web application ~security
 ```
 
 ## Double quote (“)
@@ -88,7 +88,7 @@ Used to include synonyms and similar words.
 Used to include exact matches. 	
 
 ```
-> “web application security”
+“web application security”
 ```
 
 ## Period (.)
@@ -96,7 +96,7 @@ Used to include exact matches.
 Used to include single-character wildcards. 	
 
 ```
-> .eb application security
+.eb application security
 ```
 
 ## Asterisk (*)
@@ -104,7 +104,7 @@ Used to include single-character wildcards.
 Used to include single-word wildcards. 	
 
 ```
-> web * security
+web * security
 ```
 
 ## Parenthesis (())
@@ -112,5 +112,5 @@ Used to include single-word wildcards.
 Used to group queries 	
 
 ```
-> (“web security” | websecurity)
+(“web security” | websecurity)
 ```

@@ -2,4 +2,6 @@
 
 ## Decrypt from base64:
 
-= # base64 -d file
+```
+$ base64 -d file
+```
