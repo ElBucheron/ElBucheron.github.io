@@ -61,37 +61,10 @@ function openModal(filepath) {
   var modalContent = document.getElementById("modal-content");
 
 	$.get(filepath, function(data) {
-		// var lines = data.split("\n");
 
     html = parseMd(data);
 
-    modalContent.innerHTML = html;
-
-		// $.each(lines, function(n, elem) {
-		// 	if (elem.length != 1) {
-		// 		if (elem.match(/^##/g)) {
-		// 			var h2 = document.createElement("h2");
-		// 		    h2.appendChild(document.createTextNode(elem.slice(3, elem.length)));
-		// 		    modalContent.appendChild(h2);
-		// 		}
-		// 		else if (elem.match(/^#/g)) {
-		// 			var h1 = document.createElement("h1");
-		// 		    h1.appendChild(document.createTextNode(elem.slice(2, elem.length)));
-		// 		    h1.style.textAlign = "center";
-		// 		    modalContent.appendChild(h1);
-		// 		}
-		// 		else if (elem.match(/^=/g)) {
-		// 			var code = document.createElement("code");
-		// 		    code.appendChild(document.createTextNode(elem.slice(2, elem.length)));
-		// 		    modalContent.appendChild(code);
-		// 		}
-		// 		else {
-		// 			var p = document.createElement("p");
-		// 		    p.appendChild(document.createTextNode(elem));
-		// 		    modalContent.appendChild(p);
-		// 		}
-		// 	}
-		// });
+    modalContent.innerHTML = '<span class="close" onclick="closeModal()">&times;</span>' + html;
 	});
 }
 

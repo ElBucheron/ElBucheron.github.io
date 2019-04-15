@@ -25,6 +25,7 @@ em {
 
 h1 {
   font-family: 'Montserrat Subrayada';
+  text-align: center;
 }
 
 h2 {
@@ -37,6 +38,7 @@ h2 {
 a {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 a:hover {
@@ -65,16 +67,6 @@ em {
   padding: 10px;
   background-color: transparent;
   text-align: center;
-}
-
-.logo a {
-  font-family: 'Fascinate Inline';
-  font-size: 2em;
-}
-
-.logo a:hover {
-  background-color: transparent;
-  color: black;
 }
 
 .menu {
@@ -107,14 +99,13 @@ em {
   margin: 0 auto;
   margin-top: 60px;
   padding: 40px;
-  max-width: 640px;
+  max-width: 800px;
   width: 90%;
   background-color: white;
   border-radius: 10px;
 }
 
 .notes h1 {
-  text-align: center;
   margin-top: 0;
 }
 
@@ -167,6 +158,7 @@ em {
   margin-bottom: 20px;
   padding-bottom: 5px;
   border-bottom: 1px solid #efefef;
+  cursor: auto;
 }
 
 .close {
@@ -283,7 +275,7 @@ em {
   left: 2px;
   text-shadow: -1px 0 red;
   top: 0;
-  color: white;
+  color: blue;
   background: black;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
