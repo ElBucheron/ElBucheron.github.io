@@ -1,4 +1,4 @@
-># > Vim
+# Vim
 
 ## How to Exit:
 

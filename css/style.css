@@ -138,6 +138,11 @@ em {
   font-family: 'Oxygen', sans-serif;
 }
 
+#modal-content blockquote {
+  margin: 0;
+  margin-left: 10px;
+}
+
 #modal-content pre {
   font-family: 'Oxygen', sans-serif;
   margin-left: 20px;
@@ -145,6 +150,7 @@ em {
   padding: 10px;
   display: block;
   border: 1px solid lightgray;
+  border-radius: 5px;
   background-color: #efefef;
 }
 
