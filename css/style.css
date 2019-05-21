@@ -55,6 +55,10 @@ em {
   text-align: right;
 }
 
+blockquote {
+  display: block;
+}
+
 .content {
   display: none;
   margin-bottom: 20px;
@@ -171,17 +175,12 @@ em {
 
 .terminal_text {
   margin-left: 20px;
-  font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
+  font-family: 'Oxygen', sans-serif;
 }
 
 #typed-strings {
   display: inline-block;
   position: relative;
-}
-
-#typed {
-  font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
-  margin-left: 15px;
 }
 
 .footer {
