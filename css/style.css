@@ -124,69 +124,12 @@ em {
   background-color: rgba(0,0,0,0.4);
 }
 
-#modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  padding-bottom: 40px;
-  border: 1px solid #888;
-  border-radius: 10px;
-  width: 90%;
-}
-
-#modal-content p {
-  font-family: 'Oxygen', sans-serif;
-}
-
-#modal-content blockquote {
-  margin: 0;
-}
-
-#modal-content pre {
-  font-family: 'Oxygen', sans-serif;
-  margin-left: 10px;
-  margin-bottom: 5px;
-  padding: 10px;
-  display: block;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  background-color: #efefef;
-}
-
-#modal-content h1 {
-  font-family: 'Oxygen', sans-serif;
-}
-
-#modal-content h2 {
-  font-family: 'Oxygen', sans-serif;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #efefef;
-  cursor: auto;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .terminal_window {
   margin: 0 auto;
-  width: 600px;
-  height: 400px;
-  tex-align: left;
+  width: 90%;
+  text-align: left;
   margin-top: 15px;
-  postion: relative;
+  position: relative;
   border-radius: 10px;
 }
 
@@ -207,14 +150,17 @@ em {
 
 .red_btn {
   background-color: #E75448;
+  cursor: pointer;
 }
 
 .green_btn {
   background-color: #3BB662;
+  cursor: pointer;
 }
 
 .yellow_btn {
   background-color: #E5C30F;
+  cursor: pointer;
 }
 
 .terminal_window {
@@ -230,7 +176,7 @@ em {
 
 #typed-strings {
   display: inline-block;
-  postiion: relative;
+  position: relative;
 }
 
 #typed {
