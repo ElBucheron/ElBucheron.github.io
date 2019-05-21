@@ -174,14 +174,14 @@ blockquote {
 }
 
 .terminal_text {
-  margin-left: 20px;
+  margin: 20px;
   font-family: 'Oxygen', sans-serif;
 }
 
-#typed-strings {
+/* #typed-strings {
   display: inline-block;
   position: relative;
-}
+} */
 
 .footer {
   position: absolute;
