@@ -1,3 +1,23 @@
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function typeWrite(span){
+  $('#'+span).addClass('cursor')
+  var text = $('#'+span).text();
+  var randInt = 0
+  for (var i = 0; i < text.length; i++) {
+    randInt += parseInt(randomIntFromInterval(40,300));
+    var typing = setTimeout(function(y){
+      $('#'+span).append(text.charAt(y));
+    },randInt, i);
+  };
+  setTimeout(function(){
+    $('#'+span).removeClass('cursor');
+  },randInt+2500);
+}
+
 function parseMd(md){
 
   //ul
@@ -58,24 +78,24 @@ function openModal(filepath) {
 	var modal = document.getElementById("modal");
 	modal.style.display = "block";
 
-  var modalContent = document.getElementById("modal-content");
+  var modalContent = document.getElementById("typed-strings");
 
 	$.get(filepath, function(data) {
 
     html = parseMd(data);
 
-    modalContent.innerHTML = '<span class="close" onclick="closeModal()">&times;</span>' + html;
+    modalContent.innerHTML = html;
 	});
+
+  // typeWrite('typed-strings');
 }
 
 function closeModal() {
 	var modal = document.getElementById("modal");
 	modal.style.display = "none";
 
-	var modalContent = document.getElementById("modal-content");
-	while (modalContent.lastChild.className != "close") {
-    	modalContent.removeChild(modalContent.lastChild);
-	}
+	var modalContent = document.getElementById("typed-strings");
+  modalContent.innerHTML = "";
 }
 
 window.onclick = function(event) {
