@@ -58,13 +58,13 @@ function openModal(filepath) {
 	var modal = document.getElementById("modal");
 	modal.style.display = "block";
 
-  var modalContent = document.getElementById("typed-strings");
+  var input = document.getElementById("input");
 
 	$.get(filepath, function(data) {
 
     html = parseMd(data);
 
-    modalContent.innerHTML = html;
+    input.innerHTML = html;
 	});
 
   // typeWrite('typed-strings');
@@ -74,8 +74,8 @@ function closeModal() {
 	var modal = document.getElementById("modal");
 	modal.style.display = "none";
 
-	var modalContent = document.getElementById("typed-strings");
-  modalContent.innerHTML = "";
+	var input = document.getElementById("input");
+  input.innerHTML = "";
 }
 
 window.onclick = function(event) {

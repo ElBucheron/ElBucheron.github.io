@@ -100,16 +100,31 @@
 
 		</div>
 
-		<div id="modal">
-			<div class="terminal_window">
-			  <header>
-			    <div class="red_btn button" onclick="closeModal()"></div>
-			    <div class="green_btn button"></div>
-			    <div class="yellow_btn button"></div>
-			  </header>
-			  <div class="terminal_window">
-			    <div id="typed-strings" class="terminal_text"></div>
-			  </div>
+		<div class="dialog" id="modal">
+			<div class="box">
+				<div class="top">
+					<span class="light">┌─────────────────────────────────────</span>
+					<span class="dark">┐</span>
+				</div>
+				<div class="title"></div>
+				<div class="header"></div>
+				<div class="input" id="input"></div>
+				<div class="separator">
+					<span class="light">├─────────────────────────────────────</span>
+					<span class="dark">┤</span>
+				</div>
+				<div class="buttons-line">
+					<div class="left light">│</div>
+					<div class="buttons" style="width: 400.641px;">
+						<button class="ok active"><span class="mark">O</span>K</button>
+						<button class="cancel"><span class="mark">C</span>ancel</button>
+						<div class="right dark">│</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<span class="light">└</span>
+					<span class="dark">─────────────────────────────────────┘</span>
+				</div>
 			</div>
 		</div>
 
