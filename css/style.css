@@ -157,8 +157,10 @@ em {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -webkit-box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black;
-    box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black;
+    /* -webkit-box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black;
+    box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black; */
+    -webkit-box-shadow: 10px 10px black;
+    box-shadow: 10px 10px black;
 }
 .dialog .box .light {
     color: #fff;
