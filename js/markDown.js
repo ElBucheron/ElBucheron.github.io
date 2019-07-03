@@ -66,8 +66,6 @@ function openModal(filepath) {
 
     input.innerHTML = html;
 	});
-
-  // typeWrite('typed-strings');
 }
 
 function closeModal() {
