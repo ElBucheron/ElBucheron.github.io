@@ -113,7 +113,8 @@ em {
 .dialog {
     display: none;
     background-color: #00a;
-    position: relative;
+    position: fixed;
+    overflow: auto;
     left: 0;
     top: 0;
     width: 100%;
@@ -153,8 +154,7 @@ em {
 .dialog > .box {
     background-color: #aaa;
     float: left;
-    position: fixed;
-    overflow: auto;
+    position: absolute;
     top: 50%;
     left: 50%;
     padding-top: 10px;
