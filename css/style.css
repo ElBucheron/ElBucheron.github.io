@@ -121,8 +121,8 @@ em {
     z-index: 1;
     font-size: 12px;
     line-height: 12px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 10%;
+    padding-bottom: 10%;
     margin: 0;
     height: 100vh;
     --size: 1.5;
