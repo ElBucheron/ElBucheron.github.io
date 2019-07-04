@@ -156,8 +156,8 @@ em {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
     transform: translate(-50%, -50%);
     /* -webkit-box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black;
     box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black; */
