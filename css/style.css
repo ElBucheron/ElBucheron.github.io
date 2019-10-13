@@ -60,6 +60,10 @@ em {
   margin-bottom: 20px;
 }
 
+.shown {
+  display: block;
+}
+
 .logo {
   right: 0;
   bottom: 0;
