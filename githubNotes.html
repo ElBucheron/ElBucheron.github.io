@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href="img/logo.png">
+		<title>Security Notes</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link rel='stylesheet' href='css/style.css'>
+
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+
+	<body>
+
+		<div class="logo">
+			<div class="glitch" data-text="Bucheron">Bucheron</div>
+		</div>
+
+		<div class="notes" id="notes">
+
+			<h1>Github Notes</h1>
+
+			<div class="menu">
+				<a class="index.html">| Tools |</a>
+				<a href="nvd.html">| NVD |</a>
+				<a href="alert.html">| Alert |</a>
+				<a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+			</div>
+
+			<div class="menu expand">
+				<a id="actionAll" class="retracted" onclick="expandAll()">| Expand All |</a>
+			</div>
+
+			<h2 onclick="showCat('cat1')"><img src="img/arrow.png" width="14"> Cisco</h2>
+			<div class="content hidden" id="cat1">
+        <a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Cisco/ConfigureAAA.md">| Configure AAA</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Cisco/ConfigureACL.md">| Configure IP ACL</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Cisco/ConfigureIOS_IPS.md">| Configure IOS Intrusion</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Cisco/ConfigureSyslog.md">| Configure Syslog</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Cisco/Layer2Security.md">| Layer 2 Security</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Cisco/Layer2VlanSecurity.md">| Layer 2 VLAN Security</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat2')"><img src="img/arrow.png" width="14"> Networking</h2>
+			<div class="content hidden" id="cat2">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Networking/CommonPorts.md">| Common Ports</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Networking/SQL-Injection.md">| SQL Injection</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Networking/WebServers.md">| WebServers</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat3')"><img src="img/arrow.png" width="14"> PenTest</h2>
+			<div class="content hidden" id="cat3">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/PenTest/ExploitFramework.md">| Exploit Framework</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/PenTest/PasswordCracks.md">| Password Cracks</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/PenTest/Scanning.md">| Scanning</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/PenTest/Wireless.md">| Wireless Hacking</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat4')"><img src="img/arrow.png" width="14"> Router Security</h2>
+			<div class="content hidden" id="cat4">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/RouterSecurity/AAASecurity.md">| AAA Security</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/RouterSecurity/NetworkAttack.md">| Network Attacks</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/RouterSecurity/SecureRouters.md">| Secure routers</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat5')"><img src="img/arrow.png" width="14"> Safety</h2>
+			<div class="content hidden" id="cat5">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Safety/EmailSafety.md">| Email Safety</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat6')"><img src="img/arrow.png" width="14"> Shell Commands</h2>
+			<div class="content hidden" id="cat6">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/ShellCommands/CompressedFiles.md">| Manipulating compressed files</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/ShellCommands/Crypto.md">| Cryptography in shell</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/ShellCommands/Files.md">| Managing Files in shell</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/ShellCommands/Linux-Commands.md">| Shell Commands</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/ShellCommands/ShareFilesOverNetwork.md">| Share files over the local network</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/ShellCommands/Windows.md">| Windows Commands</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat7')"><img src="img/arrow.png" width="14"> Tools</h2>
+			<div class="content hidden" id="cat7">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/Gdb.md">| GDB</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/Photorec.md">| PhotoRec</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/Radare2.md">| Radare2</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/Shodan.md">| Shodan</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/Tmux.md">| Tmux</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/Vim.md">| Vim</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Tools/VirtualBox.md">| VirtualBox Manage</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat8')"><img src="img/arrow.png" width="14"> Others</h2>
+			<div class="content hidden" id="cat8">
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Others/DefaultPasswords.md">| Default Passwords</a><br>
+				<a target="_blank" href="https://github.com/ElBucheron/SecurityNotes/blob/master/Others/GoogleFilters.md">| Google Filters</a><br>
+			</div>
+
+		</div>
+
+
+		<div id="modal"></div>
+
+		<div class="footer">&copy; 2019, <a href="CV/index.html">Ugo Reyne</a></div>
+
+	</body>
+</html>
