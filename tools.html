@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href="img/logo.png">
+		<title>Security Notes</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link rel='stylesheet' href='css/style.css'>
+
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+
+	<body>
+
+		<div class="logo">
+			<div class="glitch" data-text="Bucheron">Bucheron</div>
+		</div>
+
+		<div class="notes" id="notes">
+
+			<h1>Github Notes</h1>
+
+			<div class="menu">
+				<a href="index.html">| Ressources |</a>
+				<a class="active">| Tools |</a>
+				<a href="nvd.html">| NVD |</a>
+				<a href="alert.html">| Alert |</a>
+				<a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+			</div>
+
+			<div class="menu expand">
+				<a id="actionAll" class="retracted" onclick="expandAll()">| Expand All |</a>
+			</div>
+
+			<h2 onclick="showCat('cat1')"><img src="img/arrow.png" width="14"> OSINT</h2>
+			<div class="content hidden" id="cat1">
+				<a target="_blank" href="https://tools.kali.org/information-gathering/dmitry">| Dmitry</a><em> - Gather possible subdomains, email addresses, uptime information, tcp port scan, whois lookups, and more</em><br>
+				<a target="_blank" href="https://github.com/gotr00t0day/IGF">| IGF</a><em> - Information Gathering Framework</em><br>
+				<a target="_blank" href="https://github.com/jaxBCD/Zeebsploit">| Zeebsploit</a><em> - web scanner / exploitation / information gathering</em><br>
+				<a target="_blank" href="https://github.com/diego-treitos/linux-smart-enumeration">| Linux Smart Enumeration</a><em> - Show relevant information about the security of the local Linux system</em><br>
+				<a target="_blank" href="https://tools.kali.org/information-gathering/recon-ng">| Recon-ng</a><br>
+				<a target="_blank" href="https://tools.kali.org/information-gathering/theharvester">| The Harvester</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat2')"><img src="img/arrow.png" width="14"> Steganography</h2>
+			<div class="content hidden" id="cat2">
+				<a target="_blank" href="https://github.com/zardus/ctf-tools/blob/master/stegsolve/install">| Stegsolve</a><em> - A tool to perform analysis on images</em><br>
+			</div>
+
+			<h2 onclick="showCat('cat3')"><img src="img/arrow.png" width="14"> Privilege Escalation</h2>
+			<div class="content hidden" id="cat3">
+				<a target="_blank" href="https://github.com/nongiach/sudo_inject">| Linux Privilege Escalation</a><br>
+                                <a target="_blank" href="https://dirtycow.ninja/">| Privilege Escalation</a><em> - In the Linux Kernel</em><br>
+			</div>
+
+			<h2 onclick="showCat('cat4')"><img src="img/arrow.png" width="14"> Memory dumper</h2>
+			<div class="content hidden" id="cat4">
+				<a target="_blank" href="https://github.com/rek7/mXtract">| mXtract</a><em> - Analyzes and dumps memory</em><br>
+			</div>
+
+		</div>
+
+		<div class="footer">&copy; 2019, <a href="CV/index.html">Ugo Reyne</a></div>
+
+	</body>
+</html>
