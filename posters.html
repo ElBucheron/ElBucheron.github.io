@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href="img/logo.png">
+		<title>Security Notes</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link rel='stylesheet' href='css/style.css'>
+
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+
+	<body>
+
+		<div class="logo">
+			<div class="glitch" data-text="Bucheron">Bucheron</div>
+		</div>
+
+		<div class="notes" id="notes">
+
+			<h1>Cheat sheets</h1>
+
+			<div class="menu">
+				<a href="index.html">| Ressources |</a>
+				<a class="tools.html">| Tools |</a>
+				<a href="active">| Cheat sheets |</a>
+				<a href="nvd.html">| NVD |</a>
+				<a href="alert.html">| Alert |</a>
+				<a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+			</div>
+
+			<div class="menu expand">
+				<a id="actionAll" class="retracted" onclick="expandAll()">| Expand All |</a>
+			</div>
+
+			<h2 onclick="showCat('cat1')"><img src="img/arrow.png" width="14"> Tools / Commands</h2>
+			<div class="content hidden" id="cat1">
+				<a target="_blank" href="posters/tools_commands/linux_commands.jpg">| Linux commands</a>
+				<a target="_blank" href="posters/tools_commands/linux_architecture.jpg">| Linux Architecture</a>
+				<a target="_blank" href="posters/tools_commands/linux_tools.png">| Linux Tools</a>
+				<a target="_blank" href="posters/tools_commands/nmap.jpg">| Nmap</a>
+			</div>
+
+			<h2 onclick="showCat('cat2')"><img src="img/arrow.png" width="14"> General</h2>
+			<div class="content hidden" id="cat2">
+
+			</div>
+
+			<h2 onclick="showCat('cat3')"><img src="img/arrow.png" width="14"> Attacks</h2>
+			<div class="content hidden" id="cat3">
+
+			</div>
+
+			<h2 onclick="showCat('cat4')"><img src="img/arrow.png" width="14"> Privacy</h2>
+			<div class="content hidden" id="cat4">
+
+			</div>
+
+			<h2 onclick="showCat('cat5')"><img src="img/arrow.png" width="14"> Security</h2>
+			<div class="content hidden" id="cat5">
+
+			</div>
+
+			<h2 onclick="showCat('cat6')"><img src="img/arrow.png" width="14"> Top</h2>
+			<div class="content hidden" id="cat6">
+
+			</div>
+		</div>
+
+		<div class="footer">&copy; 2019, <a href="CV/index.html">Ugo Reyne</a></div>
+
+	</body>
+</html>
