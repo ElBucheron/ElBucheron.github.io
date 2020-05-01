@@ -15,7 +15,8 @@ https://elbucheron.github.io/
 ### Content
 
 * [Useful Links](https://elbucheron.github.io/index.html) - A storage of links
-* [Useful Notes](https://elbucheron.github.io/textFiles.html) - A storage of text files
+* [Useful Tools](https://elbucheron.github.io/tools.html) - A storage of tools
+* [Cheat Sheets](https://elbucheron.github.io/posters.html) - A storage of cheat sheets
 * [NVD Feeds](https://elbucheron.github.io/nvdFeeds.html) - RSS Reader
 * [CERT-FR Feeds](https://elbucheron.github.io/alert.html) - RSS Reader
-* [Fireeye](https://www.fireeye.com/cyber-map/threat-map.html) - RSS Reader
+* [Fireeye](https://www.fireeye.com/cyber-map/threat-map.html) - Attacks visualisation
