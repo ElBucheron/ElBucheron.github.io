@@ -18,78 +18,64 @@
             <div class="glitch" data-text="Bucheron">Bucheron</div>
         </div>
 
-		<div class="notes" id="notes">
+        <div class="menu" id="menu">
+            <a class="active">| Dashboard |</a>
+            <a href="ressources.html">| Ressources |</a>
+	        <a href="tools.html">| Tools |</a>
+            <a href="posters.html">| Cheat sheets |</a>
+            <a href="nvd.html">| NVD |</a>
+            <a class="alert.html">| Alert |</a>
+	        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+        </div>
 
-            <div class="menu" id="menu">
-                <a class="active">| Dashboard |</a>
-                <a href="ressources.html">| Ressources |</a>
-		        <a href="tools.html">| Tools |</a>
-                <a href="posters.html">| Cheat sheets |</a>
-                <a href="nvd.html">| NVD |</a>
-                <a class="alert.html">| Alert |</a>
-		        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
-            </div>
-
-            <div class="news-section">
-                <div class="news" id="news1"></div>
-                <div class="news" id="news2"></div>
-                <div class="news" id="news3"></div>
-            </div>
+        <div class="notes" id="notes">
+            <h1>Mixed Feeds</h1>
         </div>
 
 		<script>
 
-            function getRSSFeed(url, elemID) {
+            function fillRSSFeed(url) {
+
                 $.ajax({
                   type: 'GET',
                   url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
                   dataType: 'jsonp',
                   success: function(data) {
-                    var divNotes = document.getElementById(elemID);
-
-                    // Add the title of the feed
-                    var title = document.createElement("h1");
-                    var tTitle = document.createTextNode(data.feed.title);
-                    title.appendChild(tTitle);
-                    var divMenu = document.getElementById("menu");
-                    divNotes.prepend(title);
+                    var tmpFeedsNewsList = {};
 
                     // Add the feed items
                     var items = data.items;
                     for (var i = 0; i < items.length; i++) {
+                        var divNews = document.createElement("div");
+                        divNews.classList.add("news-div");
                         var title = document.createElement("a");
                         title.setAttribute('href', items[i].link);
                         var h2 = document.createElement("h2");
                         var tTitle = document.createTextNode(items[i].title);
                         title.appendChild(tTitle);
                         h2.appendChild(title);
-                        divNotes.appendChild(h2);
-                        divNotes.appendChild(document.createElement("br"));
+                        divNews.appendChild(h2);
+                        divNews.appendChild(document.createElement("br"));
 
-                        // var desc = document.createElement("div");
                         var img = document.createElement("img");
                         var date = document.createElement("em");
                         date.appendChild(document.createTextNode(items[i].pubDate));
-                        // desc.innerHTML = items[i].content;
-                        // divNotes.appendChild(desc);
                         img.src = items[i].thumbnail;
-                        divNotes.appendChild(img);
-                        divNotes.appendChild(date);
-                    }
+                        divNews.appendChild(img);
+                        divNews.appendChild(date);
 
-                    // console.log(data.feed.description);
-                    // console.log(data);
+                        document.getElementById("notes").appendChild(divNews);
+                    }
                   }
                 });
             }
 
             var url1= 'https://www.frandroid.com/feed';
+            fillRSSFeed(url1);
             var url2= 'https://www.androidauthority.com/feed/';
+            fillRSSFeed(url2);
             var url3= 'https://www.presse-citron.net/feed/';
-
-            getRSSFeed(url1, "news1");
-            getRSSFeed(url2, "news2");
-            getRSSFeed(url3, "news3");
+            fillRSSFeed(url3);
 
         </script>
 

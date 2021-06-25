@@ -76,7 +76,7 @@ em {
 
 .menu {
   text-align: center;
-  margin-bottom: 40px;
+  /*margin-bottom: 40px;*/
 }
 
 .menu a {
@@ -90,7 +90,7 @@ em {
 }
 
 .menu .active {
-  background-color: transparent;
+  background-color: white;
   color: black;
   cursor: not-allowed;
 }
@@ -102,225 +102,70 @@ em {
 
 .notes {
   margin: auto;
-  margin-top: 60px;
+  margin-top: 30px;
   padding: 40px;
-  /*max-width: 1000px;*/
+  max-width: 800px;
+  max-height: 700px;
   width: 90%;
   background-color: white;
   border-radius: 10px;
   text-align: left;
+  overflow: auto;
 }
 
 .notes h1 {
   margin-top: 0;
 }
 
-.news-section {
-  text-align: center;
-}
-
-.news {
-  margin: 20px;
-  margin-top: 60px;
-  padding: 40px;
-  width: 30%;
-  max-width: 500px;
-  min-width: 400px;
-  height: 500px;
-  background-color: black;
-  color: white;
-  border-radius: 10px;
-  overflow: auto;
-  display: inline-block;
-  scrollbar-width: thin;
-  scrollbar-color: grey white;
-}
-
-.news img {
-  margin: auto;
-  max-width: 300px;
-  height: auto;
-  display: block;
-}
-
-.news a {
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
-}
-
-.news a:hover {
-  background-color: white;
-  color: black;
-  transition: 0.25s;
-}
-
-.news::-webkit-scrollbar-track {
+.notes::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   background-color: #F5F5F5;
   border-radius: 0 10px 10px 0;
 }
 
-.news::-webkit-scrollbar {
+.notes::-webkit-scrollbar {
   width: 6px;
   /*background-color: #000;*/
 }
 
-.news::-webkit-scrollbar-thumb {
+.notes::-webkit-scrollbar-thumb {
   background-color: #000000;
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
 }
 
-/* Popup for the text files */
-.dialog {
-    display: none;
-    background-color: #00a;
-    position: fixed;
-    overflow: auto;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    font-size: 12px;
-    line-height: 12px;
-    margin: 0;
-    height: 100vh;
-    --size: 1.5;
-}
-.top, .line, .separator, .buttons-line, .bottom {
-    line-height: 1em;
-}
-.dialog, .dialog button {
-    font-family: monospace;
-    text-align: center;
-}
-.dialog > :not(.box) {
-    display: none;
-}
-.dialog .cmd {
-    --color: #000;
-    --background: #aaa;
-    padding: 0;
-}
-.dialog .cmd > span:not(.prompt) {
-    float: none;
-}
-@supports (--css: variables) {
-    .dialog, .dialog button {
-        font-size: calc(var(--size, 1) * 12px);
-        line-height: calc(var(--size, 1) * 15px);
-    }
-}
-.dialog > .box {
-    background-color: #aaa;
-    float: left;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    padding: 10px;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    transform: translate(-50%, -50%);
-    /* -webkit-box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black;
-    box-shadow: calc(var(--char-width) * 2px) calc(var(--char-height) * 1px) black; */
-    -webkit-box-shadow: 10px 10px black;
-    box-shadow: 10px 10px black;
-}
-.dialog .box .light {
-    color: #fff;
-}
-.dialog .box .dark {
-    color: #000;
-}
-.dialog .line {
-    float: left;
-    clear: both;
-    white-space: nowrap;
-}
-.dialog .box > .input .left,
-.dialog .box > .input .top,
-.dialog .box > .input .bottom,
-.dialog .box > .input .cmd,
-.dialog .box > .input .right {
-    display: inline-block;
-}
-.dialog .box > .buttons-line .left,
-.dialog .box > .buttons-line .buttons,
-.dialog .box > .buttons-line .right {
-    float: left;
-}
-.dialog .box > .input .cmd {
-    float: none;
-    margin-bottom: -4px;
-    overflow: hidden;
-}
-.dialog .box .title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    overflow: hidden;
-}
-.dialog .box .title span {
-    background-color: #aaa;
-}
-.dialog .box .header span {
-    display: inline-block;
-}
-.dialog .box .buttons {
-    display: flex;
-    justify-content: space-around;
-}
-.dialog .box button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    color: #555;
-    min-width: 87px;
-}
-.dialog .box button:active,
-.dialog .box button {
-    outline: none;
+.news-div {
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
-.dialog .box button:before {
-    content: '<';
-    float: left;
+.news-div img {
+  max-width: 300px;
+  height: auto;
+  margin: auto;
+  display: block;
+  padding: 10px;
 }
-.dialog .box button:after {
-    content: '>';
-    float: right;
+
+.news-div a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
-.dialog .box button:before,
-.dialog .box button:after {
-    display: inline-block;
-    color: #000;
+
+.news-div a:hover {
+  background-color: white;
+  color: black;
+  transition: 0.25s;
 }
-.dialog .box button,
-.dialog .box button:before,
-.dialog .box button:after {
-    background-color: transparent;
-}
-.dialog .box button:not(.active) .mark {
-    color: #a00;
-}
-.dialog .box button.active,
-.dialog .box button.active:before,
-.dialog .box button.active:after {
-    background-color: #00a;
-}
-.dialog .box button.active {
-    color: #ff5;
-}
-.dialog .box button.active:before,
-.dialog .box button.active:after {
-    color: #fff;
-}
-.dialog .box button.active.selected .mark {
-    color: #00a;
-    background: #fff;
+
+.news-div em {
+  color: white;
 }
 
 .footer {

@@ -18,19 +18,17 @@
             <div class="glitch" data-text="Bucheron">Bucheron</div>
         </div>
 
-		<div class="notes" id="notes">
-
-            <div class="menu" id="menu">
-                <a href="index.html">| Dashboard |</a>
-                <a href="ressources.html">| Ressources |</a>
-		        <a href="tools.html">| Tools |</a>
-                <a href="posters.html">| Cheat sheets |</a>
-                <a href="nvd.html">| NVD |</a>
-                <a class="active">| Alert |</a>
-		        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
-            </div>
-
+		<div class="menu" id="menu">
+            <a href="index.html">| Dashboard |</a>
+            <a href="ressources.html">| Ressources |</a>
+            <a href="tools.html">| Tools |</a>
+            <a href="posters.html">| Cheat sheets |</a>
+            <a href="nvd.html">| NVD |</a>
+            <a class="active">| Alert |</a>
+            <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
         </div>
+
+        <div class="notes" id="notes"></div>
 
 		<script>
 
@@ -47,7 +45,7 @@
                 var tTitle = document.createTextNode(data.feed.title);
                 title.appendChild(tTitle);
                 var divMenu = document.getElementById("menu");
-                divNotes.insertBefore(title, divMenu);
+                divNotes.prepend(title);
 
                 // Add the feed items
                 var items = data.items;
