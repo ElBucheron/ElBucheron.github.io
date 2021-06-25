@@ -16,6 +16,7 @@ body {
   min-height: 100%;
   font-family: 'Ubuntu', sans-serif;
   background-color: black;
+  text-align: center;
 }
 
 em {
@@ -100,17 +101,74 @@ em {
 }
 
 .notes {
-  margin: 0 auto;
+  margin: auto;
   margin-top: 60px;
   padding: 40px;
-  max-width: 800px;
+  /*max-width: 1000px;*/
   width: 90%;
   background-color: white;
   border-radius: 10px;
+  text-align: left;
 }
 
 .notes h1 {
   margin-top: 0;
+}
+
+.news-section {
+  text-align: center;
+}
+
+.news {
+  margin: 20px;
+  margin-top: 60px;
+  padding: 40px;
+  width: 30%;
+  max-width: 500px;
+  min-width: 400px;
+  height: 500px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  overflow: auto;
+  display: inline-block;
+  scrollbar-width: thin;
+  scrollbar-color: grey white;
+}
+
+.news img {
+  margin: auto;
+  max-width: 300px;
+  height: auto;
+  display: block;
+}
+
+.news a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.news a:hover {
+  background-color: white;
+  color: black;
+  transition: 0.25s;
+}
+
+.news::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+  border-radius: 0 10px 10px 0;
+}
+
+.news::-webkit-scrollbar {
+  width: 6px;
+  /*background-color: #000;*/
+}
+
+.news::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 0 10px 10px 0;
 }
 
 /* Popup for the text files */

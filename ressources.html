@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href="img/logo.png">
+		<title>Security Notes</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link rel='stylesheet' href='css/style.css'>
+
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+
+	<body>
+
+		<div class="logo">
+			<div class="glitch" data-text="Bucheron">Bucheron</div>
+		</div>
+
+		<div class="notes" id="notes">
+
+			<h1>Ressources</h1>
+
+			<div class="menu">
+				<a href="index.html">| Dashboard |</a>
+				<a class="active">| Ressources |</a>
+				<a href="tools.html">| Tools |</a>
+				<a href="posters.html">| Cheat sheets |</a>
+				<a href="nvd.html">| NVD |</a>
+				<a href="alert.html">| Alert |</a>
+				<a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+			</div>
+
+			<div class="menu expand">
+				<a id="actionAll" class="retracted" onclick="expandAll()">| Expand All |</a>
+			</div>
+
+      <h2 onclick="showCat('cat0')"><img src="img/arrow.png" width="14"> Favorites</h2>
+      <div class="content shown" id="cat0">
+      			<a target="_blank" href="https://outline.com">| Outline</a><em> - Remove paywalls of some online readings</em><br>
+      			<a target="_blank" href="http://www.planetb.ca/syntax-highlight-word">| Planetb</a><em> - A syntax Highlighter</em><br>
+      			<a target="_blank" href="https://remove.bg">| RemoveBG</a><em> - Remove the background of an image</em><br>
+				<a target="_blank" href="https://gchq.github.io/CyberChef/">| CyberChef</a><br>
+				<a target="_blank" href="https://www.netcraft.com">| Netcraft</a><br>
+				<a target="_blank" href="http://www.subnet-calculator.com">| Subnet Calc</a><br>
+				<a target="_blank" href="https://www.root-me.org/?lang=en">| RootMe</a><br>
+				<a target="_blank" href="https://www.hackthebox.eu/login">| HackTheBox</a><br>
+        <a target="_blank" href="https://app.diagrams.net">| Draw.io</a><em> - Create schemas online</em><br>
+      </div>
+
+			<h2 onclick="showCat('cat1')"><img src="img/arrow.png" width="14"> Web Domains</h2>
+			<div class="content hidden" id="cat1">
+				<a target="_blank" href="http://www.cachedpages.com">| Cached Pages</a><br>
+				<a target="_blank" href="https://archive.org/web">| Wayback Machine</a><br>
+				<a target="_blank" href="https://www.netcraft.com">| Netcraft</a><br>
+				<a target="_blank" href="https://www.whois.net">| Whois</a><br>
+				<a target="_blank" href="https://mxtoolbox.com/reverselookup.aspx">| Reverse-IP lookup</a><br>
+				<a target="_blank" href="https://www.shodan.io">| Shodan</a><br>
+				<a target="_blank" href="https://censys.io/">| Censys</a><em> - Give information about ip or domain</em><br>
+				<a target="_blank" href="https://pentest-tools.com/home">| Pentest-Tool</a><em> - Give information about ip or domain</em><br>
+				<a target="_blank" href="https://www.abuseipdb.com/">| AbuseIP</a><em> - Reports of maliscious IP addresses</em><br>
+				<a target="_blank" href="https://www.netlify.com/">| Netlify</a><em> - A free web host</em><br>
+				<a target="_blank" href="https://www.ripe.net">| Ripe NCC</a><em> - Ripe Network Coordination Center</em><br>
+				<a target="_blank" href="https://ipstack.com">| IpStack</a><em> - Give infos on your public ip or others</em><br>
+			</div>
+
+			<h2 onclick="showCat('cat2')"><img src="img/arrow.png" width="14"> OSINT</h2>
+			<div class="content hidden" id="cat2">
+				<a target="_blank" href="https://osintframework.com">| OSINT Framework</a><br>
+				<a target="_blank" href="https://verify-email.org/">| Verify-Email</a><br>
+				<a target="_blank" href="https://www.tineye.com">| Tineye</a><em> - Reverse imaging</em><br>
+				<a target="_blank" href="https://www.revealname.com/">| RevealName</a><br>
+				<a target="_blank" href="https://zoom.earth">| ZoomEarth</a><br>
+				<a target="_blank" href="https://www.thingful.net">| Thingful</><br>
+				<a target="_blank" href="https://iplogger.org/">| IPLogger</a><em> - Perform statistics on ip addresses</em><br>
+				<a target="_blank" href="https://www.site24x7.com/fr/tools/ipv4-sous-reseau-calculatrice.html">| Calc sous-reseau ipv4</a><br>
+				<a target="_blank" href="https://github.com/OWASP/CheatSheetSeries">| OWASP Cheat Sheet</a><br>
+				<a target="_blank" href="https://github.com/Dormidera/WordList-Compendium">| WordList dictionnaries</a><br>
+				<a target="_blank" href="https://fr.fakenamegenerator.com/">| FakeNameGenerator</a><br>
+				<a target="_blank" href="https://thispersondoesnotexist.com/">| This Person Does Not Exist</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat3')"><img src="img/arrow.png" width="14"> Exploits</h2>
+			<div class="content hidden" id="cat3">
+				<a target="_blank" href="https://www.exploit-db.com">| Exploit Database</a><br>
+				<a target="_blank" href="http://pentestmonkey.net/">| PenTest Monkey</a><em> - Website with some tools and cheat sheets</em><br>
+				<a target="_blank" href="https://github.com/CVEProject/cvelist?file=1">| CVE List</a><br>
+				<a target="_blank" href="https://gtfobins.github.io/">| GFTOBins</a><em> - Privilege escalation</em><br>
+			</div>
+
+			<h2 onclick="showCat('cat4')"><img src="img/arrow.png" width="14"> Cryptography</h2>
+			<div class="content hidden" id="cat4">
+				<a target="_blank" href="https://gchq.github.io/CyberChef/">| CyberChef</a><br>
+				<a target="_blank" href="https://www.dcode.fr">| Decode</a><br>
+				<a target="_blank" href="https://quipqiup.com/">| Quipqiup</a><em> - Frequency decoder</em><br>
+				<a target="_blank" href="https://rosettacode.org/wiki/Rosetta_Code">| RosettaCode</a><br>
+				<a target="_blank" href="http://factordb.com/">| FactorDB</a><em> - Database of RSA factors</em><br>
+				<a target="_blank" href="https://crackstation.net/">| CrackStation</a><em> - Crack hashes from a database</em><br>
+				<a target="_blank" href="https://codebeautify.org">| Code Beautify</a><br>
+				<a target="_blank" href="https://330k.github.io/misc_tools/unicode_steganography.html">| Unicode Steganography</a><br>
+				<a target="_blank" href="https://hpd.gasmi.net">| Packet Decoder</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat5')"><img src="img/arrow.png" width="14"> Trainings / Learning</h2>
+			<div class="content hidden" id="cat5">
+				<a target="_blank" href="https://practicalpentestlabs.com/">| PenTestLabs</a><br>
+				<a target="_blank" href="https://www.pentesteracademy.com/topics">| PentesterAcademy</a><br>
+				<a target="_blank" href="https://www.vulnhub.com/">| VulnHub</a><br>
+				<a target="_blank" href="https://www.hacksplaining.com/">| HackSploit</a><br>
+				<a target="_blank" href="https://www.pdfdrive.com/">| PDF Drive</a><em> - Huge database of books</em><br>
+				<a target="_blank" href="https://archive.org/">| Archive</a><em> - Huge database of movies, musics, websites...</em><br>
+				<a target="_blank" href="https://tuts4you.com/download/category/17//">| Tuts4You</a><em> - Reverse ingeneering</em><br>
+			</div>
+
+			<h2 onclick="showCat('cat6')"><img src="img/arrow.png" width="14"> Bug Bounty</h2>
+			<div class="content hidden" id="cat6">
+				<a target="_blank" href="https://www.hackerone.com/">| HackerOne</a><br>
+				<a target="_blank" href="https://yeswehack.com">| YesWeHack</a>
+			</div>
+
+			<h2 onclick="showCat('cat7')"><img src="img/arrow.png" width="14"> Challenges / CTF</h2>
+			<div class="content hidden" id="cat7">
+				<a target="_blank" href="https://ctftime.org">| CTFTime</a><br>
+				<a target="_blank" href="http://websec.fr">| WebSec</a><br>
+				<a target="_blank" href="https://public.attackdefense.com/members">| AttackDefense</a><br>
+				<a target="_blank" href="https://www.root-me.org/?lang=en">| RootMe</a><br>
+				<a target="_blank" href="https://www.hackthebox.eu/login">| HackTheBox</a><br>
+				<a target="_blank" href="https://picoctf.com/">| PicoCTF</a><br>
+				<a target="_blank" href="https://w3challs.com/">| W3Challs</a><br>
+				<a target="_blank" href="https://www.newbiecontest.org/">| NewbieContest</a><br>
+				<a target="_blank" href="https://www.cybersecuritychallenge.org.uk/">| Cyber Challenge UK</a><br>
+			</div>
+
+			<h2 onclick="showCat('cat8')"><img src="img/arrow.png" width="14"> Walkthrough</h2>
+			<div class="content hidden" id="cat8">
+				<a target="_blank" href="https://apsdehal.in/awesome-ctf">| Awesome-CTF</a><br>
+				<a target="_blank" href="https://github.com/shiltemann/CTF-writeups-public/blob/master/HackyEaster_2018/writeup.md">| HackyEaster 2018</a><br>
+				<a target="_blank" href="https://victorazzam.github.io/HackTrinity2019/">| HackTrinity 2019</a><br>
+				<a target="_blank" href="https://theflagisnotthere.github.io">| TheFlagIsNotHere</a><br>
+			</div>
+
+		</div>
+
+		<div class="footer">&copy; 2019, <a href="CV/index.html">Ugo Reyne</a></div>
+
+	</body>
+</html>
