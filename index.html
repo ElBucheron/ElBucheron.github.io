@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
         <link rel='stylesheet' href='css/style.css'>
 
-        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
     </head>
 
 	<body>
@@ -35,7 +35,6 @@
 		<script>
 
             function fillRSSFeed(url) {
-
                 $.ajax({
                   type: 'GET',
                   url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
@@ -50,6 +49,7 @@
                         divNews.classList.add("news-div");
                         var title = document.createElement("a");
                         title.setAttribute('href', items[i].link);
+                        title.setAttribute('target', "_blank");
                         var h2 = document.createElement("h2");
                         var tTitle = document.createTextNode(items[i].title);
                         title.appendChild(tTitle);
@@ -60,6 +60,7 @@
                         var img = document.createElement("img");
                         var date = document.createElement("em");
                         date.appendChild(document.createTextNode(items[i].pubDate));
+                        divNews.setAttribute("data-event-date", items[i].pubDate);
                         img.src = items[i].thumbnail;
                         divNews.appendChild(img);
                         divNews.appendChild(date);
@@ -70,6 +71,29 @@
                 });
             }
 
+            function orderNewsByDate() {
+                var container = $(document).find("#notes");
+                var items = $(document).find('.news-div');
+
+                items.each(function() {
+                    // Convert the string in 'data-event-date' attribute to a more
+                    // standardized date format
+                    var BCDate = $(this).attr("data-event-date");
+                    // var standardDate = BCDate[1]+" "+BCDate[0]+" "+BCDate[2];
+                    var standartDate = new Date(BCDate).getTime();
+                    $(this).attr("data-event-date", standartDate);
+                });
+
+                items.sort(function(a,b){
+                    a = parseFloat($(a).attr("data-event-date"));
+                    b = parseFloat($(b).attr("data-event-date"));
+                    return a<b ? -1 : a>b ? 1 : 0;
+                }).each(function(){
+                    container.prepend(this);
+                });
+
+            }
+
             var url1= 'https://www.frandroid.com/feed';
             fillRSSFeed(url1);
             var url2= 'https://www.androidauthority.com/feed/';
@@ -77,9 +101,13 @@
             var url3= 'https://www.presse-citron.net/feed/';
             fillRSSFeed(url3);
 
+            window.onload = function() {
+                orderNewsByDate();
+            }
+
         </script>
 
-        <div class="footer">&copy; 2019, <a href="CV/index.html">Ugo Reyne</a></div>
+        <div class="footer">&copy; 2021, <a href="CV/index.html">Ugo Reyne</a></div>
 
 	</body>
 </html>
