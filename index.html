@@ -24,12 +24,12 @@
 	        <a href="tools.html">| Tools |</a>
             <a href="posters.html">| Cheat sheets |</a>
             <a href="nvd.html">| NVD |</a>
-            <a class="alert.html">| Alert |</a>
+            <a href="alert.html">| Alert |</a>
 	        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
         </div>
 
         <div class="notes" id="notes">
-            <h1>Mixed Feeds</h1>
+            <h1 id="title">Mixed Feeds</h1>
         </div>
 
 		<script>
@@ -91,7 +91,8 @@
                 }).each(function(){
                     container.prepend(this);
                 });
-
+                var title = $(document).find('#title');
+                container.prepend(title);
             }
 
             var url1= 'https://www.frandroid.com/feed';
@@ -100,6 +101,8 @@
             fillRSSFeed(url2);
             var url3= 'https://www.presse-citron.net/feed/';
             fillRSSFeed(url3);
+            var url4= 'https://feeds.feedburner.com/TheHackersNews';
+            fillRSSFeed(url4);
 
             window.onload = function() {
                 orderNewsByDate();
