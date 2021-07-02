@@ -163,12 +163,12 @@ em {
 }
 
 .news-div img {
-  /*width: 100%;*/
-  max-width: 300px;
+  max-width: 100%;
   height: auto;
   margin: auto;
   display: block;
   padding: 10px;
+  border-radius: 20px;
 }
 
 .news-div a {

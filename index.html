@@ -95,14 +95,11 @@
                 container.prepend(title);
             }
 
-            var url1= 'https://www.frandroid.com/feed';
-            fillRSSFeed(url1);
-            var url2= 'https://www.androidauthority.com/feed/';
-            fillRSSFeed(url2);
-            var url3= 'https://www.presse-citron.net/feed/';
-            fillRSSFeed(url3);
-            var url4= 'https://feeds.feedburner.com/TheHackersNews';
-            fillRSSFeed(url4);
+            fillRSSFeed('https://www.frandroid.com/feed');
+            fillRSSFeed('https://www.androidauthority.com/feed/');
+            fillRSSFeed('https://www.presse-citron.net/feed/');
+            fillRSSFeed('https://feeds.feedburner.com/TheHackersNews');
+            fillRSSFeed('https://medium.com/feed/tag/hacking');
 
             window.onload = function() {
                 orderNewsByDate();
