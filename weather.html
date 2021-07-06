@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="icon" href="img/logo.png">
+        <title>Security Notes</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel='stylesheet' href='css/style.css'>
+        <link rel='stylesheet' href='css/weather.css'>
+
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/feather-icons"></script>
+    </head>
+
+	<body>
+
+        <div class="logo">
+            <div class="glitch" data-text="Bucheron">Bucheron</div>
+        </div>
+
+        <div class="menu" id="menu">
+            <a href="index.html">| Dashboard |</a>
+            <a class="active">| Weather |</a>
+            <a href="ressources.html">| Ressources |</a>
+	        <a href="tools.html">| Tools |</a>
+            <a href="posters.html">| Cheat sheets |</a>
+            <a href="nvd.html">| NVD |</a>
+            <a href="alert.html">| Alert |</a>
+	        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+        </div>
+
+        <div class="notes" id="notes">
+            <h1 id="title">Weather</h1>
+
+            <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city..." />
+
+            <div class="container">
+              <div class="weather-side">
+                <div class="weather-gradient"></div>
+                <div class="date-container">
+                  <h2 class="date-dayname"></h2>
+                  <span class="date-day"></span>
+                  <i class="location-icon" data-feather="map-pin"></i>
+                  <span class="location"></span>
+                </div>
+                <div class="weather-container"><i class="weather-icon" data-feather="sun"></i>
+                  <h1 class="weather-temp"></h1>
+                  <h3 class="weather-desc"></h3>
+                </div>
+              </div>
+              <div class="info-side">
+                <div class="today-info-container">
+                  <div class="today-info">
+                    <div class="precipitation"> <span class="title">PRECIPITATION</span><span class="value"></span>
+                      <div class="clear"></div>
+                    </div>
+                    <div class="humidity"> <span class="title">HUMIDITY</span><span class="value"></span>
+                      <div class="clear"></div>
+                    </div>
+                    <div class="wind"> <span class="title">WIND</span><span class="value"></span>
+                      <div class="clear"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="week-container">
+                  <ul class="week-list"></ul>
+                </div>
+              </div>
+            </div>
+        </div>
+
+		<script>
+
+            const api = {
+              key: "31e30a1ea3be4bf3e083e97b9701faf3",
+              base: "https://api.openweathermap.org/data/2.5/"
+            }
+
+            const searchbox = document.querySelector('.search-box');
+            searchbox.addEventListener('keypress', setQuery);
+
+            const months = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ]
+            const days = [
+                'Sunday',
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday'
+            ]
+            const shortDays = [
+                'Sun',
+                'Mon',
+                'Tue',
+                'Wed',
+                'Thu',
+                'Fri',
+                'Sat'
+            ]
+
+            function setQuery(evt) {
+              if (evt.keyCode == 13) {
+                getResults(searchbox.value);
+                document.getElementsByClassName("container")[0].style.display = "block";
+              }
+            }
+
+            function getResults (query) {
+              fetch(`${api.base}forecast?q=${query}&units=metric&APPID=${api.key}`)
+                .then(weather => {
+                  return weather.json();
+                }).then(displayResults);
+            }
+
+            function displayResults (weather) {
+                console.log(weather);
+                document.getElementsByClassName("location")[0].innerText = `${weather.city.name}, ${weather.city.country}`;
+
+                var d = new Date(0);
+                for (var i = 0; i < weather.list.length; i++) {
+                    if (i == 0) {
+                        var time = new Date(weather.list[i].dt_txt);
+
+                        document.getElementsByClassName("date-dayname")[0].innerHTML = days[time.getDay()];
+                        document.getElementsByClassName("date-day")[0].innerHTML = time.getDate() + ' ' + months[time.getMonth()] + ' ' + time.getFullYear();
+
+                        document.getElementsByClassName("weather-temp")[0].innerHTML = weather.list[i].main.temp + '°C';
+                        document.getElementsByClassName("weather-desc")[0].innerHTML = weather.list[i].weather[0].main;
+
+                        document.getElementsByClassName("precipitation")[0].getElementsByClassName("value")[0].innerHTML = 'N/A';
+                        document.getElementsByClassName("humidity")[0].getElementsByClassName("value")[0].innerHTML = weather.list[i].main.humidity + '%';
+                        document.getElementsByClassName("wind")[0].getElementsByClassName("value")[0].innerHTML = weather.list[i].wind.speed + 'km/h';
+
+                    } else {
+                        
+                        var time = new Date(weather.list[i].dt_txt);
+                        var divWeek = createWeekDiv(shortDays[time.getDay()] + ' ' + time.getHours() + 'h', weather.list[i].main.temp);
+
+                        document.getElementsByClassName("week-list")[0].appendChild(divWeek);
+
+                        feather.replace();
+                    }
+                }
+            }
+
+            function createWeekDiv(hour, temp) {
+                var divWeek = document.createElement("li");
+
+                var divDay = document.createElement("span");
+                divDay.classList.add("day-name");
+                divDay.innerHTML = hour;
+
+                var divIcon = document.createElement("li");
+                divIcon.classList.add("day-icon");
+                divIcon.dataset.feather = "sun";
+
+                var divTemp = document.createElement("span");
+                divTemp.classList.add("day-temp");
+                divTemp.innerHTML = temp + '°C';
+
+                divWeek.appendChild(divDay);
+                divWeek.appendChild(divIcon);
+                divWeek.appendChild(divTemp);
+
+                return divWeek;
+            }
+      
+        </script>
+
+        <div class="footer">&copy; 2021, <a href="CV/index.html">Ugo Reyne</a></div>
+
+	</body>
+</html>
