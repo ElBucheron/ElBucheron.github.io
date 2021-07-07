@@ -75,17 +75,17 @@
 		<script>
 
             const api = {base: "https://api.openweathermap.org/data/2.5/"}
+            const apibox = document.querySelector('.api-box');
+            const searchbox = document.querySelector('.search-box');
 
             var cookie = getCookie("apikey");
             if (cookie != "") {
-              document.querySelector('.api-box').style.display = none;
+              apibox.style.display = none;
               api['key'] = cookie;
             } else {
-              const apibox = document.querySelector('.api-box');
-              apibox.addEventListener('onchange', setApiKey);
+              apibox.addEventListener('change', setApiKey);
             }
 
-            const searchbox = document.querySelector('.search-box');
             searchbox.addEventListener('keypress', setQuery);
 
             const months = [
@@ -138,7 +138,7 @@
             }
 
             function setApiKey() {
-              api['key'] = apibox.value
+              api['key'] = apibox.value;
               document.cookie = "apikey=" + apibox.value;
             }
 
