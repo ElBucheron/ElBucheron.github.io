@@ -80,7 +80,7 @@
 
             var cookie = getCookie("apikey");
             if (cookie != "") {
-              apibox.style.display = none;
+              apibox.style.display = "none";
               api['key'] = cookie;
             } else {
               apibox.addEventListener('change', setApiKey);
@@ -157,7 +157,6 @@
             }
 
             function displayResults (weather) {
-                console.log(weather);
                 document.getElementsByClassName("location")[0].innerText = `${weather.city.name}, ${weather.city.country}`;
 
                 var d = new Date(0);
