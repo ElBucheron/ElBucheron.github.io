@@ -46,7 +46,7 @@
                   <i class="location-icon" data-feather="map-pin"></i>
                   <span class="location"></span>
                 </div>
-                <div class="weather-container"><i class="weather-icon" data-feather="sun"></i>
+                <div class="weather-container"><i class="weather-icon" data-feather=""></i>
                   <h1 class="weather-temp"></h1>
                   <h3 class="weather-desc"></h3>
                 </div>
@@ -157,6 +157,7 @@
             }
 
             function displayResults (weather) {
+                console.log(weather);
                 document.getElementsByClassName("location")[0].innerText = `${weather.city.name}, ${weather.city.country}`;
 
                 var d = new Date(0);
@@ -167,6 +168,7 @@
                         document.getElementsByClassName("date-dayname")[0].innerHTML = days[time.getDay()];
                         document.getElementsByClassName("date-day")[0].innerHTML = time.getDate() + ' ' + months[time.getMonth()] + ' ' + time.getFullYear();
 
+                        document.getElementsByClassName("weather-icon")[0].dataset.feather = getIconName(weather.list[i].weather[0].main);
                         document.getElementsByClassName("weather-temp")[0].innerHTML = weather.list[i].main.temp + '°C';
                         document.getElementsByClassName("weather-desc")[0].innerHTML = weather.list[i].weather[0].main;
 
@@ -177,7 +179,7 @@
                     } else {
                         
                         var time = new Date(weather.list[i].dt_txt);
-                        var divWeek = createWeekDiv(shortDays[time.getDay()] + ' ' + time.getHours() + 'h', weather.list[i].main.temp);
+                        var divWeek = createWeekDiv(time, weather.list[i]);
 
                         document.getElementsByClassName("week-list")[0].appendChild(divWeek);
 
@@ -186,26 +188,62 @@
                 }
             }
 
-            function createWeekDiv(hour, temp) {
+            function createWeekDiv(time, weatherElem) {
                 var divWeek = document.createElement("li");
+
+                var divLeft = document.createElement("div");
+                divLeft.classList.add("div-left");
 
                 var divDay = document.createElement("span");
                 divDay.classList.add("day-name");
-                divDay.innerHTML = hour;
+                divDay.innerHTML = shortDays[time.getDay()] + ' ' + time.getHours() + 'h';
 
                 var divIcon = document.createElement("li");
                 divIcon.classList.add("day-icon");
-                divIcon.dataset.feather = "sun";
+                divIcon.dataset.feather = getIconName(weatherElem.weather[0].main);
+
+                var divDesc = document.createElement("span");
+                divDesc.classList.add("day-name");
+                divDesc.innerHTML = weatherElem.weather[0].description;
+
+                divLeft.appendChild(divDay);
+                divLeft.appendChild(divIcon);
+                divLeft.appendChild(divDesc);
+
+                var divRight = document.createElement("div");
+                divRight.classList.add("div-right");
 
                 var divTemp = document.createElement("span");
                 divTemp.classList.add("day-temp");
-                divTemp.innerHTML = temp + '°C';
+                divTemp.innerHTML = weatherElem.main.temp_min + '°C / ' + weatherElem.main.temp_max + '°C';
 
-                divWeek.appendChild(divDay);
-                divWeek.appendChild(divIcon);
-                divWeek.appendChild(divTemp);
+                var divHum = document.createElement("span");
+                divHum.classList.add("day-temp");
+                divHum.innerHTML = weatherElem.main.humidity + '%';
+
+                divRight.appendChild(divTemp);
+                divRight.appendChild(divHum);
+
+                divWeek.appendChild(divLeft);
+                divWeek.appendChild(divRight);
 
                 return divWeek;
+            }
+
+            function getIconName(name) {
+                switch(name) {
+                    case "Clouds":
+                        return "cloud";
+                        break;
+                    case "Rain":
+                        return "cloud-rain";
+                        break;
+                    case "Clear":
+                        return "sun";
+                        break;
+                    default:
+                        return "cloud";
+                 }
             }
       
         </script>

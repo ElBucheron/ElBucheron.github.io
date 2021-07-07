@@ -52,6 +52,10 @@
 	margin-bottom: 40px;
 }
 
+.container h1 {
+	font-family: 'Ubuntu', sans-serif;
+}
+
 .weather-side {
 	position: relative;
 	height: 100%;
@@ -126,6 +130,7 @@
 	margin: 0;
 	font-weight: 700;
 	font-size: 4em;
+	font-weight: none;
 }
 
 .weather-desc {
@@ -137,7 +142,6 @@
 	float: left;
 	height: 100%;
 	padding-top: 25px;
-	background-color: black;
 }
 
 .today-info {
@@ -161,6 +165,7 @@
 }
 
 .week-list {
+	padding: 5px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	height: 200px;
@@ -170,7 +175,7 @@
 	-webkit-box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
 	        box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
-	background: #
+	background: white;
 }
 
 .week-list::-webkit-scrollbar-track {
@@ -197,6 +202,7 @@
 	-o-transition: 200ms ease;
 	transition: 200ms ease;
 	border-radius: 10px;
+	background-color: black;
 }
 
 .week-list>li:hover {
@@ -209,10 +215,14 @@
 	        box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2)
 }
 
-.week-list>li.active {
-	background: #fff;
-	color: #222831;
-	border-radius: 10px;
+.week-list>li .div-left {
+	display: inline-block;
+	margin-right: 5px;
+	border-right: 1px solid white;
+}
+
+.week-list>li .div-right {
+	display: inline-block;
 }
 
 .week-list>li .day-name {
@@ -235,40 +245,15 @@
 	font-weight: 700;
 }
 
-.location-container {
-	padding: 25px 35px;
-}
+@media screen and (max-width: 800px) {
+	.container {
+		width: 300px;
+	}
 
-.location-button {
-	outline: none;
-	width: 100%;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
-	border: none;
-	border-radius: 25px;
-	padding: 10px;
-	font-family: 'Montserrat', sans-serif;
-	background-image: var(--gradient);
-	color: #ffffff;
-	font-weight: 700;
-	-webkit-box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
-	        box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
-	cursor: pointer;
-	-webkit-transition: -webkit-transform 200ms ease;
-	transition: -webkit-transform 200ms ease;
-	-o-transition: transform 200ms ease;
-	transition: transform 200ms ease;
-	transition: transform 200ms ease, -webkit-transform 200ms ease;
-}
-
-.location-button:hover {
-	-webkit-transform: scale(0.95);
-	    -ms-transform: scale(0.95);
-	        transform: scale(0.95);
-}
-
-.location-button .feather {
-	height: 1em;
-	width: auto;
-	margin-right: 5px;
+	.info-side {
+		background-color: black;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		border-radius: 25px;
+	}
 }
