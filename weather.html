@@ -34,6 +34,7 @@
         <div class="notes" id="notes">
             <h1 id="title">Weather</h1>
 
+            <input type="text" autocomplete="off" class="api-box" placeholder="API Token" />
             <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city..." />
 
             <div class="container">
@@ -73,9 +74,15 @@
 
 		<script>
 
-            const api = {
-              key: "31e30a1ea3be4bf3e083e97b9701faf3",
-              base: "https://api.openweathermap.org/data/2.5/"
+            const api = {base: "https://api.openweathermap.org/data/2.5/"}
+
+            var cookie = getCookie("apikey");
+            if (cookie != "") {
+              document.querySelector('.api-box').style.display = none;
+              api['key'] = cookie;
+            } else {
+              const apibox = document.querySelector('.api-box');
+              apibox.addEventListener('onchange', setApiKey);
             }
 
             const searchbox = document.querySelector('.search-box');
@@ -113,6 +120,27 @@
                 'Fri',
                 'Sat'
             ]
+
+            function getCookie(cname) {
+              let name = cname + "=";
+              let decodedCookie = decodeURIComponent(document.cookie);
+              let ca = decodedCookie.split(';');
+              for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+
+            function setApiKey() {
+              api['key'] = apibox.value
+              document.cookie = "apikey=" + apibox.value;
+            }
 
             function setQuery(evt) {
               if (evt.keyCode == 13) {
