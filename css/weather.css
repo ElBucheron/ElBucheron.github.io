@@ -31,6 +31,7 @@
 	background-color: black;
 	color: #ffffff;
 	height: 500px;
+	margin: auto;
 	margin-bottom: 40px;
 }
 
@@ -103,11 +104,6 @@
 	left: 25px;
 }
 
-.weather-icon.feather {
-	height: 60px;
-	width: auto;
-}
-
 .weather-temp {
 	margin: 0;
 	font-weight: 700;
@@ -121,7 +117,7 @@
 
 .info-side {
 	position: relative;
-	float: left;
+	float: right;
 	height: 100%;
 	padding-top: 25px;
 }
@@ -215,10 +211,7 @@
 }
 
 .week-list>li .day-icon {
-	display: block;
-	height: 30px;
-	width: auto;
-	margin: 0 auto;
+	display: block;	margin: 0 auto;
 }
 
 .week-list>li .day-temp {
@@ -233,12 +226,17 @@
 		height: 300px;
 	}
 
+	.weather-side {
+		float: none;
+	}
+
 	.info-side {
 		background-color: black;
 		margin-top: 10px;
 		margin-bottom: 10px;
 		border-radius: 25px;
 		height: 500px;
+		float: none;
 	}
 
 	.week-list {

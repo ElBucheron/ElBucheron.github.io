@@ -46,7 +46,8 @@
                   <i class="location-icon" data-feather="map-pin"></i>
                   <span class="location"></span>
                 </div>
-                <div class="weather-container"><i class="weather-icon" data-feather=""></i>
+                <div class="weather-container">
+                  <img class="weather-icon"></img>
                   <h1 class="weather-temp"></h1>
                   <h3 class="weather-desc"></h3>
                 </div>
@@ -174,14 +175,13 @@
                         document.getElementsByClassName("date-dayname")[0].innerHTML = days[time.getDay()];
                         document.getElementsByClassName("date-day")[0].innerHTML = time.getDate() + ' ' + months[time.getMonth()] + ' ' + time.getFullYear();
 
-                        document.getElementsByClassName("weather-icon")[0].dataset.feather = getIconName(weather.list[i].weather[0].main);
+                        document.getElementsByClassName("weather-icon")[0].src = "http://openweathermap.org/img/wn/"+ weather.list[i].weather[0].icon + "@2x.png"
                         document.getElementsByClassName("weather-temp")[0].innerHTML = weather.list[i].main.temp + '°C';
-                        document.getElementsByClassName("weather-desc")[0].innerHTML = weather.list[i].weather[0].main;
+                        document.getElementsByClassName("weather-desc")[0].innerHTML = weather.list[i].weather[0].description;
 
                         document.getElementsByClassName("precipitation")[0].getElementsByClassName("value")[0].innerHTML = 'N/A';
                         document.getElementsByClassName("humidity")[0].getElementsByClassName("value")[0].innerHTML = weather.list[i].main.humidity + '%';
                         document.getElementsByClassName("wind")[0].getElementsByClassName("value")[0].innerHTML = weather.list[i].wind.speed + 'km/h';
-
                     } else {
                         
                         var time = new Date(weather.list[i].dt_txt);
@@ -204,9 +204,9 @@
                 divDay.classList.add("day-name");
                 divDay.innerHTML = shortDays[time.getDay()] + ' ' + time.getHours() + 'h';
 
-                var divIcon = document.createElement("li");
+                var divIcon = document.createElement("img");
                 divIcon.classList.add("day-icon");
-                divIcon.dataset.feather = getIconName(weatherElem.weather[0].main);
+                divIcon.src = "http://openweathermap.org/img/wn/"+ weatherElem.weather[0].icon + ".png"
 
                 var divDesc = document.createElement("span");
                 divDesc.classList.add("day-name");
@@ -234,22 +234,6 @@
                 divWeek.appendChild(divRight);
 
                 return divWeek;
-            }
-
-            function getIconName(name) {
-                switch(name) {
-                    case "Clouds":
-                        return "cloud";
-                        break;
-                    case "Rain":
-                        return "cloud-rain";
-                        break;
-                    case "Clear":
-                        return "sun";
-                        break;
-                    default:
-                        return "cloud";
-                 }
             }
       
         </script>
