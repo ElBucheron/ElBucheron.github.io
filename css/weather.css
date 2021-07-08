@@ -23,23 +23,6 @@
 	clear: both;
 }
 
-/*body {
-	margin: 0;
-	width: 100%;
-	height: 100vh;
-	font-family: 'Montserrat', sans-serif;
-	background-color: #343d4b;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-}*/
-
 .container {
 	display: none;
 	border-radius: 25px;
@@ -47,8 +30,7 @@
 	        box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
 	background-color: black;
 	color: #ffffff;
-	height: 400px;
-	margin: 10px;
+	height: 500px;
 	margin-bottom: 40px;
 }
 
@@ -165,10 +147,9 @@
 }
 
 .week-list {
-	padding: 5px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	height: 200px;
+	height: 300px;
 	list-style-type: none;
 	padding: 0;
 	margin: 10px 35px;
@@ -203,6 +184,9 @@
 	transition: 200ms ease;
 	border-radius: 10px;
 	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .week-list>li:hover {
@@ -217,8 +201,7 @@
 
 .week-list>li .div-left {
 	display: inline-block;
-	margin-right: 5px;
-	border-right: 1px solid white;
+	margin-right: 20px;
 }
 
 .week-list>li .div-right {
@@ -227,7 +210,7 @@
 
 .week-list>li .day-name {
 	display: block;
-	margin: 10px 0 0 0;
+	margin: 10px 0;
 	text-align: center;
 }
 
@@ -242,12 +225,12 @@
 	display: block;
 	text-align: center;
 	margin: 10px 0 0 0;
-	font-weight: 700;
 }
 
 @media screen and (max-width: 800px) {
 	.container {
 		width: 300px;
+		height: 300px;
 	}
 
 	.info-side {
@@ -255,5 +238,11 @@
 		margin-top: 10px;
 		margin-bottom: 10px;
 		border-radius: 25px;
+		height: 500px;
+	}
+
+	.week-list {
+		margin: 10px 5px;
+		height: 300px;
 	}
 }

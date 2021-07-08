@@ -78,14 +78,18 @@
             const apibox = document.querySelector('.api-box');
             const searchbox = document.querySelector('.search-box');
 
-            var cookie = getCookie("apikey");
-            if (cookie != "") {
+            var cookieKey = getCookie("apikey");
+            if (cookieKey != "") {
               apibox.style.display = "none";
-              api['key'] = cookie;
+              api['key'] = cookieKey;
             } else {
               apibox.addEventListener('change', setApiKey);
             }
 
+            var cookieCity = getCookie("city");
+            if (cookieCity != "") {
+                getResults(cookieCity);
+            }
             searchbox.addEventListener('keypress', setQuery);
 
             const months = [
@@ -157,6 +161,8 @@
             }
 
             function displayResults (weather) {
+                document.cookie = "city=" + weather.city.name;
+
                 console.log(weather);
                 document.getElementsByClassName("location")[0].innerText = `${weather.city.name}, ${weather.city.country}`;
 
