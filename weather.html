@@ -149,7 +149,6 @@
             function setQuery(evt) {
               if (evt.keyCode == 13) {
                 getResults(searchbox.value);
-                document.getElementsByClassName("container")[0].style.display = "block";
               }
             }
 
@@ -162,6 +161,7 @@
 
             function displayResults (weather) {
                 document.cookie = "city=" + weather.city.name;
+                document.getElementsByClassName("container")[0].style.display = "block";
 
                 console.log(weather);
                 document.getElementsByClassName("location")[0].innerText = `${weather.city.name}, ${weather.city.country}`;
