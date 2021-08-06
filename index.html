@@ -31,6 +31,8 @@
 
         <div class="notes" id="notes">
             <h1 id="title">Mixed Feeds</h1>
+
+            <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
         </div>
 
 		<script>
@@ -41,8 +43,6 @@
                   url: "https://api.rss2json.com/v1/api.json?rss_url=" + url,
                   dataType: 'jsonp',
                   success: function(data) {
-                    var tmpFeedsNewsList = {};
-
                     // Add the feed items
                     var items = data.items;
                     for (var i = 0; i < items.length; i++) {
@@ -99,11 +99,16 @@
             fillRSSFeed('https://www.frandroid.com/feed');
             fillRSSFeed('https://www.androidauthority.com/feed/');
             fillRSSFeed('https://www.presse-citron.net/feed/');
+            fillRSSFeed('https://www.justgeek.fr/feed/');
             fillRSSFeed('https://feeds.feedburner.com/TheHackersNews');
             fillRSSFeed('https://medium.com/feed/tag/hacking');
 
             window.onload = function() {
                 orderNewsByDate();
+            }
+
+            function topFunction() {
+              document.getElementById('notes').scrollTop = 0;
             }
 
         </script>
