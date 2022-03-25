@@ -138,7 +138,7 @@ em {
 /*   max-height: 700px; */
   background-color: white;
   border-radius: 10px;
-  text-align: left;
+  text-align: center;
   overflow: auto;
   scroll-behavior: smooth;
 }
@@ -164,11 +164,12 @@ em {
 }
 
 .news-div {
+  display: inline-grid;
   background-color: black;
   color: white;
   text-align: center;
   border-radius: 10px;
-  max-width: 500px;
+  width: 500px;
   margin: auto;
   margin-bottom: 10px;
   padding: 10px;
@@ -197,6 +198,8 @@ em {
 
 .news-div em {
   color: white;
+  text-align: center;
+  margin-top: auto;
 }
 
 .footer {
