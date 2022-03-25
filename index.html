@@ -60,7 +60,7 @@
                         var date = document.createElement("em");
                         date.appendChild(document.createTextNode(items[i].pubDate));
                         divNews.setAttribute("data-event-date", items[i].pubDate);
-			if (items[i].thumbnail != null) {
+			if (items[i].thumbnail) {
                             img.src = items[i].thumbnail;
 			} else {
 			    img.src = "./img/logo.png"
