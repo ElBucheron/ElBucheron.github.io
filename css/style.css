@@ -257,5 +257,6 @@ em {
   .news-div {
     width: auto;
     height: auto;
+    padding: 0;
   }
 }
