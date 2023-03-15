@@ -58,19 +58,10 @@
                         content.innerHTML = items[i].content;
                         divNews.appendChild(content);
 
-                        // divNews.appendChild(document.createElement("br"));
-
-                        // var img = document.createElement("img");
-                        // var date = document.createElement("em");
-                        // date.appendChild(document.createTextNode(items[i].pubDate));
-                        // divNews.setAttribute("data-event-date", items[i].pubDate);
-                        // if (items[i].thumbnail || items[i].thumbnail.length !== 0) {
-                        //                 img.src = items[i].thumbnail;
-                        // } else {
-                        //     img.src = "./img/logo.png"
-                        // }
-                        // divNews.appendChild(img);
-                        // divNews.appendChild(date);
+                        var date = document.createElement("em");
+                        date.appendChild(document.createTextNode(items[i].pubDate));
+                        divNews.setAttribute("data-event-date", items[i].pubDate);
+                        divNews.appendChild(date);
 
                         document.getElementById("notes").appendChild(divNews);
                     }
@@ -111,9 +102,9 @@
             fillRSSFeed('https://reporterre.net/spip.php?page=backend-simple');
             fillRSSFeed('https://www.it-connect.fr/feed/');
 
-            // window.onload = function() {
-            //     orderNewsByDate();
-            // }
+            window.onload = function() {
+                orderNewsByDate();
+            }
 
         </script>
 
