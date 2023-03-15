@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+    <head>
         <link rel="icon" href="img/logo.png">
         <title>Security Notes</title>
 
@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
     </head>
 
-	<body>
+    <body>
 
         <div class="logo">
             <div class="glitch" data-text="Bucheron">Bucheron</div>
@@ -22,18 +22,18 @@
             <a class="active">| Dashboard |</a>
             <a href="weather.html">| Weather |</a>
             <a href="ressources.html">| Ressources |</a>
-	        <a href="tools.html">| Tools |</a>
+            <a href="tools.html">| Tools |</a>
             <a href="posters.html">| Cheat sheets |</a>
             <a href="nvd.html">| NVD |</a>
             <a href="alert.html">| Alert |</a>
-	        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
+            <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
         </div>
 
         <div class="notes" id="notes">
             <h1 id="title">Mixed Feeds</h1>
         </div>
 
-		<script>
+        <script>
 
             function fillRSSFeed(url) {
                 $.ajax({
@@ -42,31 +42,35 @@
                   dataType: 'jsonp',
                   success: function(data) {
                     // Add the feed items
-                    var items = data.items;
+                    let items = data.items;
                     for (var i = 0; i < items.length; i++) {
-                        var divNews = document.createElement("div");
+                        let divNews = document.createElement("div");
                         divNews.classList.add("news-div");
-                        var title = document.createElement("a");
+                        let title = document.createElement("a");
                         title.setAttribute('href', items[i].link);
                         title.setAttribute('target', "_blank");
-                        var h2 = document.createElement("h2");
-                        var tTitle = document.createTextNode(items[i].title);
-                        title.appendChild(tTitle);
+                        let h2 = document.createElement("h2");
+                        title.innerText = items[i].title;
                         h2.appendChild(title);
                         divNews.appendChild(h2);
-                        divNews.appendChild(document.createElement("br"));
 
-                        var img = document.createElement("img");
-                        var date = document.createElement("em");
-                        date.appendChild(document.createTextNode(items[i].pubDate));
-                        divNews.setAttribute("data-event-date", items[i].pubDate);
-			if (items[i].thumbnail || items[i].thumbnail.length !== 0) {
-                            img.src = items[i].thumbnail;
-			} else {
-			    img.src = "./img/logo.png"
-			}
-                        divNews.appendChild(img);
-                        divNews.appendChild(date);
+                        let content = document.createElement("div");
+                        content.innerHTML = items[i].content;
+                        divNews.appendChild(content);
+
+                        // divNews.appendChild(document.createElement("br"));
+
+                        // var img = document.createElement("img");
+                        // var date = document.createElement("em");
+                        // date.appendChild(document.createTextNode(items[i].pubDate));
+                        // divNews.setAttribute("data-event-date", items[i].pubDate);
+                        // if (items[i].thumbnail || items[i].thumbnail.length !== 0) {
+                        //                 img.src = items[i].thumbnail;
+                        // } else {
+                        //     img.src = "./img/logo.png"
+                        // }
+                        // divNews.appendChild(img);
+                        // divNews.appendChild(date);
 
                         document.getElementById("notes").appendChild(divNews);
                     }
@@ -107,13 +111,13 @@
             fillRSSFeed('https://reporterre.net/spip.php?page=backend-simple');
             fillRSSFeed('https://www.it-connect.fr/feed/');
 
-            window.onload = function() {
-                orderNewsByDate();
-            }
+            // window.onload = function() {
+            //     orderNewsByDate();
+            // }
 
         </script>
 
         <div class="footer">&copy; 2022, <a href="CV/index.html">Ugo Reyne</a></div>
 
-	</body>
+    </body>
 </html>

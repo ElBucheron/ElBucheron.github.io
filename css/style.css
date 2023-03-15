@@ -63,6 +63,7 @@ h2 {
   margin-bottom: 5px;
   font-size: 1.2em;
   cursor: pointer;
+  height: fit-content;
 }
 
 a {
@@ -164,6 +165,7 @@ em {
 }
 
 .news-div {
+  overflow: hidden;
   display: inline-grid;
   background-color: black;
   color: white;
@@ -177,7 +179,7 @@ em {
 }
 
 .news-div img {
-  max-width: 100%;
+  max-width: 400px;
   height: auto;
   margin: auto;
   display: block;
