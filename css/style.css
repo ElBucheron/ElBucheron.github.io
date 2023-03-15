@@ -186,6 +186,10 @@ em {
   border-radius: 20px;
 }
 
+.news-div p {
+  margin-left: 0;
+}
+
 .news-div a {
   text-decoration: none;
   color: white;
