@@ -257,6 +257,9 @@ em {
   .news-div {
     width: auto;
     height: auto;
+  }
+  
+  .news-div img {
     padding: 0;
   }
 }
