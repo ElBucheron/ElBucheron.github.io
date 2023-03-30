@@ -259,7 +259,7 @@ em {
 
 @media screen and (max-width: 650px) {
   .news-div {
-    width: auto;
+    width: 95%;
     height: auto;
   }
   
