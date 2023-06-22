@@ -208,6 +208,10 @@ em {
   margin-top: auto;
 }
 
+.news-div div figure {
+  max-width: 200px;
+}
+
 .footer {
   position: absolute;
   right: 0;
