@@ -171,7 +171,7 @@ em {
   text-align: center;
   border-radius: 10px;
   width: 500px;
-/*  height: 500px;*/
+  max-height: 500px;
   margin: 10px;
   margin-bottom: 10px;
   padding: 10px;
