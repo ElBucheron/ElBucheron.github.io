@@ -29,19 +29,8 @@
     <h1>Scam Awareness</h1>
     <div id="scam-list"></div>
 
+    <script src="scams.js"></script>
     <script>
-        const scams = [
-            {
-                title: 'Phishing',
-                description: 'Phishing scams involve fake emails or websites that trick users into providing sensitive information.'
-            },
-            {
-                title: 'Identity Theft',
-                description: 'Identity theft occurs when someone steals your personal information to commit fraud or other crimes.'
-            },
-            // Add more scams here
-        ];
-
         const scamList = document.getElementById('scam-list');
 
         scams.forEach(scam => {
@@ -55,6 +44,10 @@
             const scamDescription = document.createElement('p');
             scamDescription.textContent = scam.description;
             scamItem.appendChild(scamDescription);
+
+            const scamDetails = document.createElement('p');
+            scamDetails.textContent = scam.details;
+            scamItem.appendChild(scamDetails);
 
             scamList.appendChild(scamItem);
         });
