@@ -143,3 +143,4 @@ const scams = [
     solution: "Sachez que vous avez le droit de refuser un achat et de prendre le temps de réfléchir avant de prendre une décision. Ne vous sentez pas obligé d'acheter quelque chose sous pression.",
     image: 'vente_forcee.jpg',
   }
+];
