@@ -11,57 +11,52 @@
         h1 {
             text-align: center;
         }
-        #scam-list {
+        .button-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
-        .scam-item {
-            width: 300px;
-            padding: 15px;
+        .button {
+            padding: 10px 20px;
             margin: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: #f8f8f8;
+            cursor: pointer;
         }
-        .scam-image {
-            width: 100%;
-            height: auto;
-            margin-bottom: 10px;
+        .button:hover {
+            background-color: #e8e8e8;
+        }
+        #scam-details {
+            display: none;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>Scam Awareness</h1>
-    <div id="scam-list"></div>
+    <div id="button-container" class="button-container">
+        <div class="button" onclick="showScamDetails('phishing')">Phishing</div>
+        <div class="button" onclick="showScamDetails('identity-theft')">Identity Theft</div>
+        <!-- Add more buttons for other scams here -->
+    </div>
+    <div id="scam-details"></div>
 
     <script src="js/scam-list.js"></script>
     <script>
-        const scamList = document.getElementById('scam-list');
+        function showScamDetails(scamId) {
+            const scam = scams.find(s => s.id === scamId);
+            if (!scam) return;
 
-        scams.forEach(scam => {
-            const scamItem = document.createElement('div');
-            scamItem.classList.add('scam-item');
-
-            const scamImage = document.createElement('img');
-            scamImage.classList.add('scam-image');
-            scamImage.src = scam.image;
-            scamImage.alt = scam.title;
-            scamItem.appendChild(scamImage);
-
-            const scamTitle = document.createElement('h2');
-            scamTitle.textContent = scam.title;
-            scamItem.appendChild(scamTitle);
-
-            const scamDescription = document.createElement('p');
-            scamDescription.textContent = scam.description;
-            scamItem.appendChild(scamDescription);
-
-            const scamDetails = document.createElement('p');
-            scamDetails.innerHTML = scam.details;
-            scamItem.appendChild(scamDetails);
-
-            scamList.appendChild(scamItem);
-        });
+            const scamDetails = document.getElementById('scam-details');
+            scamDetails.innerHTML = `
+                <h2>${scam.title}</h2>
+                <p><strong>Description:</strong> ${scam.description}</p>
+                <p><strong>Example:</strong> ${scam.example}</p>
+                <p><strong>Solution:</strong> ${scam.solution}</p>
+            `;
+            scamDetails.style.display = 'block';
+        }
     </script>
 </body>
 </html>
