@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scam Awareness</title>
+    <title>Prévention des escroqueries</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,11 +34,17 @@
     </style>
 </head>
 <body>
-    <h1>Scam Awareness</h1>
+    <h1>Prévention des escroqueries</h1>
     <div id="button-container" class="button-container">
         <div class="button" onclick="showScamDetails('phishing')">Phishing</div>
-        <div class="button" onclick="showScamDetails('identity-theft')">Identity Theft</div>
-        <!-- Add more buttons for other scams here -->
+        <div class="button" onclick="showScamDetails('identity-theft')">Vol d'identité</div>
+        <div class="button" onclick="showScamDetails('investment-scams')">Escroqueries d'investissement</div>
+        <div class="button" onclick="showScamDetails('pyramid-schemes')">Systèmes de Ponzi</div>
+        <div class="button" onclick="showScamDetails('fake-goods-scams')">Escroqueries de faux produits</div>
+        <div class="button" onclick="showScamDetails('charity-scams')">Escroqueries de charité</div>
+        <div class="button" onclick="showScamDetails('tech-support-scams')">Escroqueries de support technique</div>
+        <div class="button" onclick="showScamDetails('fake-antivirus-software-scams')">Escroqueries de faux logiciels antivirus</div>
+        <!-- Ajoutez d'autres boutons pour d'autres escroqueries ici -->
     </div>
     <div id="scam-details"></div>
 
@@ -51,9 +57,9 @@
             const scamDetails = document.getElementById('scam-details');
             scamDetails.innerHTML = `
                 <h2>${scam.title}</h2>
-                <p><strong>Description:</strong> ${scam.description}</p>
-                <p><strong>Example:</strong> ${scam.example}</p>
-                <p><strong>Solution:</strong> ${scam.solution}</p>
+                <p><strong>Description :</strong> ${scam.description}</p>
+                <p><strong>Exemple :</strong> ${scam.example}</p>
+                <p><strong>Solution :</strong> ${scam.solution}</p>
             `;
             scamDetails.style.display = 'block';
         }
