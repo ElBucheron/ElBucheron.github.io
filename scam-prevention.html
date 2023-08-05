@@ -23,6 +23,11 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .scam-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -37,6 +42,12 @@
             const scamItem = document.createElement('div');
             scamItem.classList.add('scam-item');
 
+            const scamImage = document.createElement('img');
+            scamImage.classList.add('scam-image');
+            scamImage.src = scam.image;
+            scamImage.alt = scam.title;
+            scamItem.appendChild(scamImage);
+
             const scamTitle = document.createElement('h2');
             scamTitle.textContent = scam.title;
             scamItem.appendChild(scamTitle);
@@ -46,7 +57,7 @@
             scamItem.appendChild(scamDescription);
 
             const scamDetails = document.createElement('p');
-            scamDetails.textContent = scam.details;
+            scamDetails.innerHTML = scam.details;
             scamItem.appendChild(scamDetails);
 
             scamList.appendChild(scamItem);
