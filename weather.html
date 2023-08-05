@@ -1,244 +1,63 @@
 <!DOCTYPE html>
-<html>
-	<head>
-        <link rel="icon" href="img/logo.png">
-        <title>Security Notes</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Awareness</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        #scam-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .scam-item {
+            width: 300px;
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scam Awareness</h1>
+    <div id="scam-list"></div>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat Subrayada' rel='stylesheet'>
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        <link rel='stylesheet' href='css/style.css'>
-        <link rel='stylesheet' href='css/weather.css'>
+    <script>
+        const scams = [
+            {
+                title: 'Phishing',
+                description: 'Phishing scams involve fake emails or websites that trick users into providing sensitive information.'
+            },
+            {
+                title: 'Identity Theft',
+                description: 'Identity theft occurs when someone steals your personal information to commit fraud or other crimes.'
+            },
+            // Add more scams here
+        ];
 
-        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-        <script src="https://unpkg.com/feather-icons"></script>
-    </head>
+        const scamList = document.getElementById('scam-list');
 
-	<body>
+        scams.forEach(scam => {
+            const scamItem = document.createElement('div');
+            scamItem.classList.add('scam-item');
 
-        <div class="logo">
-            <div class="glitch" data-text="Bucheron">Bucheron</div>
-        </div>
+            const scamTitle = document.createElement('h2');
+            scamTitle.textContent = scam.title;
+            scamItem.appendChild(scamTitle);
 
-        <div class="menu" id="menu">
-            <a href="index.html">| Dashboard |</a>
-            <a class="active">| Weather |</a>
-            <a href="ressources.html">| Ressources |</a>
-	        <a href="tools.html">| Tools |</a>
-            <a href="posters.html">| Cheat sheets |</a>
-            <a href="nvd.html">| NVD |</a>
-            <a href="alert.html">| Alert |</a>
-	        <a href="https://www.fireeye.com/cyber-map/threat-map.html">| Fireeye |</a><br>
-        </div>
+            const scamDescription = document.createElement('p');
+            scamDescription.textContent = scam.description;
+            scamItem.appendChild(scamDescription);
 
-        <div class="notes" id="notes">
-            <h1 id="title">Weather</h1>
-
-            <input type="text" autocomplete="off" class="api-box" placeholder="API Token" />
-            <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city..." />
-
-            <div class="container">
-              <div class="weather-side">
-                <div class="weather-gradient"></div>
-                <div class="date-container">
-                  <h2 class="date-dayname"></h2>
-                  <span class="date-day"></span>
-                  <i class="location-icon" data-feather="map-pin"></i>
-                  <span class="location"></span>
-                </div>
-                <div class="weather-container">
-                  <img class="weather-icon"></img>
-                  <h1 class="weather-temp"></h1>
-                  <h3 class="weather-desc"></h3>
-                </div>
-              </div>
-              <div class="info-side">
-                <div class="today-info-container">
-                  <div class="today-info">
-                    <div class="precipitation"> <span class="title">PRECIPITATION</span><span class="value"></span>
-                      <div class="clear"></div>
-                    </div>
-                    <div class="humidity"> <span class="title">HUMIDITY</span><span class="value"></span>
-                      <div class="clear"></div>
-                    </div>
-                    <div class="wind"> <span class="title">WIND</span><span class="value"></span>
-                      <div class="clear"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="week-container">
-                  <ul class="week-list"></ul>
-                </div>
-              </div>
-            </div>
-        </div>
-
-		<script>
-
-            const api = {base: "https://api.openweathermap.org/data/2.5/"}
-            const apibox = document.querySelector('.api-box');
-            const searchbox = document.querySelector('.search-box');
-
-            var cookieKey = getCookie("apikey");
-            if (cookieKey != "") {
-              apibox.style.display = "none";
-              api['key'] = cookieKey;
-            } else {
-              apibox.addEventListener('change', setApiKey);
-            }
-
-            var cookieCity = getCookie("city");
-            if (cookieCity != "") {
-                getResults(cookieCity);
-            }
-            searchbox.addEventListener('keypress', setQuery);
-
-            const months = [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
-                'August',
-                'September',
-                'October',
-                'November',
-                'December'
-            ]
-            const days = [
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
-            ]
-            const shortDays = [
-                'Sun',
-                'Mon',
-                'Tue',
-                'Wed',
-                'Thu',
-                'Fri',
-                'Sat'
-            ]
-
-            function getCookie(cname) {
-              let name = cname + "=";
-              let decodedCookie = decodeURIComponent(document.cookie);
-              let ca = decodedCookie.split(';');
-              for(let i = 0; i <ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                  c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                  return c.substring(name.length, c.length);
-                }
-              }
-              return "";
-            }
-
-            function setApiKey() {
-              api['key'] = apibox.value;
-              document.cookie = "apikey=" + apibox.value;
-            }
-
-            function setQuery(evt) {
-              if (evt.keyCode == 13) {
-                getResults(searchbox.value);
-              }
-            }
-
-            function getResults (query) {
-              fetch(`${api.base}forecast?q=${query}&units=metric&APPID=${api.key}`)
-                .then(weather => {
-                  return weather.json();
-                }).then(displayResults);
-            }
-
-            function displayResults (weather) {
-                document.cookie = "city=" + weather.city.name;
-                document.getElementsByClassName("container")[0].style.display = "block";
-
-                console.log(weather);
-                document.getElementsByClassName("location")[0].innerText = `${weather.city.name}, ${weather.city.country}`;
-
-                var d = new Date(0);
-                for (var i = 0; i < weather.list.length; i++) {
-                    if (i == 0) {
-                        var time = new Date(weather.list[i].dt_txt);
-
-                        document.getElementsByClassName("date-dayname")[0].innerHTML = days[time.getDay()];
-                        document.getElementsByClassName("date-day")[0].innerHTML = time.getDate() + ' ' + months[time.getMonth()] + ' ' + time.getFullYear();
-
-                        document.getElementsByClassName("weather-icon")[0].src = "http://openweathermap.org/img/wn/"+ weather.list[i].weather[0].icon + "@2x.png"
-                        document.getElementsByClassName("weather-temp")[0].innerHTML = weather.list[i].main.temp + '°C';
-                        document.getElementsByClassName("weather-desc")[0].innerHTML = weather.list[i].weather[0].description;
-
-                        document.getElementsByClassName("precipitation")[0].getElementsByClassName("value")[0].innerHTML = 'N/A';
-                        document.getElementsByClassName("humidity")[0].getElementsByClassName("value")[0].innerHTML = weather.list[i].main.humidity + '%';
-                        document.getElementsByClassName("wind")[0].getElementsByClassName("value")[0].innerHTML = weather.list[i].wind.speed + 'km/h';
-                    } else {
-                        
-                        var time = new Date(weather.list[i].dt_txt);
-                        var divWeek = createWeekDiv(time, weather.list[i]);
-
-                        document.getElementsByClassName("week-list")[0].appendChild(divWeek);
-
-                        feather.replace();
-                    }
-                }
-            }
-
-            function createWeekDiv(time, weatherElem) {
-                var divWeek = document.createElement("li");
-
-                var divLeft = document.createElement("div");
-                divLeft.classList.add("div-left");
-
-                var divDay = document.createElement("span");
-                divDay.classList.add("day-name");
-                divDay.innerHTML = shortDays[time.getDay()] + ' ' + time.getHours() + 'h';
-
-                var divIcon = document.createElement("img");
-                divIcon.classList.add("day-icon");
-                divIcon.src = "http://openweathermap.org/img/wn/"+ weatherElem.weather[0].icon + ".png"
-
-                var divDesc = document.createElement("span");
-                divDesc.classList.add("day-name");
-                divDesc.innerHTML = weatherElem.weather[0].description;
-
-                divLeft.appendChild(divDay);
-                divLeft.appendChild(divIcon);
-                divLeft.appendChild(divDesc);
-
-                var divRight = document.createElement("div");
-                divRight.classList.add("div-right");
-
-                var divTemp = document.createElement("span");
-                divTemp.classList.add("day-temp");
-                divTemp.innerHTML = weatherElem.main.temp_min + '°C / ' + weatherElem.main.temp_max + '°C';
-
-                var divHum = document.createElement("span");
-                divHum.classList.add("day-temp");
-                divHum.innerHTML = weatherElem.main.humidity + '%';
-
-                divRight.appendChild(divTemp);
-                divRight.appendChild(divHum);
-
-                divWeek.appendChild(divLeft);
-                divWeek.appendChild(divRight);
-
-                return divWeek;
-            }
-      
-        </script>
-
-        <div class="footer">&copy; 2021, <a href="CV/index.html">Ugo Reyne</a></div>
-
-	</body>
+            scamList.appendChild(scamItem);
+        });
+    </script>
+</body>
 </html>
