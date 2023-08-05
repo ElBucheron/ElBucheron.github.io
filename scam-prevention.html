@@ -31,6 +31,10 @@
             display: none;
             text-align: center;
         }
+        #return-button {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +51,7 @@
         <!-- Ajoutez d'autres boutons pour d'autres escroqueries ici -->
     </div>
     <div id="scam-details"></div>
+    <button id="return-button" onclick="clearScreen()">Retour</button>
 
     <script src="js/scam-list.js"></script>
     <script>
@@ -54,7 +59,11 @@
             const scam = scams.find(s => s.id === scamId);
             if (!scam) return;
 
+            const buttonContainer = document.getElementById('button-container');
             const scamDetails = document.getElementById('scam-details');
+            const returnButton = document.getElementById('return-button');
+
+            buttonContainer.style.display = 'none';
             scamDetails.innerHTML = `
                 <h2>${scam.title}</h2>
                 <p><strong>Description :</strong> ${scam.description}</p>
@@ -62,6 +71,17 @@
                 <p><strong>Solution :</strong> ${scam.solution}</p>
             `;
             scamDetails.style.display = 'block';
+            returnButton.style.display = 'block';
+        }
+
+        function clearScreen() {
+            const buttonContainer = document.getElementById('button-container');
+            const scamDetails = document.getElementById('scam-details');
+            const returnButton = document.getElementById('return-button');
+
+            buttonContainer.style.display = 'flex';
+            scamDetails.style.display = 'none';
+            returnButton.style.display = 'none';
         }
     </script>
 </body>
