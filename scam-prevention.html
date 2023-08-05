@@ -39,22 +39,40 @@
 </head>
 <body>
     <h1>Prévention des escroqueries</h1>
-    <div id="button-container" class="button-container">
-        <div class="button" onclick="showScamDetails('phishing')">Phishing</div>
-        <div class="button" onclick="showScamDetails('identity-theft')">Vol d'identité</div>
-        <div class="button" onclick="showScamDetails('investment-scams')">Escroqueries d'investissement</div>
-        <div class="button" onclick="showScamDetails('pyramid-schemes')">Systèmes de Ponzi</div>
-        <div class="button" onclick="showScamDetails('fake-goods-scams')">Escroqueries de faux produits</div>
-        <div class="button" onclick="showScamDetails('charity-scams')">Escroqueries de charité</div>
-        <div class="button" onclick="showScamDetails('tech-support-scams')">Escroqueries de support technique</div>
-        <div class="button" onclick="showScamDetails('fake-antivirus-software-scams')">Escroqueries de faux logiciels antivirus</div>
-        <!-- Ajoutez d'autres boutons pour d'autres escroqueries ici -->
+    <div id="category-container" class="button-container">
+        <div class="button" onclick="showScamCategory('consumer-scams')">Escroqueries pour les consommateurs</div>
+        <div class="button" onclick="showScamCategory('business-scams')">Escroqueries pour les entreprises</div>
     </div>
+    <div id="button-container" class="button-container"></div>
     <div id="scam-details"></div>
     <button id="return-button" onclick="clearScreen()">Retour</button>
 
     <script src="js/scam-list.js"></script>
     <script>
+        function showScamCategory(category) {
+            const buttonContainer = document.getElementById('button-container');
+            const categoryContainer = document.getElementById('category-container');
+            const scamDetails = document.getElementById('scam-details');
+            const returnButton = document.getElementById('return-button');
+
+            categoryContainer.style.display = 'none';
+            buttonContainer.innerHTML = '';
+
+            const scamsToShow = scams.filter(scam => scam.category === category);
+
+            scamsToShow.forEach(scam => {
+                const scamButton = document.createElement('div');
+                scamButton.classList.add('button');
+                scamButton.textContent = scam.title;
+                scamButton.onclick = () => showScamDetails(scam.id);
+                buttonContainer.appendChild(scamButton);
+            });
+
+            buttonContainer.style.display = 'flex';
+            scamDetails.style.display = 'none';
+            returnButton.style.display = 'block';
+        }
+
         function showScamDetails(scamId) {
             const scam = scams.find(s => s.id === scamId);
             if (!scam) return;
@@ -76,10 +94,12 @@
 
         function clearScreen() {
             const buttonContainer = document.getElementById('button-container');
+            const categoryContainer = document.getElementById('category-container');
             const scamDetails = document.getElementById('scam-details');
             const returnButton = document.getElementById('return-button');
 
-            buttonContainer.style.display = 'flex';
+            buttonContainer.style.display = 'none';
+            categoryContainer.style.display = 'flex';
             scamDetails.style.display = 'none';
             returnButton.style.display = 'none';
         }
