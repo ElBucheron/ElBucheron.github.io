@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prévention des escroqueries</title>
+    <title>Prévention des arnaques</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,26 +38,33 @@
     </style>
 </head>
 <body>
-    <h1>Prévention des escroqueries</h1>
-    <div id="category-container" class="button-container">
-        <div class="button" onclick="showScamCategory('consumer-scams')">Escroqueries pour les consommateurs</div>
-        <div class="button" onclick="showScamCategory('business-scams')">Escroqueries pour les entreprises</div>
-    </div>
+    <h1>Prévention des arnaques</h1>
+    <div id="category-container" class="button-container"></div>
     <div id="button-container" class="button-container"></div>
     <div id="scam-details"></div>
     <button id="return-button" onclick="clearScreen()">Retour</button>
 
     <script src="js/scam-list.js"></script>
     <script>
-        function showScamCategory(category) {
+        // Récupérer les catégories uniques à partir du fichier scams.js
+        const categories = [...new Set(scams.map(scam => scam.category))];
+
+        // Créer les boutons de catégorie dynamiquement
+        const categoryContainer = document.getElementById('category-container');
+        categories.forEach(category => {
+            const categoryButton = document.createElement('div');
+            categoryButton.classList.add('button');
+            categoryButton.textContent = category;
+            categoryButton.onclick = () => showScamsByCategory(category);
+            categoryContainer.appendChild(categoryButton);
+        });
+
+        function showScamsByCategory(category) {
             const buttonContainer = document.getElementById('button-container');
-            const categoryContainer = document.getElementById('category-container');
             const scamDetails = document.getElementById('scam-details');
             const returnButton = document.getElementById('return-button');
 
-            categoryContainer.style.display = 'none';
             buttonContainer.innerHTML = '';
-
             const scamsToShow = scams.filter(scam => scam.category === category);
 
             scamsToShow.forEach(scam => {
@@ -98,7 +105,7 @@
             const scamDetails = document.getElementById('scam-details');
             const returnButton = document.getElementById('return-button');
 
-            buttonContainer.style.display = 'none';
+            buttonContainer.innerHTML = '';
             categoryContainer.style.display = 'flex';
             scamDetails.style.display = 'none';
             returnButton.style.display = 'none';
