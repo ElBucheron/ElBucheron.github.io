@@ -5,46 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prévention des arnaques</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
         }
-        h1 {
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive design */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* Improved navigation */
+        .main-header {
+            background: #f8f8f8;
+            height: 100px;
+            padding: 20px;
+        }
+
+        .main-header h1 {
+            float: left;
+            color: #333;
+        }
+
+        .nav {
+            float: right;
+        }
+
+        .nav a {
+            display: inline;
+            padding: 0 5px;
+            color: #333;
+        }
+
+        .nav a:hover {
+            color: #666;
+        }
+
+        /* Enhanced typography and color scheme */
+        .showcase {
+            background: #333;
+            color: #fff;
+            height: 400px;
             text-align: center;
+            padding-top: 100px;
         }
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+
+        .showcase h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
         }
-        .button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f8f8f8;
+
+        .showcase p {
+            font-size: 20px;
+        }
+
+        /* Organized content */
+        .content {
+            padding: 40px;
+        }
+
+        .content h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .content ul {
+            margin-bottom: 20px;
+        }
+
+        /* Clear call-to-action buttons */
+        .cta-button {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 10px 30px;
+            font-size: 18px;
+            border: none;
             cursor: pointer;
+            margin-top: 30px;
         }
-        .button:hover {
-            background-color: #e8e8e8;
-        }
-        #scam-details {
-            display: none;
-            text-align: center;
-        }
-        #return-button {
-            display: none;
-            margin-top: 20px;
+
+        .cta-button:hover {
+            background: #666;
         }
     </style>
 </head>
 <body>
-    <h1>Prévention</h1>
-    <div id="category-container" class="button-container"></div>
-    <div id="button-container" class="button-container"></div>
-    <div id="scam-details"></div>
-    <button id="return-button" onclick="clearScreen()">Retour</button>
+    <header class="main-header">
+        <div class="container">
+            <h1>Prévention des arnaques</h1>
+            <nav class="nav">
+                <a href="#">Accueil</a>
+                <a href="#">Arnaques</a>
+                <a href="#">Conseils</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-    <script src="js/scam-list.js"></script>
+    <section class="showcase">
+        <div class="container">
+            <h1>Protégez-vous des arnaques</h1>
+            <p>Découvrez les arnaques courantes et apprenez comment les éviter.</p>
+            <button class="cta-button">En savoir plus</button>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            <h2>Arnaques courantes</h2>
+            <ul>
+                <li>Phishing</li>
+                <li>Vol d'identité</li>
+                <li>Escroqueries d'investissement</li>
+                <li>Escroqueries de support technique</li>
+            </ul>
+            <h2>Conseils pour éviter les arnaques</h2>
+            <ul>
+                <li>Protégez vos informations personnelles</li>
+                <li>Ne partagez pas vos mots de passe</li>
+                <li>Méfiez-vous des offres trop belles pour être vraies</li>
+                <li>Signalez les arnaques aux autorités compétentes</li>
+            </ul>
+        </div>
+    </section>
+
+    <script src="js/scams.js"></script>
     <script>
         // Récupérer les catégories uniques à partir du fichier scams.js
         const categories = [...new Set(scams.map(scam => scam.category))];
