@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prévention des arnaques</title>
+    <title>Prévention</title>
     <style>
         * {
             box-sizing: border-box;
@@ -118,18 +118,6 @@
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <h1>Prévention des arnaques</h1>
-            <nav class="nav">
-                <a href="#">Accueil</a>
-                <a href="#">Arnaques</a>
-                <a href="#">Conseils</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
-
     <section class="showcase">
         <div class="container">
             <h1>Protégez-vous des arnaques</h1>
@@ -162,8 +150,9 @@
         // Récupérer les catégories uniques à partir du fichier scams.js
         const categories = [...new Set(scams.map(scam => scam.category))];
 
-        // Créer les boutons de catégorie dynamiquement
-        const categoryContainer = document.getElementById('category-container');
+        function showCategories() {
+             // Créer les boutons de catégorie dynamiquement
+        const categoryContainer = document.getElementById('container');
         categories.forEach(category => {
             const categoryButton = document.createElement('div');
             categoryButton.classList.add('button');
@@ -171,6 +160,7 @@
             categoryButton.onclick = () => showScamsByCategory(category);
             categoryContainer.appendChild(categoryButton);
         });
+        }
 
         function showScamsByCategory(category) {
             const buttonContainer = document.getElementById('button-container');
