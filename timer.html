@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer Entraînement Grimpe</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+    h1 { color: #2c3e50; }
+    #timer { font-size: 3em; margin: 20px 0; color: #e74c3c; }
+    button { padding: 10px 20px; margin: 5px; font-size: 1em; }
+    .exercise { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Timer Entraînement Grimpeur</h1>
+  <div class="exercise" id="exerciseName">Clique sur "Démarrer" pour commencer</div>
+  <div id="timer">00:00</div>
+  <button onclick="startTimer()">Démarrer</button>
+  <button onclick="pauseTimer()">Pause</button>
+  <button onclick="resetTimer()">Réinitialiser</button>  <script>
+    const schedule = [
+      { name: "Échauffement", duration: 20 * 60 },
+      { name: "Suspensions max", duration: 13 * 60 },
+      { name: "Tractions excentriques", duration: 12 * 60 + 30 },
+      { name: "Verrouillage 90°", duration: 3 * 60 + 20 },
+      { name: "Hollow body hold", duration: 3 * 60 }
+    ];
+
+    let current = 0;
+    let remaining = schedule[0].duration;
+    let interval;
+
+    function updateDisplay() {
+      const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
+      const secs = String(remaining % 60).padStart(2, '0');
+      document.getElementById('timer').innerText = `${mins}:${secs}`;
+      document.getElementById('exerciseName').innerText = schedule[current]?.name || "Fini !";
+    }
+
+    function startTimer() {
+      if (interval) return;
+      interval = setInterval(() => {
+        if (remaining > 0) {
+          remaining--;
+          updateDisplay();
+        } else {
+          current++;
+          if (current < schedule.length) {
+            remaining = schedule[current].duration;
+            updateDisplay();
+          } else {
+            clearInterval(interval);
+            interval = null;
+            document.getElementById('exerciseName').innerText = "Séance terminée !";
+            document.getElementById('timer').innerText = "00:00";
+          }
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(interval);
+      interval = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      current = 0;
+      remaining = schedule[0].duration;
+      updateDisplay();
+    }
+
+    updateDisplay();
+  </script></body>
+</html>
