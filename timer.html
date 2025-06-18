@@ -13,13 +13,15 @@
   </style>
 </head>
 <body>
-  <h1>Timer Entraînement Grimpeur</h1><label for="daySelect">Choisis un jour :</label> <select id="daySelect" onchange="loadDay()"> <option value="Jour 1">Jour 1 - Force</option> <option value="Jour 2">Jour 2 - Antagonistes</option> <option value="Jour 4">Jour 4 - Explosivité</option> <option value="Jour 5">Jour 5 - Endurance</option> </select>
+  <h1>Timer Entraînement Grimpeur</h1><label for="daySelect">Choisis un jour :</label> <select id="daySelect" onchange="loadDay()"> <option value="Jour 1">Jour 1 - Force</option> <option value="Jour 2">Jour 2 - Antagonistes</option> <option value="Jour 4">Jour 4 - Explositivité</option> <option value="Jour 5">Jour 5 - Endurance</option> </select>
 
   <div class="exercise" id="exerciseName">Sélectionne un jour pour commencer</div>
   <div id="timer">00:00</div>
   <button onclick="startTimer()">Démarrer</button>
   <button onclick="pauseTimer()">Pause</button>
-  <button onclick="resetTimer()">Réinitialiser</button>  <script>
+  <button onclick="resetTimer()">Réinitialiser</button>
+  <button onclick="prevExercise()">&larr; Précédent</button>
+  <button onclick="nextExercise()">Suivant &rarr;</button>  <script>
     const allSchedules = {
       "Jour 1": [
         { name: "Échauffement", duration: 20 * 60 },
@@ -60,6 +62,7 @@
     let interval;
 
     function loadDay() {
+      pauseTimer();
       const day = document.getElementById("daySelect").value;
       schedule = allSchedules[day];
       current = 0;
@@ -81,16 +84,7 @@
           remaining--;
           updateDisplay();
         } else {
-          current++;
-          if (current < schedule.length) {
-            remaining = schedule[current].duration;
-            updateDisplay();
-          } else {
-            clearInterval(interval);
-            interval = null;
-            document.getElementById('exerciseName').innerText = "Séance terminée !";
-            document.getElementById('timer').innerText = "00:00";
-          }
+          nextExercise();
         }
       }, 1000);
     }
@@ -105,6 +99,27 @@
       current = 0;
       remaining = schedule[0]?.duration || 0;
       updateDisplay();
+    }
+
+    function nextExercise() {
+      pauseTimer();
+      if (current < schedule.length - 1) {
+        current++;
+        remaining = schedule[current].duration;
+        updateDisplay();
+      } else {
+        document.getElementById('exerciseName').innerText = "Séance terminée !";
+        document.getElementById('timer').innerText = "00:00";
+      }
+    }
+
+    function prevExercise() {
+      pauseTimer();
+      if (current > 0) {
+        current--;
+        remaining = schedule[current].duration;
+        updateDisplay();
+      }
     }
 
     updateDisplay();
