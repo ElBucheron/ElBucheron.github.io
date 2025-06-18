@@ -11,12 +11,14 @@
     .exercise { margin-top: 10px; font-weight: bold; }
     select { padding: 5px; margin: 10px 0; font-size: 1em; }
     #details { margin-top: 20px; padding: 15px; background: #fff; border-radius: 10px; }
+    #phase { font-size: 1.2em; margin-bottom: 10px; color: #34495e; }
   </style>
 </head>
 <body>
   <h1>Timer Entraînement Grimpeur</h1><label for="daySelect">Choisis un jour :</label> <select id="daySelect" onchange="loadDay()"> <option value="Jour 1">Jour 1 - Force</option> <option value="Jour 2">Jour 2 - Antagonistes</option> <option value="Jour 4">Jour 4 - Explositivité</option> <option value="Jour 5">Jour 5 - Endurance</option> </select>
 
   <div class="exercise" id="exerciseName">Sélectionne un jour pour commencer</div>
+  <div id="phase">Phase : -</div>
   <div id="timer">00:00</div>
   <button onclick="startTimer()">Démarrer</button>
   <button onclick="pauseTimer()">Pause</button>
@@ -25,35 +27,37 @@
   <button onclick="nextExercise()">Suivant &rarr;</button>  <div id="details"></div>  <script>
     const allSchedules = {
       "Jour 1": [
-        { name: "Suspensions au hangboard", duration: 6 * (10 + 120), description: "6 × 10s suspendu sur prise, 2min de repos entre." },
-        { name: "Tractions excentriques", duration: 5 * (3 * 4 + 120), description: "5 × 3 reps - montée rapide, descente 4s. 2min repos." },
-        { name: "Verrouillage 90°", duration: 4 * (2 * 10 + 30), description: "Maintien 10s par bras x4. Repos court entre." },
-        { name: "Gainage hollow body", duration: 3 * (30 + 60), description: "3 × 30s maintien au sol, jambes bras tendus. 1min repos." }
+        { name: "Suspensions au hangboard", sets: 6, work: 10, rest: 120, description: "6 × 10s suspendu sur prise, 2min de repos entre." },
+        { name: "Tractions excentriques", sets: 5, work: 3 * 4, rest: 120, description: "5 × 3 reps - montée rapide, descente 4s. 2min repos." },
+        { name: "Verrouillage 90°", sets: 4, work: 20, rest: 30, description: "Maintien 10s par bras x4. Repos court entre." },
+        { name: "Gainage hollow body", sets: 3, work: 30, rest: 60, description: "3 × 30s maintien au sol, jambes bras tendus. 1min repos." }
       ],
       "Jour 2": [
-        { name: "Pompes surélevées", duration: 4 * (30 + 60), description: "4 × 10–12 reps, pause 1min." },
-        { name: "Élévations latérales", duration: 3 * (40 + 30), description: "3 × 15 reps, bras tendus à l'horizontale." },
-        { name: "Planche + variations", duration: 3 * (30 + 30), description: "3 × 30s planche avec levée bras/jambes." },
-        { name: "Gainage latéral + jambe", duration: 3 * (2 * 30 + 30), description: "3 x 30s par côté avec jambe levée." },
-        { name: "Pont fessier", duration: 3 * (30 + 30), description: "3 × 15 reps, fessiers serrés." },
-        { name: "Extension triceps", duration: 3 * (30 + 30), description: "3 × 12 reps avec élastique ou anneaux." }
+        { name: "Pompes surélevées", sets: 4, work: 30, rest: 60, description: "4 × 10–12 reps, pause 1min." },
+        { name: "Élévations latérales", sets: 3, work: 40, rest: 30, description: "3 × 15 reps, bras tendus à l'horizontale." },
+        { name: "Planche + variations", sets: 3, work: 30, rest: 30, description: "3 × 30s planche avec levée bras/jambes." },
+        { name: "Gainage latéral + jambe", sets: 3, work: 60, rest: 30, description: "3 x 30s par côté avec jambe levée." },
+        { name: "Pont fessier", sets: 3, work: 30, rest: 30, description: "3 × 15 reps, fessiers serrés." },
+        { name: "Extension triceps", sets: 3, work: 30, rest: 30, description: "3 × 12 reps avec élastique ou anneaux." }
       ],
       "Jour 4": [
-        { name: "Pompes pliométriques", duration: 4 * (30 + 60), description: "4 × 6 reps, mains qui décollent." },
-        { name: "Sauts genoux/box", duration: 4 * (30 + 60), description: "4 × 6 sauts explosifs." },
-        { name: "Burpees dynamiques", duration: 3 * (30 + 30), description: "3 × 10 rapides burpees." },
-        { name: "Toes-to-bar", duration: 4 * (30 + 60), description: "4 × 10 levés de jambes suspendu." },
-        { name: "Mountain climbers", duration: 3 * (30 + 30), description: "3 × 30s rapide gainage." },
-        { name: "Plank to push-up", duration: 3 * (30 + 30), description: "3 × 10 reps dynamique." },
-        { name: "Superman", duration: 3 * (30 + 30), description: "3 × 30s sur le ventre, bras/jambes levés." }
+        { name: "Pompes pliométriques", sets: 4, work: 30, rest: 60, description: "4 × 6 reps, mains qui décollent." },
+        { name: "Sauts genoux/box", sets: 4, work: 30, rest: 60, description: "4 × 6 sauts explosifs." },
+        { name: "Burpees dynamiques", sets: 3, work: 30, rest: 30, description: "3 × 10 rapides burpees." },
+        { name: "Toes-to-bar", sets: 4, work: 30, rest: 60, description: "4 × 10 levés de jambes suspendu." },
+        { name: "Mountain climbers", sets: 3, work: 30, rest: 30, description: "3 × 30s rapide gainage." },
+        { name: "Plank to push-up", sets: 3, work: 30, rest: 30, description: "3 × 10 reps dynamique." },
+        { name: "Superman", sets: 3, work: 30, rest: 30, description: "3 × 30s sur le ventre, bras/jambes levés." }
       ],
       "Jour 5": [
-        { name: "Circuit Endurance", duration: 5 * ((30 + 15) * 5), description: "5 tours : tractions, pompes, planche, squats, fentes sautées. 30s travail, 15s repos." }
+        { name: "Circuit Endurance", sets: 5, work: 5 * 30, rest: 5 * 15, description: "5 tours : tractions, pompes, planche, squats, fentes sautées. 30s travail, 15s repos." }
       ]
     };
 
     let schedule = [];
     let current = 0;
+    let set = 1;
+    let isWork = true;
     let remaining = 0;
     let interval;
 
@@ -62,7 +66,9 @@
       const day = document.getElementById("daySelect").value;
       schedule = allSchedules[day];
       current = 0;
-      remaining = schedule[0]?.duration || 0;
+      set = 1;
+      isWork = true;
+      remaining = schedule[0]?.work || 0;
       updateDisplay();
     }
 
@@ -71,6 +77,7 @@
       const secs = String(remaining % 60).padStart(2, '0');
       document.getElementById('timer').innerText = `${mins}:${secs}`;
       document.getElementById('exerciseName').innerText = schedule[current]?.name || "Fini !";
+      document.getElementById('phase').innerText = schedule[current] ? `Série ${set}/${schedule[current].sets} – Phase : ${isWork ? 'Travail' : 'Repos'}` : "-";
       document.getElementById('details').innerText = schedule[current]?.description || "";
     }
 
@@ -79,10 +86,22 @@
       interval = setInterval(() => {
         if (remaining > 0) {
           remaining--;
-          updateDisplay();
         } else {
-          nextExercise();
+          if (isWork) {
+            isWork = false;
+            remaining = schedule[current].rest;
+          } else {
+            isWork = true;
+            if (set < schedule[current].sets) {
+              set++;
+              remaining = schedule[current].work;
+            } else {
+              nextExercise();
+              return;
+            }
+          }
         }
+        updateDisplay();
       }, 1000);
     }
 
@@ -94,7 +113,9 @@
     function resetTimer() {
       pauseTimer();
       current = 0;
-      remaining = schedule[0]?.duration || 0;
+      set = 1;
+      isWork = true;
+      remaining = schedule[0]?.work || 0;
       updateDisplay();
     }
 
@@ -102,11 +123,14 @@
       pauseTimer();
       if (current < schedule.length - 1) {
         current++;
-        remaining = schedule[current].duration;
+        set = 1;
+        isWork = true;
+        remaining = schedule[current].work;
         updateDisplay();
       } else {
         document.getElementById('exerciseName').innerText = "Séance terminée !";
         document.getElementById('timer').innerText = "00:00";
+        document.getElementById('phase').innerText = "-";
         document.getElementById('details').innerText = "Bravo pour ta séance ! Pense à bien récupérer.";
       }
     }
@@ -115,7 +139,9 @@
       pauseTimer();
       if (current > 0) {
         current--;
-        remaining = schedule[current].duration;
+        set = 1;
+        isWork = true;
+        remaining = schedule[current].work;
         updateDisplay();
       }
     }
