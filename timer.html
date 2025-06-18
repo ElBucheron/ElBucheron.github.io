@@ -9,26 +9,63 @@
     #timer { font-size: 3em; margin: 20px 0; color: #e74c3c; }
     button { padding: 10px 20px; margin: 5px; font-size: 1em; }
     .exercise { margin-top: 10px; font-weight: bold; }
+    select { padding: 5px; margin: 10px 0; font-size: 1em; }
   </style>
 </head>
 <body>
-  <h1>Timer Entraînement Grimpeur</h1>
-  <div class="exercise" id="exerciseName">Clique sur "Démarrer" pour commencer</div>
+  <h1>Timer Entraînement Grimpeur</h1><label for="daySelect">Choisis un jour :</label> <select id="daySelect" onchange="loadDay()"> <option value="Jour 1">Jour 1 - Force</option> <option value="Jour 2">Jour 2 - Antagonistes</option> <option value="Jour 4">Jour 4 - Explosivité</option> <option value="Jour 5">Jour 5 - Endurance</option> </select>
+
+  <div class="exercise" id="exerciseName">Sélectionne un jour pour commencer</div>
   <div id="timer">00:00</div>
   <button onclick="startTimer()">Démarrer</button>
   <button onclick="pauseTimer()">Pause</button>
   <button onclick="resetTimer()">Réinitialiser</button>  <script>
-    const schedule = [
-      { name: "Échauffement", duration: 20 * 60 },
-      { name: "Suspensions max", duration: 13 * 60 },
-      { name: "Tractions excentriques", duration: 12 * 60 + 30 },
-      { name: "Verrouillage 90°", duration: 3 * 60 + 20 },
-      { name: "Hollow body hold", duration: 3 * 60 }
-    ];
+    const allSchedules = {
+      "Jour 1": [
+        { name: "Échauffement", duration: 20 * 60 },
+        { name: "Suspensions max", duration: 13 * 60 },
+        { name: "Tractions excentriques", duration: 12 * 60 + 30 },
+        { name: "Verrouillage 90°", duration: 3 * 60 + 20 },
+        { name: "Hollow body hold", duration: 3 * 60 }
+      ],
+      "Jour 2": [
+        { name: "Échauffement", duration: 15 * 60 },
+        { name: "Pompes surélevées", duration: 6 * 60 },
+        { name: "Oiseau haltères", duration: 5 * 60 },
+        { name: "Planche dynamique", duration: 3 * 60 },
+        { name: "Gainage latéral", duration: 4 * 60 + 30 },
+        { name: "Pont fessier", duration: 3 * 60 + 30 },
+        { name: "Extension triceps", duration: 4 * 60 + 30 }
+      ],
+      "Jour 4": [
+        { name: "Échauffement", duration: 15 * 60 },
+        { name: "Pompes pliométriques", duration: 5 * 60 + 20 },
+        { name: "Sauts dynamiques", duration: 5 * 60 + 20 },
+        { name: "Burpees", duration: 4 * 60 + 30 },
+        { name: "Toes-to-bar", duration: 6 * 60 + 40 },
+        { name: "Mountain climbers", duration: 3 * 60 },
+        { name: "Plank to push-up", duration: 3 * 60 + 30 },
+        { name: "Core statique", duration: 3 * 60 }
+      ],
+      "Jour 5": [
+        { name: "Échauffement", duration: 10 * 60 },
+        { name: "Circuit training", duration: 21 * 60 + 15 },
+        { name: "Repos final", duration: 5 * 60 }
+      ]
+    };
 
+    let schedule = [];
     let current = 0;
-    let remaining = schedule[0].duration;
+    let remaining = 0;
     let interval;
+
+    function loadDay() {
+      const day = document.getElementById("daySelect").value;
+      schedule = allSchedules[day];
+      current = 0;
+      remaining = schedule[0]?.duration || 0;
+      updateDisplay();
+    }
 
     function updateDisplay() {
       const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
@@ -38,7 +75,7 @@
     }
 
     function startTimer() {
-      if (interval) return;
+      if (interval || schedule.length === 0) return;
       interval = setInterval(() => {
         if (remaining > 0) {
           remaining--;
@@ -66,7 +103,7 @@
     function resetTimer() {
       pauseTimer();
       current = 0;
-      remaining = schedule[0].duration;
+      remaining = schedule[0]?.duration || 0;
       updateDisplay();
     }
 
