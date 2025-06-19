@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,208 +22,208 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    #exerciseImg {
+      max-width: 100%;
+      margin-top: 10px;
+      display: none;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
-  <h1>Timer Entraînement Grimpeur</h1>
-
-  <label for="daySelect">Choisis un jour :</label>
-  <select id="daySelect" onchange="loadDay()">
-    <option value="Jour 1">Jour 1 - Force</option>
-    <option value="Jour 2">Jour 2 - Antagonistes</option>
-    <option value="Jour 4">Jour 4 - Explosivité</option>
-    <option value="Jour 5">Jour 5 - Endurance</option>
-  </select>
+  <h1>Timer Entraînement Grimpeur</h1><label for="daySelect">Choisis un jour :</label> <select id="daySelect" onchange="loadDay()"> <option value="Jour 1">Jour 1 - Force</option> <option value="Jour 2">Jour 2 - Antagonistes</option> <option value="Jour 4">Jour 4 - Explosivité</option> <option value="Jour 5">Jour 5 - Endurance</option> </select>
 
   <div class="exercise" id="exerciseName"></div>
   <div id="phase">Phase : -</div>
-  <div id="timer">00:00</div>
-
-  <button onclick="startTimer()">Démarrer</button>
-  <button onclick="pauseTimer()">Pause</button>
-  <button onclick="resetTimer()">Réinitialiser</button>
-  <button onclick="prevExercise()">&larr; Précédent</button>
-  <button onclick="nextExercise()">Suivant &rarr;</button>
-  <button id="completeWorkBtn" onclick="completeManualWork()">J'ai terminé cette série</button>
+  <div id="timer">00:00</div><button onclick="startTimer()">Démarrer</button> <button onclick="pauseTimer()">Pause</button> <button onclick="resetTimer()">Réinitialiser</button> <button onclick="prevExercise()">← Précédent</button> <button onclick="nextExercise()">Suivant →</button> <button id="completeWorkBtn" onclick="completeManualWork()">J'ai terminé cette série</button>
 
   <div id="details"></div>
+  <img id="exerciseImg" src="" alt="Illustration exercice" />  <script>
+    const allSchedules = {
+      "Jour 1": [
+        {
+          name: "Suspensions au hangboard",
+          sets: 6,
+          work: 10,
+          rest: 120,
+          description: "6 × 10s suspendu sur prise, 2min de repos entre.",
+          img: "https://i.imgur.com/WZmAeSn.png"
+        },
+        {
+          name: "Tractions excentriques",
+          sets: 5,
+          work: "reps",
+          rest: 120,
+          description: "5 × 3 reps - montée rapide, descente 4s. 2min repos.",
+          img: "https://i.imgur.com/QbtjAOH.png"
+        },
+        {
+          name: "Verrouillage 90°",
+          sets: 4,
+          work: 20,
+          rest: 30,
+          description: "Maintien 10s par bras x4. Repos court entre.",
+          img: "https://i.imgur.com/4DTCKFl.png"
+        },
+        {
+          name: "Gainage hollow body",
+          sets: 3,
+          work: 30,
+          rest: 60,
+          description: "3 × 30s maintien au sol, jambes bras tendus. 1min repos.",
+          img: "https://i.imgur.com/Ik1QLZm.png"
+        }
+      ]
+    };
 
-  <script>
-      const allSchedules = {
-        "Jour 1": [
-          { name: "Suspensions au hangboard", sets: 6, work: 10, rest: 120, description: "6 × 10s suspendu sur prise, 2min de repos entre." },
-          { name: "Tractions excentriques", sets: 5, work: "reps", rest: 120, description: "5 × 3 reps - montée rapide, descente 4s. 2min repos." },
-          { name: "Verrouillage 90°", sets: 4, work: 20, rest: 30, description: "Maintien 10s par bras x4. Repos court entre." },
-          { name: "Gainage hollow body", sets: 3, work: 30, rest: 60, description: "3 × 30s maintien au sol, jambes bras tendus. 1min repos." }
-        ],
-        // ... les autres jours inchangés
-        "Jour 2": [
-          { name: "Pompes surélevées", sets: 4, work: "reps", rest: 60, description: "4 × 10–12 reps, pause 1min." },
-          { name: "Élévations latérales", sets: 3, work: "reps", rest: 30, description: "3 × 15 reps, bras tendus à l'horizontale." },
-          { name: "Planche + variations", sets: 3, work: 30, rest: 30, description: "3 × 30s planche avec levée bras/jambes." },
-          { name: "Gainage latéral + jambe", sets: 3, work: 60, rest: 30, description: "3 x 30s par côté avec jambe levée." },
-          { name: "Pont fessier", sets: 3, work: "reps", rest: 30, description: "3 × 15 reps, fessiers serrés." },
-          { name: "Extension triceps", sets: 3, work: "reps", rest: 30, description: "3 × 12 reps avec élastique ou anneaux." }
-        ],
-        "Jour 4": [
-          { name: "Pompes pliométriques", sets: 4, work: "reps", rest: 60, description: "4 × 6 reps, mains qui décollent." },
-          { name: "Sauts genoux/box", sets: 4, work: "reps", rest: 60, description: "4 × 6 sauts explosifs." },
-          { name: "Burpees dynamiques", sets: 3, work: "reps", rest: 30, description: "3 × 10 rapides burpees." },
-          { name: "Toes-to-bar", sets: 4, work: "reps", rest: 60, description: "4 × 10 levés de jambes suspendu." },
-          { name: "Mountain climbers", sets: 3, work: 30, rest: 30, description: "3 × 30s rapide gainage." },
-          { name: "Plank to push-up", sets: 3, work: "reps", rest: 30, description: "3 × 10 reps dynamique." },
-          { name: "Superman", sets: 3, work: 30, rest: 30, description: "3 × 30s sur le ventre, bras/jambes levés." }
-        ],
-        "Jour 5": [
-          { name: "Circuit Endurance", sets: 5, work: 30, rest: 15, description: "5 tours : tractions, pompes, planche, squats, fentes sautées. 30s travail, 15s repos." }
-        ]
-      };
-    
-      let schedule = [];
-      let current = 0;
-      let set = 1;
-      let isWork = true;
-      let remaining = 0;
-      let interval = null;
-      let preCountInterval = null;
-    
-      // Sons (tu peux remplacer ces URLs par tes propres sons si tu veux)
-      const beepShort = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"); // bip court
-      const beepLong = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg"); // bip long
-    
-      function playBeepShort() {
-        beepShort.currentTime = 0;
-        beepShort.play();
+    let schedule = [];
+    let current = 0;
+    let set = 1;
+    let isWork = true;
+    let remaining = 0;
+    let interval = null;
+    let preCountInterval = null;
+
+    const beepShort = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+    const beepLong = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+
+    function playBeepShort() {
+      beepShort.currentTime = 0;
+      beepShort.play();
+    }
+
+    function playBeepLong() {
+      beepLong.currentTime = 0;
+      beepLong.play();
+    }
+
+    function loadDay() {
+      pauseTimer();
+      const day = document.getElementById("daySelect").value;
+      schedule = allSchedules[day];
+      current = 0;
+      set = 1;
+      isWork = true;
+      remaining = schedule[0]?.work === "reps" ? 0 : schedule[0]?.work || 0;
+      updateDisplay();
+    }
+
+    function updateDisplay(textTimer) {
+      if (textTimer === undefined) {
+        const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
+        const secs = String(remaining % 60).padStart(2, '0');
+        const isRepsWork = schedule[current]?.work === "reps" && isWork;
+        textTimer = isRepsWork ? "Fais les reps" : `${mins}:${secs}`;
       }
-    
-      function playBeepLong() {
-        beepLong.currentTime = 0;
-        beepLong.play();
+      document.getElementById('timer').innerText = textTimer;
+      document.getElementById('exerciseName').innerText = schedule[current]?.name || "Fini !";
+      document.getElementById('phase').innerText = schedule[current] ? `Série ${set}/${schedule[current].sets} – Phase : ${isWork ? 'Travail' : 'Repos'}` : "-";
+      document.getElementById('details').innerText = schedule[current]?.description || "";
+      document.getElementById('completeWorkBtn').style.display = (schedule[current]?.work === "reps" && isWork) ? 'inline-block' : 'none';
+
+      const img = schedule[current]?.img;
+      const imgElement = document.getElementById('exerciseImg');
+      if (img) {
+        imgElement.src = img;
+        imgElement.style.display = 'block';
+      } else {
+        imgElement.style.display = 'none';
       }
-    
-      function loadDay() {
-        pauseTimer();
-        const day = document.getElementById("daySelect").value;
-        schedule = allSchedules[day];
-        current = 0;
-        set = 1;
-        isWork = true;
-        remaining = schedule[0]?.work === "reps" ? 0 : schedule[0]?.work || 0;
-        updateDisplay();
-      }
-    
-      function updateDisplay(textTimer) {
-        if (textTimer === undefined) {
-          const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
-          const secs = String(remaining % 60).padStart(2, '0');
-          const isRepsWork = schedule[current]?.work === "reps" && isWork;
-          textTimer = isRepsWork ? "Fais les reps" : `${mins}:${secs}`;
-        }
-        document.getElementById('timer').innerText = textTimer;
-        document.getElementById('exerciseName').innerText = schedule[current]?.name || "Fini !";
-        document.getElementById('phase').innerText = schedule[current] ? `Série ${set}/${schedule[current].sets} – Phase : ${isWork ? 'Travail' : 'Repos'}` : "-";
-        document.getElementById('details').innerText = schedule[current]?.description || "";
-        document.getElementById('completeWorkBtn').style.display = (schedule[current]?.work === "reps" && isWork) ? 'inline-block' : 'none';
-      }
-    
-      function startTimer() {
-        if (interval || schedule.length === 0 || (schedule[current].work === "reps" && isWork)) return;
-    
-        // Démarrer le pré-décompte de 3 secondes
-        let preCount = 3;
-        updateDisplay(preCount);
-        playBeepShort();
-    
-        preCountInterval = setInterval(() => {
-          preCount--;
-          if (preCount > 0) {
-            updateDisplay(preCount);
-            playBeepShort();
-          } else {
-            clearInterval(preCountInterval);
-            // Démarrage du timer principal
-            playBeepLong(); // son de départ
-            interval = setInterval(() => {
-              if (remaining > 0) {
-                remaining--;
-              } else {
-                // Changement phase travail/repos
-                isWork = !isWork;
-                playBeepLong();
-                if (isWork) {
-                  // Nouvelle série ou exercice
-                  if (set < schedule[current].sets) {
-                    set++;
-                    remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
-                  } else {
-                    nextExercise();
-                    return;
-                  }
-                } else {
-                  remaining = schedule[current].rest;
-                }
-              }
-              updateDisplay();
-            }, 1000);
-          }
-        }, 1000);
-      }
-    
-      function completeManualWork() {
-        isWork = false;
-        remaining = schedule[current].rest;
-        updateDisplay();
-        startTimer();
-      }
-    
-      function pauseTimer() {
-        clearInterval(interval);
-        interval = null;
-        clearInterval(preCountInterval);
-        preCountInterval = null;
-      }
-    
-      function resetTimer() {
-        pauseTimer();
-        current = 0;
-        set = 1;
-        isWork = true;
-        remaining = schedule[0]?.work === "reps" ? 0 : schedule[0]?.work || 0;
-        updateDisplay();
-      }
-    
-      function nextExercise() {
-        pauseTimer();
-        if (current < schedule.length - 1) {
-          current++;
-          set = 1;
-          isWork = true;
-          remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
-          updateDisplay();
+    }
+
+    function startTimer() {
+      if (interval || schedule.length === 0 || (schedule[current].work === "reps" && isWork)) return;
+      let preCount = 3;
+      updateDisplay(preCount);
+      playBeepShort();
+
+      preCountInterval = setInterval(() => {
+        preCount--;
+        if (preCount > 0) {
+          updateDisplay(preCount);
+          playBeepShort();
         } else {
-          document.getElementById('exerciseName').innerText = "Séance terminée !";
-          document.getElementById('timer').innerText = "00:00";
-          document.getElementById('phase').innerText = "-";
-          document.getElementById('details').innerText = "Bravo pour ta séance ! Pense à bien récupérer.";
-          document.getElementById('completeWorkBtn').style.display = 'none';
+          clearInterval(preCountInterval);
+          playBeepLong();
+          interval = setInterval(() => {
+            if (remaining > 0) {
+              remaining--;
+            } else {
+              isWork = !isWork;
+              playBeepLong();
+              if (isWork) {
+                if (set < schedule[current].sets) {
+                  set++;
+                  remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
+                } else {
+                  nextExercise();
+                  return;
+                }
+              } else {
+                remaining = schedule[current].rest;
+              }
+            }
+            updateDisplay();
+          }, 1000);
         }
+      }, 1000);
+    }
+
+    function completeManualWork() {
+      isWork = false;
+      remaining = schedule[current].rest;
+      updateDisplay();
+      startTimer();
+    }
+
+    function pauseTimer() {
+      clearInterval(interval);
+      interval = null;
+      clearInterval(preCountInterval);
+      preCountInterval = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      current = 0;
+      set = 1;
+      isWork = true;
+      remaining = schedule[0]?.work === "reps" ? 0 : schedule[0]?.work || 0;
+      updateDisplay();
+    }
+
+    function nextExercise() {
+      pauseTimer();
+      if (current < schedule.length - 1) {
+        current++;
+        set = 1;
+        isWork = true;
+        remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
+        updateDisplay();
+      } else {
+        document.getElementById('exerciseName').innerText = "Séance terminée !";
+        document.getElementById('timer').innerText = "00:00";
+        document.getElementById('phase').innerText = "-";
+        document.getElementById('details').innerText = "Bravo pour ta séance ! Pense à bien récupérer.";
+        document.getElementById('completeWorkBtn').style.display = 'none';
+        document.getElementById('exerciseImg').style.display = 'none';
       }
-    
-      function prevExercise() {
-        pauseTimer();
-        if (current > 0) {
-          current--;
-          set = 1;
-          isWork = true;
-          remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
-          updateDisplay();
-        }
+    }
+
+    function prevExercise() {
+      pauseTimer();
+      if (current > 0) {
+        current--;
+        set = 1;
+        isWork = true;
+        remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
+        updateDisplay();
       }
-    
-      window.onload = () => {
-        document.getElementById("daySelect").value = "Jour 1";
-        loadDay();
-      };
-    </script>
-</body>
+    }
+
+    window.onload = () => {
+      document.getElementById("daySelect").value = "Jour 1";
+      loadDay();
+    };
+  </script></body>
 </html>
