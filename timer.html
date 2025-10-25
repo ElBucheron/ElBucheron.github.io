@@ -1,229 +1,466 @@
-<!DOCTYPE html><html lang="fr">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Timer Entraînement Grimpe</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Athlete's Training Log — Calisthenics (Strength + Flexibility)</title>
+  <meta name="description" content="7-day calisthenics strength & flexibility program — minimal and comic themes, A4-friendly printable pages." />
   <style>
-    body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
-    h1 { color: #2c3e50; }
-    #timer { font-size: 3em; margin: 20px 0; color: #e74c3c; }
-    button { padding: 10px 20px; margin: 5px; font-size: 1em; }
-    .exercise { margin-top: 10px; font-weight: bold; }
-    select { padding: 5px; margin: 10px 0; font-size: 1em; }
-    #details { margin-top: 20px; padding: 15px; background: #fff; border-radius: 10px; }
-    #phase { font-size: 1.2em; margin-bottom: 10px; color: #34495e; }
-    #completeWorkBtn {
-      display: none;
-      padding: 10px 15px;
-      font-size: 1em;
-      background: #27ae60;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    :root{
+      --bg:#ffffff; --fg:#111827; --muted:#6b7280; --accent:#111827; --card:#f8fafc;
+      --comic-bg:#fff7ed; --comic-accent:#ff6b6b; --comic-accent-2:#ffd166;
+      --max-width:900px;
     }
-    #exerciseImg {
-      max-width: 100%;
-      margin-top: 10px;
-      display: none;
-      border-radius: 8px;
+    [data-theme="dark"]{ --bg:#0b1220; --fg:#e6eef8; --muted:#9aa6b2; --accent:#60a5fa; --card:#071024; }
+
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    .wrap{max-width:var(--max-width);margin:28px auto;padding:20px}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    h1{font-size:20px;margin:0}
+    .subtitle{color:var(--muted);font-size:13px}
+
+    .controls{display:flex;gap:8px;align-items:center}
+    button{background:var(--card);border:1px solid rgba(0,0,0,0.06);padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+    button.small{padding:6px 8px;font-size:13px}
+
+    .layout{display:grid;grid-template-columns:260px 1fr;gap:18px;margin-top:18px}
+    nav.side{position:sticky;top:18px;height:calc(100vh - 36px);overflow:auto;padding-right:8px}
+    .card{background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.04)}
+
+    .day-list{list-style:none;padding:0;margin:0}
+    .day-list li{margin-bottom:8px}
+    .day-btn{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;background:transparent;border:0;width:100%;text-align:left}
+    .day-btn.active{background:linear-gradient(90deg, rgba(0,0,0,0.04), transparent)}
+
+    main.viewer{min-height:600px}
+    .page{background:linear-gradient(180deg, var(--card), transparent 2%);padding:22px;border-radius:10px;border:1px solid rgba(0,0,0,0.05)}
+    .page h2{margin:0 0 6px 0}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+
+    .cols{display:grid;grid-template-columns:1fr 260px;gap:18px}
+    .exercise{display:flex;gap:12px;padding:10px;border-radius:8px;align-items:center}
+    .illustration{width:140px;height:110px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:#fff}
+    .illustration svg{max-width:120px;max-height:96px;opacity:0.95}
+    .ex-info{flex:1}
+    .ex-info h3{margin:0;font-size:15px}
+    .ex-info p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+
+    footer.controls{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:18px}
+
+    /* Comic theme (applied to container with data-theme="comic") */
+    [data-theme="comic"]{ --bg:var(--comic-bg); --fg:#3b2d2b; --muted:#5b504c; --accent:var(--comic-accent); --card:#fffefb }
+    [data-theme="comic"] .card{box-shadow:0 8px 20px rgba(0,0,0,0.06);border:0}
+    [data-theme="comic"] .illustration{background:linear-gradient(180deg, #fff, #fffef9);border-radius:10px}
+
+    /* Print-friendly A4 rules */
+    @media print{
+      body{background:white;color:black}
+      .wrap, .layout, nav.side{max-width:100%;display:block}
+      .layout{grid-template-columns:1fr}
+      header, .controls, footer.controls{display:none}
+      .page{box-shadow:none;background:white;border:none;padding:18mm}
+      .illustration{background:white}
+      @page {size: A4; margin:10mm}
     }
+
+    /* Responsive */
+    @media (max-width:880px){.layout{grid-template-columns:1fr}.illustration{display:none}}
+
+    /* small helpers */
+    .muted{color:var(--muted);font-size:13px}
+    .sep{height:1px;background:rgba(0,0,0,0.04);margin:12px 0;border-radius:2px}
+
   </style>
 </head>
 <body>
-  <h1>Timer Entraînement Grimpeur</h1><label for="daySelect">Choisis un jour :</label> <select id="daySelect" onchange="loadDay()"> <option value="Jour 1">Jour 1 - Force</option> <option value="Jour 2">Jour 2 - Antagonistes</option> <option value="Jour 4">Jour 4 - Explosivité</option> <option value="Jour 5">Jour 5 - Endurance</option> </select>
+  <div class="wrap" id="app" data-theme="default">
+    <header>
+      <div>
+        <h1>Athlete's Training Log</h1>
+        <div class="subtitle">7-day Calisthenics — Strength & Flexibility • 15 min/day • Metric units</div>
+      </div>
+      <div class="controls">
+        <label for="theme">Theme</label>
+        <select id="theme" onchange="setTheme(this.value)">
+          <option value="default">Minimal (Grayscale)</option>
+          <option value="comic">Hero (Comic)</option>
+          <option value="dark">Dark</option>
+        </select>
+        <button onclick="printPage()" class="small">Print / Save PDF</button>
+        <button onclick="toggleA4Preview()" class="small">Toggle A4 View</button>
+      </div>
+    </header>
 
-  <div class="exercise" id="exerciseName"></div>
-  <div id="phase">Phase : -</div>
-  <div id="timer">00:00</div><button onclick="startTimer()">Démarrer</button> <button onclick="pauseTimer()">Pause</button> <button onclick="resetTimer()">Réinitialiser</button> <button onclick="prevExercise()">← Précédent</button> <button onclick="nextExercise()">Suivant →</button> <button id="completeWorkBtn" onclick="completeManualWork()">J'ai terminé cette série</button>
+    <div class="layout">
+      <nav class="side card">
+        <strong>Days</strong>
+        <ul class="day-list" id="dayList">
+          <!-- list populated by JS -->
+        </ul>
+        <div class="sep"></div>
+        <div class="muted">Quick tips: press Print to create an A4 PDF. Use theme to switch visuals.</div>
+      </nav>
 
-  <div id="details"></div>
-  <img id="exerciseImg" src="" alt="Illustration exercice" />  <script>
-    const allSchedules = {
-      "Jour 1": [
-        {
-          name: "Suspensions au hangboard",
-          sets: 6,
-          work: 10,
-          rest: 120,
-          description: "6 × 10s suspendu sur prise, 2min de repos entre.",
-          img: "https://raw.githubusercontent.com/ElBucheron/ElBucheron.github.io/refs/heads/master/img/suspension.png"
-        },
-        {
-          name: "Tractions excentriques",
-          sets: 5,
-          work: "reps",
-          rest: 120,
-          description: "5 × 3 reps - montée rapide, descente 4s. 2min repos.",
-          img: "https://raw.githubusercontent.com/ElBucheron/ElBucheron.github.io/refs/heads/master/img/tractions_excentriques.png"
-        },
-        {
-          name: "Verrouillage 90°",
-          sets: 4,
-          work: 20,
-          rest: 30,
-          description: "Maintien 10s par bras x4. Repos court entre.",
-          img: "https://raw.githubusercontent.com/ElBucheron/ElBucheron.github.io/refs/heads/master/img/verouillage_90_degre.png"
-        },
-        {
-          name: "Gainage hollow body",
-          sets: 3,
-          work: 30,
-          rest: 60,
-          description: "3 × 30s maintien au sol, jambes bras tendus. 1min repos.",
-          img: "https://raw.githubusercontent.com/ElBucheron/ElBucheron.github.io/refs/heads/master/img/gainage_hollow_body.png"
-        }
-      ]
-    };
+      <main class="viewer">
+        <!-- viewer populated by JS -->
+        <div id="pageHolder"></div>
+      </main>
+    </div>
 
-    let schedule = [];
+    <footer class="controls">
+      <div class="muted">Designed for quick reference — static illustrations & short cues.</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="prevDay()" class="small">Prev</button>
+        <button onclick="nextDay()" class="small">Next</button>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Data for each day (text content ready-to-use)
+    const days = [
+      {
+        id:1,
+        title:'Day 1 – Push (Planche Strength)',
+        duration:'15 min', goal:'Shoulder & Chest Power',
+        warmup:[
+          'Arm circles – 30 s each way',
+          'Scapular push-ups – 15 reps',
+          'Wrist rotations – 30 s',
+          'Shoulder rolls – 10 forward + 10 back'
+        ],
+        exercises:[
+          {name:'Pseudo Planche Push-ups', sets:'4 × 6–10', cues:'Lean shoulders forward, keep core tight. Elbows ~45°.' , svg:exerciseSVG('pseudo-push')},
+          {name:'Pike Handstand Push-ups', sets:'3 × 5–8', cues:'Hips high, head between hands, controlled descent.', svg:exerciseSVG('pike-hspu')},
+          {name:'Planche Lean Holds', sets:'3 × 15–25 s', cues:'Arms locked, shoulders ahead of wrists, straight body.' , svg:exerciseSVG('planche-lean')},
+          {name:'Resistance Band Shoulder Stretch', sets:'2 × 30 s/arm', cues:'Keep chest up, gentle tension only.' , svg:exerciseSVG('band-stretch')}
+        ],
+        cooldown:[ 'Overhead shoulder stretch – 30 s each arm', 'Chest wall stretch – 30 s each side', 'Deep breathing – 30 s']
+      },
+      {
+        id:2,
+        title:'Day 2 – Pull (Front Lever Strength)',
+        duration:'15 min', goal:'Back & Biceps Control',
+        warmup:[ 'Arm swings front/back – 30 s', 'Hanging scap retractions – 10 reps', 'Band rows – 15 reps' ],
+        exercises:[
+          {name:'Pull-ups', sets:'4 × (max − 2)', cues:'Full range, shoulders down and back.', svg:exerciseSVG('pullup')},
+          {name:'Tuck Front Lever Hold (band assist OK)', sets:'3 × 10–20 s', cues:'Keep back flat, core tight.', svg:exerciseSVG('front-lever-tuck')},
+          {name:'Australian Rows', sets:'3 × 10', cues:'Body straight, chest to bar.', svg:exerciseSVG('aussie-row')},
+          {name:'Active Hang + Scap Pulls', sets:'3 × 10', cues:'Small controlled motion only.', svg:exerciseSVG('active-hang')}
+        ],
+        cooldown:[ 'Lat stretch – 30 s/side', 'Shoulder circles ×10', 'Deep breath – 30 s' ]
+      },
+      {
+        id:3,
+        title:'Day 3 – Legs + Core',
+        duration:'15 min', goal:'Balance & Lower-Body Strength',
+        warmup:[ 'Body-weight squats × 15', 'Leg swings × 10 each', 'Hip circles × 10' ],
+        exercises:[
+          {name:'Pistol Squats', sets:'3 × 5/leg', cues:'Control descent, keep heel down.', svg:exerciseSVG('pistol')},
+          {name:'Jump Squats', sets:'3 × 12', cues:'Explosive up, soft landing.', svg:exerciseSVG('jump-squat')},
+          {name:'Hanging Knee Raises', sets:'3 × 10–12', cues:'Lift from core, don’t swing.', svg:exerciseSVG('knee-raise')},
+          {name:'Plank to Shoulder Taps', sets:'3 × 30 s', cues:'Hips still, alternate hands.', svg:exerciseSVG('plank-tap')}
+        ],
+        cooldown:[ 'Quad stretch – 30 s each', 'Hamstring stretch – 30 s each', 'Child’s pose – 30 s' ]
+      },
+      {
+        id:4,
+        title:'Day 4 – Skill + Mobility',
+        duration:'15 min', goal:'Balance & Flexibility',
+        warmup:[ 'Wrist mobility – 2 min', 'Cat-cow × 10', 'Shoulder circles × 20' ],
+        exercises:[
+          {name:'Crow Stand Hold', sets:'3 × 20–40 s', cues:'Knees on triceps, eyes forward.', svg:exerciseSVG('crow')},
+          {name:'Wall Handstand Hold', sets:'5 × 20 s', cues:'Straight line, core engaged.', svg:exerciseSVG('handstand-wall')},
+          {name:'Wrist + Shoulder Mobility Drills', sets:'5 min', cues:'Slow, controlled range.', svg:exerciseSVG('mobility')},
+          {name:'Hamstring + Hip Flexor Stretch', sets:'5 min', cues:'Gentle tension, steady breath.', svg:exerciseSVG('ham-hip')}
+        ],
+        cooldown:[ 'Seated forward fold – 30 s', 'Shoulder openers – 30 s' ]
+      },
+      {
+        id:5,
+        title:'Day 5 – Push / Pull Combo',
+        duration:'15 min', goal:'Full-Body Control',
+        warmup:[ 'Jumping jacks – 30 s', 'Arm swings – 30 s', 'Band rows – 15' ],
+        exercises:[
+          {name:'Weighted Push-ups (10 kg bag)', sets:'3 × 10–15', cues:'Straight line, controlled tempo.', svg:exerciseSVG('weighted-push')},
+          {name:'Chin-ups', sets:'3 × max', cues:'Full extension, smooth pull.', svg:exerciseSVG('chinup')},
+          {name:'Dips (on chairs)', sets:'3 × 10–12', cues:'Elbows 90°, chest up.', svg:exerciseSVG('chair-dip')},
+          {name:'Body Rows (under bar)', sets:'3 × 8–10', cues:'Squeeze shoulder blades.', svg:exerciseSVG('body-row')}
+        ],
+        cooldown:[ 'Chest stretch – 30 s', 'Arm-across-body – 30 s each' ]
+      },
+      {
+        id:6,
+        title:'Day 6 – Active Flexibility',
+        duration:'15 min', goal:'Mobility & Core Compression',
+        warmup:[ 'Hip circles × 10', 'Gentle forward fold – 30 s', 'Ankle circles × 10' ],
+        exercises:[
+          {name:'L-sit Progression (tuck or band-assist)', sets:'3 × 10 s', cues:'Straight arms, lift from hips.', svg:exerciseSVG('l-sit')},
+          {name:'Pancake Stretch', sets:'3 × 30 s', cues:'Flat back, hinge from hips.', svg:exerciseSVG('pancake')},
+          {name:'Bridge Hold', sets:'3 × 20 s', cues:'Open chest, push through hands and feet.', svg:exerciseSVG('bridge')},
+          {name:'Front Split / Hip Openers Flow', sets:'10 min', cues:'Smooth transitions, steady breathing.', svg:exerciseSVG('split-flow')}
+        ],
+        cooldown:[ 'Deep breathing – 1 min', 'Relaxed seated pose – 30 s' ]
+      },
+      {
+        id:7,
+        title:'Day 7 – Rest / Mobility',
+        duration:'15 min light', goal:'Recovery & Maintenance',
+        warmup:[ '5 min easy walk or cycle' ],
+        exercises:[
+          {name:'Easy cardio + Foam roll', sets:'5 + 5 min', cues:'Light intensity, focus on breath.', svg:exerciseSVG('rest')},
+          {name:'Full-body stretch flow', sets:'5 min', cues:'Slow controlled stretches.', svg:exerciseSVG('stretch-flow')}
+        ],
+        cooldown:[ 'Gentle mobility for 3–5 min' ]
+      }
+    ];
+
+    function exerciseSVG(key){
+      // returns small inline SVG strings for minimal grayscale silhouettes
+      switch(key){
+        case 'pseudo-push': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <g fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="56" width="108" height="26" rx="4" fill="#fff" stroke="none" opacity="0.06"/>
+              <path d="M20 56c8-12 28-18 48-12"/>
+              <path d="M68 44c6 4 14 10 20 18"/>
+              <circle cx="36" cy="34" r="6"/>
+              <path d="M36 40v18"/>
+            </g>
+          </svg>`;
+        case 'pike-hspu': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#222" stroke-width="2" stroke-linecap="round">
+              <path d="M12 68c18-22 36-36 54-36 8 0 18 6 34 18"/>
+              <circle cx="72" cy="28" r="5"/>
+              <path d="M72 33v12"/>
+            </g>
+          </svg>`;
+        case 'planche-lean': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#222" stroke-width="2">
+              <rect x="8" y="62" width="104" height="20" rx="4"/>
+              <path d="M22 62c10-12 38-18 64-6"/>
+              <circle cx="38" cy="40" r="5"/>
+            </g>
+          </svg>`;
+        case 'band-stretch': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#222" stroke-width="2">
+              <path d="M10 72c16-20 44-30 72-24"/>
+              <path d="M22 60c10-6 30-6 42 0"/>
+              <circle cx="28" cy="36" r="5"/>
+            </g>
+          </svg>`;
+        case 'pullup': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M60 8v18" stroke-linecap="round"/>
+            <circle cx="60" cy="30" r="6"/>
+            <path d="M60 36v28"/>
+            <path d="M44 70c6-10 12-14 32-6"/>
+          </g></svg>`;
+        case 'front-lever-tuck': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M12 60c10-14 36-24 64-18"/>
+            <circle cx="34" cy="34" r="5"/>
+            <path d="M34 40v12"/>
+          </g></svg>`;
+        case 'aussie-row': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M10 70h100" stroke-linecap="round"/>
+            <path d="M30 48c12-6 30-6 54 2"/>
+            <circle cx="26" cy="74" r="4"/>
+          </g></svg>`;
+        case 'active-hang': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M28 8v18M92 8v18" stroke-linecap="round"/>
+            <path d="M28 26c16 18 56 18 64 0"/>
+          </g></svg>`;
+        case 'pistol': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M30 72c6-18 20-36 38-32"/>
+            <circle cx="34" cy="36" r="5"/>
+          </g></svg>`;
+        case 'jump-squat': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M18 70c12-24 42-38 70-20"/>
+            <path d="M40 30c6 6 12 14 18 28"/>
+          </g></svg>`;
+        case 'knee-raise': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M60 10v30"/>
+            <path d="M60 40c8 10 8 20 0 30"/>
+          </g></svg>`;
+        case 'plank-tap': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <rect x="8" y="36" width="104" height="28" rx="6"/>
+            <path d="M28 44c14-6 28-6 56 0"/>
+          </g></svg>`;
+        case 'crow': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M34 54c10-18 24-22 36-16"/>
+            <circle cx="28" cy="38" r="5"/>
+          </g></svg>`;
+        case 'handstand-wall': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M60 84v-48"/>
+            <circle cx="60" cy="28" r="5"/>
+          </g></svg>`;
+        case 'mobility': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M20 70c18-28 62-36 86-12"/>
+          </g></svg>`;
+        case 'ham-hip': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M16 72c22-28 66-36 86-14"/>
+          </g></svg>`;
+        case 'weighted-push': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <rect x="10" y="64" width="100" height="18" rx="6"/>
+            <path d="M18 54c18-22 56-24 84-6"/>
+          </g></svg>`;
+        case 'chinup': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M36 14v18M84 14v18" stroke-linecap="round"/>
+            <path d="M36 32c18 14 48 14 72 0"/>
+          </g></svg>`;
+        case 'chair-dip': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M30 72h60"/>
+            <path d="M28 54c12-10 36-10 60 0"/>
+          </g></svg>`;
+        case 'body-row': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M10 72h100"/>
+            <path d="M30 54c18-8 46-8 64 6"/>
+          </g></svg>`;
+        case 'l-sit': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <rect x="20" y="64" width="80" height="18" rx="4"/>
+            <path d="M44 44c10-2 20-2 34 4"/>
+          </g></svg>`;
+        case 'pancake': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M8 68c30-30 80-36 104-10"/>
+          </g></svg>`;
+        case 'bridge': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M16 76c22-28 72-36 96-12"/>
+          </g></svg>`;
+        case 'split-flow': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M12 72c24-36 68-44 96-16"/>
+          </g></svg>`;
+        case 'rest': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M20 72c28-30 68-36 84-16"/>
+          </g></svg>`;
+        case 'stretch-flow': return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#222" stroke-width="2">
+            <path d="M14 68c26-32 72-36 96-12"/>
+          </g></svg>`;
+        default: return `
+          <svg viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="96" fill="#f3f4f6"/></svg>`;
+      }
+    }
+
+    // render list and pages
+    const dayList = document.getElementById('dayList');
+    const pageHolder = document.getElementById('pageHolder');
+    days.forEach((d,i)=>{
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.className='day-btn';
+      btn.innerHTML = `<strong>${d.title}</strong><div class="muted">${d.duration} • ${d.goal}</div>`;
+      btn.onclick = ()=>renderDay(i);
+      li.appendChild(btn);
+      dayList.appendChild(li);
+    });
+
     let current = 0;
-    let set = 1;
-    let isWork = true;
-    let remaining = 0;
-    let interval = null;
-    let preCountInterval = null;
-
-    const beepShort = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
-    const beepLong = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
-
-    function playBeepShort() {
-      beepShort.currentTime = 0;
-      beepShort.play();
+    function renderDay(index){
+      current = index;
+      const d = days[index];
+      dayList.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('active', i===index));
+      pageHolder.innerHTML = generatePageHTML(d);
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
-    function playBeepLong() {
-      beepLong.currentTime = 0;
-      beepLong.play();
+    function generateWarmupHtml(items){ return `<ul>${items.map(it=>`<li class="muted">${escapeHtml(it)}</li>`).join('')}</ul>` }
+    function generateCooldownHtml(items){ return `<ul>${items.map(it=>`<li class="muted">${escapeHtml(it)}</li>`).join('')}</ul>` }
+
+    function generatePageHTML(d){
+      return `
+        <div class="page card" role="article" aria-labelledby="day-title-${d.id}">
+          <h2 id="day-title-${d.id}">${d.title}</h2>
+          <div class="meta">Duration: ${d.duration} • Goal: ${d.goal}</div>
+
+          <div class="cols">
+            <div>
+              <h3>Warm-up</h3>
+              ${generateWarmupHtml(d.warmup)}
+
+              <div style="height:12px"></div>
+              <h3>Main Workout</h3>
+              ${d.exercises.map(ex=>`
+                <div class="exercise card" style="align-items:flex-start">
+                  <div class="illustration" aria-hidden>${ex.svg}</div>
+                  <div class="ex-info">
+                    <h3>${escapeHtml(ex.name)}</h3>
+                    <p class="muted">Sets / Hold: <strong>${escapeHtml(ex.sets)}</strong></p>
+                    <p class="muted">Cues: ${escapeHtml(ex.cues)}</p>
+                  </div>
+                </div>
+              `).join('')}
+
+              <div style="height:10px"></div>
+              <h3>Cool-down</h3>
+              ${generateCooldownHtml(d.cooldown)}
+
+            </div>
+
+            <aside>
+              <div class="card">
+                <strong>Quick Notes</strong>
+                <p class="muted">Rest between sets: 30–45 s. Maintain perfect form. Use 10 kg bag when ready. Deload every 4–6 weeks (50% volume).</p>
+                <div class="sep"></div>
+                <strong>Progress</strong>
+                <p class="muted">Track Planche holds, Pull-ups, Pistol depth weekly.</p>
+              </div>
+
+              <div style="height:12px"></div>
+              <div class="card">
+                <strong>Warm-up Tips</strong>
+                <p class="muted">Activate scapula & wrists for pushing days. Keep movements controlled.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      `;
     }
 
-    function loadDay() {
-      pauseTimer();
-      const day = document.getElementById("daySelect").value;
-      schedule = allSchedules[day];
-      current = 0;
-      set = 1;
-      isWork = true;
-      remaining = schedule[0]?.work === "reps" ? 0 : schedule[0]?.work || 0;
-      updateDisplay();
+    function escapeHtml(s){ return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+    // navigation
+    function prevDay(){ renderDay(Math.max(0,current-1)); }
+    function nextDay(){ renderDay(Math.min(days.length-1,current+1)); }
+
+    // theming
+    function setTheme(val){
+      const app = document.getElementById('app');
+      if(val==='comic') app.setAttribute('data-theme','comic');
+      else if(val==='dark') app.setAttribute('data-theme','dark');
+      else app.setAttribute('data-theme','default');
     }
 
-    function updateDisplay(textTimer) {
-      if (textTimer === undefined) {
-        const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
-        const secs = String(remaining % 60).padStart(2, '0');
-        const isRepsWork = schedule[current]?.work === "reps" && isWork;
-        textTimer = isRepsWork ? "Fais les reps" : `${mins}:${secs}`;
-      }
-      document.getElementById('timer').innerText = textTimer;
-      document.getElementById('exerciseName').innerText = schedule[current]?.name || "Fini !";
-      document.getElementById('phase').innerText = schedule[current] ? `Série ${set}/${schedule[current].sets} – Phase : ${isWork ? 'Travail' : 'Repos'}` : "-";
-      document.getElementById('details').innerText = schedule[current]?.description || "";
-      document.getElementById('completeWorkBtn').style.display = (schedule[current]?.work === "reps" && isWork) ? 'inline-block' : 'none';
+    // printing and A4 preview
+    let a4Mode=false;
+    function toggleA4Preview(){ a4Mode=!a4Mode; if(a4Mode) document.documentElement.style.setProperty('--max-width','800px'); else document.documentElement.style.setProperty('--max-width','900px'); }
+    function printPage(){ window.print(); }
 
-      const img = schedule[current]?.img;
-      const imgElement = document.getElementById('exerciseImg');
-      if (img) {
-        imgElement.src = img;
-        imgElement.style.display = 'block';
-      } else {
-        imgElement.style.display = 'none';
-      }
-    }
+    // initial render
+    renderDay(0);
 
-    function startTimer() {
-      if (interval || schedule.length === 0 || (schedule[current].work === "reps" && isWork)) return;
-      let preCount = 3;
-      updateDisplay(preCount);
-      playBeepShort();
-
-      preCountInterval = setInterval(() => {
-        preCount--;
-        if (preCount > 0) {
-          updateDisplay(preCount);
-          playBeepShort();
-        } else {
-          clearInterval(preCountInterval);
-          playBeepLong();
-          interval = setInterval(() => {
-            if (remaining > 0) {
-              remaining--;
-            } else {
-              isWork = !isWork;
-              playBeepLong();
-              if (isWork) {
-                if (set < schedule[current].sets) {
-                  set++;
-                  remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
-                } else {
-                  nextExercise();
-                  return;
-                }
-              } else {
-                remaining = schedule[current].rest;
-              }
-            }
-            updateDisplay();
-          }, 1000);
-        }
-      }, 1000);
-    }
-
-    function completeManualWork() {
-      isWork = false;
-      remaining = schedule[current].rest;
-      updateDisplay();
-      startTimer();
-    }
-
-    function pauseTimer() {
-      clearInterval(interval);
-      interval = null;
-      clearInterval(preCountInterval);
-      preCountInterval = null;
-    }
-
-    function resetTimer() {
-      pauseTimer();
-      current = 0;
-      set = 1;
-      isWork = true;
-      remaining = schedule[0]?.work === "reps" ? 0 : schedule[0]?.work || 0;
-      updateDisplay();
-    }
-
-    function nextExercise() {
-      pauseTimer();
-      if (current < schedule.length - 1) {
-        current++;
-        set = 1;
-        isWork = true;
-        remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
-        updateDisplay();
-      } else {
-        document.getElementById('exerciseName').innerText = "Séance terminée !";
-        document.getElementById('timer').innerText = "00:00";
-        document.getElementById('phase').innerText = "-";
-        document.getElementById('details').innerText = "Bravo pour ta séance ! Pense à bien récupérer.";
-        document.getElementById('completeWorkBtn').style.display = 'none';
-        document.getElementById('exerciseImg').style.display = 'none';
-      }
-    }
-
-    function prevExercise() {
-      pauseTimer();
-      if (current > 0) {
-        current--;
-        set = 1;
-        isWork = true;
-        remaining = schedule[current].work === "reps" ? 0 : schedule[current].work;
-        updateDisplay();
-      }
-    }
-
-    window.onload = () => {
-      document.getElementById("daySelect").value = "Jour 1";
-      loadDay();
-    };
-  </script></body>
+  </script>
+</body>
 </html>
